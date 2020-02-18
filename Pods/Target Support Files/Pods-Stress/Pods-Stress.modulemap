@@ -1,0 +1,6 @@
+framework module Pods_Stress {
+  umbrella header "Pods-Stress-umbrella.h"
+
+  export *
+  module * { export * }
+}
