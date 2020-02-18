@@ -43,6 +43,9 @@ class Peg: GKEntity {
         let physicsBody = BKPhysicsCircle(center: center, radius: radius, isDynamic: false, isResting: false)
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
         addComponent(physicsComponent)
+
+        let movementComponent = MovementComponent()
+        addComponent(movementComponent)
     }
 }
 

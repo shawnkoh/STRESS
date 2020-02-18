@@ -21,10 +21,14 @@ class Ball: GKEntity {
         view.center = center
         view.bounds.size = CGSize(width: diameter, height: diameter)
         let visualComponent = VisualComponent(view: view)
+        addComponent(visualComponent)
+
         let physicsBody = BKPhysicsCircle(center: center, radius: radius, mass: 1.125, velocity: velocity)
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
-        addComponent(visualComponent)
         addComponent(physicsComponent)
+
+        let movementComponent = MovementComponent()
+        addComponent(movementComponent)
     }
 }
 

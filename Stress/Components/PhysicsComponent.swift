@@ -22,7 +22,6 @@ class PhysicsComponent: GKComponent {
 
     override func didAddToEntity() {
         entity?.scene?.physicsWorld.addBody(physicsBody)
-        physicsBody.delegate = entity?.component(ofType: VisualComponent.self)
     }
 
     override func willRemoveFromEntity() {

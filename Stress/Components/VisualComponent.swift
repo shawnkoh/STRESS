@@ -28,11 +28,3 @@ class VisualComponent: GKComponent {
         view.removeFromSuperview()
     }
 }
-
-extension VisualComponent: BKPhysicsBodyDelegate {
-    func didUpdate(body: BKPhysicsBody) {
-        if let body = body as? BKPhysicsBodyWithVolume {
-            view.center = body.center
-        }
-    }
-}
