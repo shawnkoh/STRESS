@@ -1,8 +1,8 @@
 # CS3217 Problem Set 4
 
-**Name:** Your name
+**Name:** Koh Zheng Qiang Shawn
 
-**Matric No:** Your matric no
+**Matric No:** A0185892L
 
 ## Tips
 1. CS3217's docs is at https://cs3217.netlify.com. Do visit the docs often, as
