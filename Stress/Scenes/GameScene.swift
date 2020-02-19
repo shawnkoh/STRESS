@@ -63,9 +63,8 @@ class GameScene: GKScene {
         _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         _ = background.topAnchor.constraint(equalTo: view.topAnchor)
         _ = background.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        entities
-            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-            .forEach { view.addSubview($0) }
+        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
+                .forEach { view.addSubview($0) }
     }
 
     @objc func controlCannon(_ sender: UIPanGestureRecognizer) {
@@ -86,8 +85,6 @@ class GameScene: GKScene {
 
     func loadLevel(_ level: Level) {
         self.level = level
-        for peg in level.pegs {
-            addEntity(peg)
-        }
+        level.pegs.forEach { addEntity($0) }
     }
 }
