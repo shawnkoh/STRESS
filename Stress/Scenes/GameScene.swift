@@ -14,8 +14,12 @@ class GameScene: GKScene {
     let background: UIImageView
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
     let cannon: Cannon
+    unowned let stress: Stress
 
-    override init(size: CGSize) {
+    /// Convenience variable
+    init(stress: Stress, size: CGSize) {
+        self.stress = stress
+
         let topLeft = CGPoint(x: 0, y: 0)
         let topRight = CGPoint(x: size.width, y: 0)
         let bottomLeft = CGPoint(x: 0, y: size.height)
@@ -77,10 +81,7 @@ class GameScene: GKScene {
     }
 
     @objc func tapMenu(_ sender: UITapGestureRecognizer) {
-        guard let viewController = view?.superview as? ViewController else {
-            fatalError("View controller was not initialised")
-        }
-        view?.presentScene(viewController.levelDesignerScene)
+        stress.sceneStateMachine.enter(DesigningState.self)
     }
 
     func loadLevel(_ level: Level) {

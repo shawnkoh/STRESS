@@ -9,9 +9,10 @@
 import Foundation
 
 /// The protocol for defining state-specific logic as part of a state machine.
-protocol GKState {
+protocol GKState: AnyObject {
+    // TODO: This should ideally only be gettable, not settable.
     /// The state machine that owns this state object.
-    var stateMachine: GKStateMachine? { get }
+    var stateMachine: GKStateMachine? { get set }
 
     /// Returns a Boolean value indicating whether a state machine currently in this
     /// state is allowed to transition into the specified state.

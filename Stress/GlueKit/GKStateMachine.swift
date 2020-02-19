@@ -17,6 +17,12 @@ class GKStateMachine {
     /// Initializes a state machine with the specified states.
     init(states: [GKState]) {
         self.states = states
+        for state in states {
+            state.stateMachine = self
+        }
+//        states.forEach { state in
+//
+//        }
     }
 
     func state<StateType>(forClass stateClass: StateType.Type) -> StateType? where StateType: GKState {
@@ -29,12 +35,13 @@ class GKStateMachine {
     /// - Returns: true if a transition is allowed from the current state to a
     /// state of the specified class; otherwise false.
     func canEnterState(_ stateClass: GKState.Type) -> Bool {
-        currentState?.isValidNextState(stateClass) ?? false
+        currentState?.isValidNextState(stateClass) ?? true
     }
 
     /// Attempts to transition the state machine from its current state to a state of the specified class.
     /// - Parameter stateClass: The class of state into which to attempt a transition.
     /// - Returns: true if the transition was successful; otherwise false.
+    @discardableResult
     func enter<StateType>(_ stateClass: StateType.Type) -> Bool where StateType: GKState {
         guard
             canEnterState(stateClass.self),
