@@ -31,11 +31,12 @@ class Peg: GKEntity {
         self.isHit = false
         super.init()
 
-        let diameter = radius * 2
+        let transformComponent = TransformComponent(position: center)
+        addComponent(transformComponent)
 
+        let diameter = radius * 2
         let view = PegView(frame: .zero)
         view.image = StressSettings.defaultPegImage(for: type)
-        view.center = center
         view.bounds.size = CGSize(width: diameter, height: diameter)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
@@ -43,9 +44,6 @@ class Peg: GKEntity {
         let physicsBody = BKPhysicsCircle(center: center, radius: radius, isDynamic: false, isResting: false)
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
         addComponent(physicsComponent)
-
-        let movementComponent = MovementComponent()
-        addComponent(movementComponent)
     }
 }
 
@@ -59,4 +57,10 @@ enum PegType: Int {
     /// A `normal` peg does not need to be eliminated in order to complete the level.
     /// When it is eliminated, it provides points.
     case normal
+}
+
+extension Peg: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
 }

@@ -22,6 +22,14 @@ class PhysicsComponent: GKComponent {
 
     override func didAddToEntity() {
         entity?.scene?.physicsWorld.addBody(physicsBody)
+
+        if let transformComponent = entity?.component(ofType: TransformComponent.self) {
+            physicsBody.delegate = transformComponent
+
+            if let volume = physicsBody as? BKPhysicsBodyWithVolume {
+                volume.center = transformComponent.position
+            }
+        }
     }
 
     override func willRemoveFromEntity() {

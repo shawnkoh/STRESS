@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		00701ED4C93262A21C262A17 /* Pods_StressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D53713700922875B319A62 /* Pods_StressTests.framework */; };
 		72B0AC9FEA3DE3DBB61678D6 /* Pods_Stress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553A297C9D06C9EDBE8827C /* Pods_Stress.framework */; };
+		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2574F23FC609A00C25BBE /* AppDelegate.swift */; };
 		86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575123FC609A00C25BBE /* SceneDelegate.swift */; };
 		86F2575423FC609A00C25BBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575323FC609A00C25BBE /* ViewController.swift */; };
@@ -26,7 +27,6 @@
 		86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2578523FC663D00C25BBE /* VisualComponent.swift */; };
 		86F2578823FC664900C25BBE /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2578723FC664900C25BBE /* PhysicsComponent.swift */; };
 		86F2578A23FC665000C25BBE /* FiringComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2578923FC665000C25BBE /* FiringComponent.swift */; };
-		86F2578C23FC665500C25BBE /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2578B23FC665500C25BBE /* MovementComponent.swift */; };
 		86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579023FC6A1200C25BBE /* CGVector+Extensions.swift */; };
 		86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579223FC6A2300C25BBE /* CGPoint+Extensions.swift */; };
 		86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579423FC6A2B00C25BBE /* CGFloat+Extensions.swift */; };
@@ -50,6 +50,12 @@
 		86F257CA23FC6AFF00C25BBE /* BKPhysicsEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257BF23FC6AFF00C25BBE /* BKPhysicsEdge.swift */; };
 		86F257CB23FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257C023FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift */; };
 		86F257CD23FC6B1100C25BBE /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257CC23FC6B1100C25BBE /* PegView.swift */; };
+		86F257CF23FCDE3B00C25BBE /* LevelDesignerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */; };
+		86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D123FCDEAE00C25BBE /* LevelData.swift */; };
+		86F257D423FCDEB500C25BBE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D323FCDEB500C25BBE /* Store.swift */; };
+		86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D523FCDEBA00C25BBE /* PegData.swift */; };
+		86F257D823FCDFCA00C25BBE /* LevelDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */; };
+		86F257DA23FCE14300C25BBE /* LevelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D923FCE14300C25BBE /* LevelDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +74,7 @@
 		2A84566B8B0F5A36088A741E /* Pods-Stress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stress.release.xcconfig"; path = "Target Support Files/Pods-Stress/Pods-Stress.release.xcconfig"; sourceTree = "<group>"; };
 		64D53713700922875B319A62 /* Pods_StressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5606BA52120E958544F222 /* Pods-StressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.release.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.release.xcconfig"; sourceTree = "<group>"; };
+		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86F2574C23FC609A00C25BBE /* Stress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F2574F23FC609A00C25BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86F2575123FC609A00C25BBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +96,6 @@
 		86F2578523FC663D00C25BBE /* VisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualComponent.swift; sourceTree = "<group>"; };
 		86F2578723FC664900C25BBE /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		86F2578923FC665000C25BBE /* FiringComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiringComponent.swift; sourceTree = "<group>"; };
-		86F2578B23FC665500C25BBE /* MovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 		86F2579023FC6A1200C25BBE /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
 		86F2579223FC6A2300C25BBE /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		86F2579423FC6A2B00C25BBE /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -113,6 +119,12 @@
 		86F257BF23FC6AFF00C25BBE /* BKPhysicsEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BKPhysicsEdge.swift; sourceTree = "<group>"; };
 		86F257C023FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BKPhysicsContactDelegate.swift; sourceTree = "<group>"; };
 		86F257CC23FC6B1100C25BBE /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
+		86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerScene.swift; sourceTree = "<group>"; };
+		86F257D123FCDEAE00C25BBE /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
+		86F257D323FCDEB500C25BBE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		86F257D523FCDEBA00C25BBE /* PegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegData.swift; sourceTree = "<group>"; };
+		86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesigner.swift; sourceTree = "<group>"; };
+		86F257D923FCE14300C25BBE /* LevelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDelegate.swift; sourceTree = "<group>"; };
 		88F0BC15E5498DC1AD859C4B /* Pods-StressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.debug.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +180,7 @@
 		86F2574E23FC609A00C25BBE /* Stress */ = {
 			isa = PBXGroup;
 			children = (
+				86F257D023FCDEA000C25BBE /* Store */,
 				86F2577223FC653500C25BBE /* Scenes */,
 				86F2577323FC653F00C25BBE /* Entities */,
 				86F2577423FC654400C25BBE /* Components */,
@@ -199,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				86F2577723FC659E00C25BBE /* GameScene.swift */,
+				86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -206,7 +220,9 @@
 		86F2577323FC653F00C25BBE /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */,
 				86F2577923FC65B400C25BBE /* Level.swift */,
+				86F257D923FCE14300C25BBE /* LevelDelegate.swift */,
 				86F2577F23FC65F600C25BBE /* Wall.swift */,
 				86F2578323FC661400C25BBE /* Exit.swift */,
 				86F2577B23FC65C100C25BBE /* Peg.swift */,
@@ -219,9 +235,9 @@
 		86F2577423FC654400C25BBE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				86E5207423FD368900D588A6 /* TransformComponent.swift */,
 				86F2578523FC663D00C25BBE /* VisualComponent.swift */,
 				86F2578723FC664900C25BBE /* PhysicsComponent.swift */,
-				86F2578B23FC665500C25BBE /* MovementComponent.swift */,
 				86F2578923FC665000C25BBE /* FiringComponent.swift */,
 			);
 			path = Components;
@@ -286,6 +302,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		86F257D023FCDEA000C25BBE /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				86F257D323FCDEB500C25BBE /* Store.swift */,
+				86F257D123FCDEAE00C25BBE /* LevelData.swift */,
+				86F257D523FCDEBA00C25BBE /* PegData.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		CDDB2F35EA47E853BB607ED6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +335,7 @@
 				86F2574923FC609A00C25BBE /* Frameworks */,
 				86F2574A23FC609A00C25BBE /* Resources */,
 				86F2577123FC642400C25BBE /* ShellScript */,
+				0CA22D751FF7F9401F635C07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -397,6 +424,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0CA22D751FF7F9401F635C07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stress/Pods-Stress-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stress/Pods-Stress-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stress/Pods-Stress-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		86F2577123FC642400C25BBE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,9 +509,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */,
 				86F2577C23FC65C100C25BBE /* Peg.swift in Sources */,
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
+				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
 				86F257C223FC6AFF00C25BBE /* BKPhysicsWorld.swift in Sources */,
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,
@@ -478,19 +524,22 @@
 				86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */,
 				86F257CD23FC6B1100C25BBE /* PegView.swift in Sources */,
 				86F257C323FC6AFF00C25BBE /* BKSettings.swift in Sources */,
+				86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */,
 				86F257AF23FC6ADF00C25BBE /* GKScene.swift in Sources */,
 				86F257C723FC6AFF00C25BBE /* BKPhysicsBody.swift in Sources */,
+				86F257DA23FCE14300C25BBE /* LevelDelegate.swift in Sources */,
 				86F2578A23FC665000C25BBE /* FiringComponent.swift in Sources */,
+				86F257CF23FCDE3B00C25BBE /* LevelDesignerScene.swift in Sources */,
 				86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */,
 				86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */,
 				86F257C623FC6AFF00C25BBE /* BKPhysicsBodyDelegate.swift in Sources */,
 				86F2577823FC659E00C25BBE /* GameScene.swift in Sources */,
 				86F2578223FC660C00C25BBE /* Cannon.swift in Sources */,
 				86F2578423FC661400C25BBE /* Exit.swift in Sources */,
-				86F2578C23FC665500C25BBE /* MovementComponent.swift in Sources */,
 				86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */,
 				86F257C423FC6AFF00C25BBE /* BKLineProtocol.swift in Sources */,
 				86F257CB23FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift in Sources */,
+				86F257D823FCDFCA00C25BBE /* LevelDesigner.swift in Sources */,
 				86F2578823FC664900C25BBE /* PhysicsComponent.swift in Sources */,
 				86F2577A23FC65B400C25BBE /* Level.swift in Sources */,
 				86F257B323FC6ADF00C25BBE /* GKComponentSystem.swift in Sources */,
@@ -498,6 +547,7 @@
 				86F257B123FC6ADF00C25BBE /* GKEntity.swift in Sources */,
 				86F2578023FC65F600C25BBE /* Wall.swift in Sources */,
 				86F2579723FC6A6B00C25BBE /* StressSettings.swift in Sources */,
+				86F257D423FCDEB500C25BBE /* Store.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,
 				86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */,

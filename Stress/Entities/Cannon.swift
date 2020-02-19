@@ -29,9 +29,11 @@ class Cannon: GKEntity {
     init(center: CGPoint, size: CGSize) {
         super.init()
 
+        let transformComponent = TransformComponent(position: center)
+        addComponent(transformComponent)
+
         let view = UIImageView(frame: .zero)
         view.image = StressSettings.defaultEmptyCannonImage
-        view.center = center
         view.bounds.size = size
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)

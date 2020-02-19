@@ -15,10 +15,12 @@ class Ball: GKEntity {
     init(center: CGPoint, velocity: CGVector, radius: CGFloat = StressSettings.defaultBallRadius) {
         super.init()
 
+        let transformComponent = TransformComponent(position: center)
+        addComponent(transformComponent)
+
         let diameter = radius * 2
         let view = UIImageView(frame: .zero)
         view.image = StressSettings.defaultBallImage
-        view.center = center
         view.bounds.size = CGSize(width: diameter, height: diameter)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
@@ -26,9 +28,6 @@ class Ball: GKEntity {
         let physicsBody = BKPhysicsCircle(center: center, radius: radius, mass: 1.125, velocity: velocity)
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
         addComponent(physicsComponent)
-
-        let movementComponent = MovementComponent()
-        addComponent(movementComponent)
     }
 }
 

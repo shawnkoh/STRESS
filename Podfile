@@ -7,6 +7,7 @@ target 'Stress' do
 
   # Pods for Stress
   pod 'SwiftLint'
+  pod 'RealmSwift'
 
   target 'StressTests' do
     inherit! :search_paths

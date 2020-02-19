@@ -22,6 +22,10 @@ class VisualComponent: GKComponent {
 
     override func didAddToEntity() {
         entity?.scene?.view?.addSubview(view)
+
+        if let transformComponent = entity?.component(ofType: TransformComponent.self) {
+            view.center = transformComponent.position
+        }
     }
 
     override func willRemoveFromEntity() {

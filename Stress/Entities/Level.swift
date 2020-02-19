@@ -11,14 +11,19 @@ import UIKit
 /**
  `Level` is an abstract data structure that represents a game level in Stress.
  */
-class Level {
+class Level: Identifiable {
     // MARK: Properties
+    let id: String = UUID().uuidString
     var name: String
-    var pegs: [Peg]
+    var size: CGSize
+    var pegs: Set<Peg>
+    weak var delegate: LevelDelegate?
 
-    init(name: String, size: CGSize, pegs: [Peg] = []) {
+    init(name: String, size: CGSize, pegs: Set<Peg> = [], delegate: LevelDelegate? = nil) {
         self.name = name
+        self.size = size
         self.pegs = pegs
+        self.delegate = delegate
     }
 
     /// Adds a `Peg` into the level.
@@ -26,7 +31,7 @@ class Level {
     /// - Returns: True if the peg was succesfully added, or false otherwise.
     @discardableResult
     func addPeg(_ peg: Peg) -> Bool {
-        pegs.append(peg)
+        pegs.insert(peg)
         return true
     }
 
@@ -41,5 +46,10 @@ class Level {
             return nil
         }
         return pegs.remove(at: index)
+    }
+
+    func removeAllPegs() {
+        pegs = Set()
+        delegate?.didRemoveAllPegs()
     }
 }
