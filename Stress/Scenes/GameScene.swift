@@ -81,7 +81,7 @@ class GameScene: GKScene {
     }
 
     @objc func tapMenu(_ sender: UITapGestureRecognizer) {
-        stress.sceneStateMachine.enter(DesigningState.self)
+        stress.sceneStateMachine.enter(TitleScreenState.self)
     }
 
     func loadLevel(_ level: Level) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DesigningState: GKState {
+class DesigningState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
@@ -16,7 +16,7 @@ class DesigningState: GKState {
     }
 
     func didEnter(from previousState: GKState?) {
-
+        presenter.presentScene(sceneStateMachine.levelDesignerScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {

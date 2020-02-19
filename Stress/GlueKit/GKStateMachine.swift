@@ -17,12 +17,7 @@ class GKStateMachine {
     /// Initializes a state machine with the specified states.
     init(states: [GKState]) {
         self.states = states
-        for state in states {
-            state.stateMachine = self
-        }
-//        states.forEach { state in
-//
-//        }
+        states.forEach { $0.stateMachine = self }
     }
 
     func state<StateType>(forClass stateClass: StateType.Type) -> StateType? where StateType: GKState {

@@ -1,19 +1,19 @@
 //
-//  LevelDesignerScene.swift
+//  TitleScreenScene.swift
 //  Stress
 //
-//  Created by Shawn Koh on 19/2/20.
+//  Created by Shawn Koh on 20/2/20.
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
 import UIKit
 
-class LevelDesignerScene: GKScene {
-    let levelDesigner: LevelDesigner
+class TitleScreen: GKScene {
+    unowned let stress: Stress
     let background: UIImageView
 
-    override init(size: CGSize) {
-        levelDesigner = LevelDesigner(size: size)
+    init(stress: Stress, size: CGSize) {
+        self.stress = stress
         background = UIImageView(frame: .zero)
         background.image = StressSettings.defaultBackgroundImage
         background.contentMode = .scaleAspectFill

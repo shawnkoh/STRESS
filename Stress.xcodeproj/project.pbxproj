@@ -10,6 +10,8 @@
 		00701ED4C93262A21C262A17 /* Pods_StressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D53713700922875B319A62 /* Pods_StressTests.framework */; };
 		72B0AC9FEA3DE3DBB61678D6 /* Pods_Stress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553A297C9D06C9EDBE8827C /* Pods_Stress.framework */; };
 		864DA1D523FDA794005805FF /* SceneStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D423FDA794005805FF /* SceneStateMachine.swift */; };
+		864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D623FDCFA7005805FF /* TitleScreen.swift */; };
+		864DA1D923FDD052005805FF /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D823FDD052005805FF /* SceneState.swift */; };
 		8650447123FD647E003F105D /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447023FD647E003F105D /* Dialogs.swift */; };
 		8650447323FD70E7003F105D /* Stress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447223FD70E7003F105D /* Stress.swift */; };
 		8650447523FD726C003F105D /* GKStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447423FD726C003F105D /* GKStateMachine.swift */; };
@@ -83,6 +85,8 @@
 		64D53713700922875B319A62 /* Pods_StressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5606BA52120E958544F222 /* Pods-StressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.release.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.release.xcconfig"; sourceTree = "<group>"; };
 		864DA1D423FDA794005805FF /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
+		864DA1D623FDCFA7005805FF /* TitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreen.swift; sourceTree = "<group>"; };
+		864DA1D823FDD052005805FF /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		8650447023FD647E003F105D /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
 		8650447223FD70E7003F105D /* Stress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stress.swift; sourceTree = "<group>"; };
 		8650447423FD726C003F105D /* GKStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKStateMachine.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			children = (
 				8650447223FD70E7003F105D /* Stress.swift */,
 				864DA1D423FDA794005805FF /* SceneStateMachine.swift */,
+				864DA1D823FDD052005805FF /* SceneState.swift */,
 				8650447923FD7793003F105D /* TitleScreenState.swift */,
 				8650447B23FD783C003F105D /* PlayingState.swift */,
 				8650447D23FD7849003F105D /* DesigningState.swift */,
@@ -240,6 +245,7 @@
 		86F2577223FC653500C25BBE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				864DA1D623FDCFA7005805FF /* TitleScreen.swift */,
 				86F2577723FC659E00C25BBE /* GameScene.swift */,
 				86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */,
 			);
@@ -545,6 +551,7 @@
 				8650447723FD728E003F105D /* GKState.swift in Sources */,
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
 				86F2577C23FC65C100C25BBE /* Peg.swift in Sources */,
+				864DA1D923FDD052005805FF /* SceneState.swift in Sources */,
 				8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */,
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
@@ -554,6 +561,7 @@
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,
 				86F257C123FC6AFF00C25BBE /* BKPhysicsCircle.swift in Sources */,
+				864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */,
 				86F257C823FC6AFF00C25BBE /* BKPhysicsBodyWithVolume.swift in Sources */,
 				86F257B423FC6ADF00C25BBE /* GKSceneDelegate.swift in Sources */,
 				8650447123FD647E003F105D /* Dialogs.swift in Sources */,

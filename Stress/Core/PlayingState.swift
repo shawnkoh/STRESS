@@ -9,14 +9,8 @@
 import Foundation
 import CoreGraphics // TEMP
 
-class PlayingState: GKState {
+class PlayingState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
-    var sceneStateMachine: SceneStateMachine {
-        guard let sceneStateMachine = stateMachine as? SceneStateMachine else {
-            fatalError("PlayingState must be bounded to a SceneStateMachine")
-        }
-        return sceneStateMachine
-    }
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type
@@ -40,7 +34,7 @@ class PlayingState: GKState {
 
         let gameScene = sceneStateMachine.gameScene
         gameScene.loadLevel(level)
-        sceneStateMachine.presenter.presentScene(gameScene)
+        presenter.presentScene(gameScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {

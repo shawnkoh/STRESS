@@ -22,7 +22,7 @@ class LevelData: Object {
     @objc dynamic var id = UUID().uuidString
     // Realm requires all non optional properties to have a default value.
     // https://realm.io/docs/swift/latest/#models
-    @objc dynamic var name: String =  StressSettings.defaultLevelName
+    @objc dynamic var name: String = StressSettings.defaultLevelName
     @objc dynamic var width: Double = 0
     @objc dynamic var height: Double = 0
     let pegs: List<PegData>

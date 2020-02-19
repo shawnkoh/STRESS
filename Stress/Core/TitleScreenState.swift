@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TitleScreenState: GKState {
+class TitleScreenState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
@@ -16,7 +16,7 @@ class TitleScreenState: GKState {
     }
 
     func didEnter(from previousState: GKState?) {
-        // present title screen
+        presenter.presentScene(sceneStateMachine.titleScreen)
     }
 
     func update(deltaTime: TimeInterval) {
