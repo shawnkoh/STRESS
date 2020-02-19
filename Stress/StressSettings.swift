@@ -20,7 +20,7 @@ enum StressSettings {
     static let defaultBackgroundImage = UIImage(named: "background")!
     static let defaultLoadedCannonImage = UIImage(named: "cannon-loaded")!
     static let defaultEmptyCannonImage = UIImage(named: "cannon-empty")!
-    static let defaultCannonSize = CGSize(width: 64, height: 64)
+    static let defaultCannonSize = CGSize(width: 96, height: 96)
 
     static let defaultPegRadius: CGFloat = 16
     static var defaultPegSize: CGSize {

@@ -12,6 +12,7 @@ import UIKit
 class GameScene: GKScene {
     var level: Level?
     let background: UIImageView
+    let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
     let cannon: Cannon
 
     override init(size: CGSize) {
@@ -25,6 +26,11 @@ class GameScene: GKScene {
         background.center = CGPoint(x: size.width / 2, y: size.height / 2)
         background.bounds.size = size
         background.isUserInteractionEnabled = true
+
+        menuButton.bounds.size = CGSize(width: 48, height: 48)
+        menuButton.center = CGPoint(x: topRight.x - 100, y: 80)
+        menuButton.isUserInteractionEnabled = true
+        background.addSubview(menuButton)
         cannon = Cannon(center: CGPoint(x: topRight.x / 2, y: 80), size: StressSettings.defaultCannonSize)
         super.init(size: size)
 
@@ -41,16 +47,17 @@ class GameScene: GKScene {
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(controlCannon(_:)))
         background.addGestureRecognizer(panGesture)
+
+        let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
+        menuButton.addGestureRecognizer(menuGesture)
     }
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        entities.forEach { entity in
-            if let visualComponent = entity.component(ofType: VisualComponent.self) {
-                view.addSubview(visualComponent.view)
-            }
-        }
+        entities
+            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
+            .forEach { view.addSubview($0) }
         _ = background.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         _ = background.topAnchor.constraint(equalTo: view.topAnchor)
@@ -67,6 +74,10 @@ class GameScene: GKScene {
         if sender.state == .ended {
             cannon.component(ofType: FiringComponent.self)?.fire()
         }
+    }
+
+    @objc func tapMenu(_ sender: UITapGestureRecognizer) {
+        // TODO
     }
 
     func loadLevel(_ level: Level) {
