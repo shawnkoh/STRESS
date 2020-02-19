@@ -55,13 +55,13 @@ class GameScene: GKScene {
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        entities
-            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-            .forEach { view.addSubview($0) }
         _ = background.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         _ = background.topAnchor.constraint(equalTo: view.topAnchor)
         _ = background.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        entities
+            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
+            .forEach { view.addSubview($0) }
     }
 
     @objc func controlCannon(_ sender: UIPanGestureRecognizer) {
@@ -77,7 +77,10 @@ class GameScene: GKScene {
     }
 
     @objc func tapMenu(_ sender: UITapGestureRecognizer) {
-        // TODO
+        guard let viewController = view?.superview as? ViewController else {
+            fatalError("View controller was not initialised")
+        }
+        view?.presentScene(viewController.levelDesignerScene)
     }
 
     func loadLevel(_ level: Level) {

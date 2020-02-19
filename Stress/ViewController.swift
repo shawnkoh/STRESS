@@ -9,16 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var gameScene: GameScene!
+    lazy var stress = Stress(size: view.frame.size)
+    lazy var gameScene = GameScene(size: view.frame.size)
+    lazy var levelDesignerScene = LevelDesignerScene(size: view.frame.size)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let view = view as? GKView else {
             fatalError("ViewController's view is not a GKView")
         }
-        let size = view.frame.size
         // Stub level
-        let level = Level(name: "Stub", size: size)
+        let level = Level(name: "Stub", size: view.frame.size)
         level.addPeg(Peg(center: CGPoint(x: 60, y: 300), type: .normal))
         level.addPeg(Peg(center: CGPoint(x: 120, y: 350), type: .objective))
         level.addPeg(Peg(center: CGPoint(x: 180, y: 400), type: .objective))
@@ -31,8 +32,6 @@ class ViewController: UIViewController {
         level.addPeg(Peg(center: CGPoint(x: 240, y: 600), type: .objective))
         level.addPeg(Peg(center: CGPoint(x: 300, y: 550), type: .objective))
         level.addPeg(Peg(center: CGPoint(x: 360, y: 500), type: .objective))
-
-        gameScene = GameScene(size: size)
         gameScene.loadLevel(level)
 
         view.presentScene(gameScene)
