@@ -28,8 +28,9 @@ class TransformComponent: GKComponent {
         }
     }
 
-    // var scale: CGFloat
+    // TODO: add scale
     // should not do size because that belongs to the visual and physics component itself
+    // var scale: CGFloat
 
     init(position: CGPoint) {
         self.position = position

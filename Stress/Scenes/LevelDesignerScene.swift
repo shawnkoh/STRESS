@@ -13,13 +13,13 @@ class LevelDesignerScene: GKScene {
     let background: UIImageView
 
     override init(size: CGSize) {
+        levelDesigner = LevelDesigner(size: size)
         background = UIImageView(frame: .zero)
         background.image = StressSettings.defaultBackgroundImage
         background.contentMode = .scaleAspectFill
         background.center = CGPoint(x: size.width / 2, y: size.height / 2)
         background.bounds.size = size
         background.isUserInteractionEnabled = true
-        levelDesigner = LevelDesigner(size: size)
         super.init(size: size)
     }
 

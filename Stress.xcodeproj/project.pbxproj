@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00701ED4C93262A21C262A17 /* Pods_StressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D53713700922875B319A62 /* Pods_StressTests.framework */; };
 		72B0AC9FEA3DE3DBB61678D6 /* Pods_Stress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553A297C9D06C9EDBE8827C /* Pods_Stress.framework */; };
+		8650447123FD647E003F105D /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447023FD647E003F105D /* Dialogs.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2574F23FC609A00C25BBE /* AppDelegate.swift */; };
 		86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575123FC609A00C25BBE /* SceneDelegate.swift */; };
@@ -74,6 +75,7 @@
 		2A84566B8B0F5A36088A741E /* Pods-Stress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stress.release.xcconfig"; path = "Target Support Files/Pods-Stress/Pods-Stress.release.xcconfig"; sourceTree = "<group>"; };
 		64D53713700922875B319A62 /* Pods_StressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5606BA52120E958544F222 /* Pods-StressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.release.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.release.xcconfig"; sourceTree = "<group>"; };
+		8650447023FD647E003F105D /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86F2574C23FC609A00C25BBE /* Stress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F2574F23FC609A00C25BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				86F2575523FC609A00C25BBE /* Main.storyboard */,
 				86F2575A23FC609B00C25BBE /* LaunchScreen.storyboard */,
 				86F257CC23FC6B1100C25BBE /* PegView.swift */,
+				8650447023FD647E003F105D /* Dialogs.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				86F257C123FC6AFF00C25BBE /* BKPhysicsCircle.swift in Sources */,
 				86F257C823FC6AFF00C25BBE /* BKPhysicsBodyWithVolume.swift in Sources */,
 				86F257B423FC6ADF00C25BBE /* GKSceneDelegate.swift in Sources */,
+				8650447123FD647E003F105D /* Dialogs.swift in Sources */,
 				86F257B223FC6ADF00C25BBE /* GKContactNotifiable.swift in Sources */,
 				86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */,
 				86F257CD23FC6B1100C25BBE /* PegView.swift in Sources */,
