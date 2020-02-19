@@ -25,6 +25,7 @@ class TitleScreen: GKScene {
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
+        view.addSubview(background)
         _ = background.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         _ = background.topAnchor.constraint(equalTo: view.topAnchor)
