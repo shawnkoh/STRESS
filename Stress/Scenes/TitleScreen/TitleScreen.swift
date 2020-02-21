@@ -10,7 +10,7 @@ import UIKit
 
 class TitleScreen: GKScene {
     unowned let stress: Stress
-    let background: UIImageView
+    let background = Background()
     let title: UILabel
     let play: UIButton
     let designer: UIButton
@@ -18,13 +18,6 @@ class TitleScreen: GKScene {
     init(stress: Stress, size: CGSize) {
         self.stress = stress
         let center = CGPoint(x: size.width / 2, y: size.height / 2)
-
-        background = UIImageView(frame: .zero)
-        background.image = StressSettings.defaultBackgroundImage
-        background.contentMode = .scaleAspectFill
-        background.center = center
-        background.bounds.size = size
-        background.isUserInteractionEnabled = true
 
         title = UILabel(frame: .zero)
         title.frame.size = CGSize(width: size.width - 400, height: 150)
@@ -62,10 +55,6 @@ class TitleScreen: GKScene {
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        _ = background.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        _ = background.topAnchor.constraint(equalTo: view.topAnchor)
-        _ = background.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         view.addSubview(title)
         view.addSubview(play)
         view.addSubview(designer)

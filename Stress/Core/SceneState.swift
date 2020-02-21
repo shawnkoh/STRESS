@@ -6,8 +6,7 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-protocol SceneState {
-    var stateMachine: GKStateMachine? { get }
+protocol SceneState where Self: GKState {
     var sceneStateMachine: SceneStateMachine { get }
     var presenter: GKView { get }
 }

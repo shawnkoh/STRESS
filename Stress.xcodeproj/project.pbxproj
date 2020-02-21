@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		00701ED4C93262A21C262A17 /* Pods_StressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D53713700922875B319A62 /* Pods_StressTests.framework */; };
 		72B0AC9FEA3DE3DBB61678D6 /* Pods_Stress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553A297C9D06C9EDBE8827C /* Pods_Stress.framework */; };
+		860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE7723FF0DE70007AE58 /* Spacer.swift */; };
+		860BCE7A23FF16530007AE58 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE7923FF16530007AE58 /* Tool.swift */; };
 		864DA1D523FDA794005805FF /* SceneStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D423FDA794005805FF /* SceneStateMachine.swift */; };
 		864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D623FDCFA7005805FF /* TitleScreen.swift */; };
 		864DA1D923FDD052005805FF /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D823FDD052005805FF /* SceneState.swift */; };
@@ -19,6 +21,8 @@
 		8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447923FD7793003F105D /* TitleScreenState.swift */; };
 		8650447C23FD783C003F105D /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447B23FD783C003F105D /* PlayingState.swift */; };
 		8650447E23FD7849003F105D /* DesigningState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447D23FD7849003F105D /* DesigningState.swift */; };
+		8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657C85523FDE6C90018E7D2 /* Palette.swift */; };
+		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2574F23FC609A00C25BBE /* AppDelegate.swift */; };
 		86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575123FC609A00C25BBE /* SceneDelegate.swift */; };
@@ -84,6 +88,8 @@
 		2A84566B8B0F5A36088A741E /* Pods-Stress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stress.release.xcconfig"; path = "Target Support Files/Pods-Stress/Pods-Stress.release.xcconfig"; sourceTree = "<group>"; };
 		64D53713700922875B319A62 /* Pods_StressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5606BA52120E958544F222 /* Pods-StressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.release.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.release.xcconfig"; sourceTree = "<group>"; };
+		860BCE7723FF0DE70007AE58 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
+		860BCE7923FF16530007AE58 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		864DA1D423FDA794005805FF /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
 		864DA1D623FDCFA7005805FF /* TitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreen.swift; sourceTree = "<group>"; };
 		864DA1D823FDD052005805FF /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 		8650447923FD7793003F105D /* TitleScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreenState.swift; sourceTree = "<group>"; };
 		8650447B23FD783C003F105D /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		8650447D23FD7849003F105D /* DesigningState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigningState.swift; sourceTree = "<group>"; };
+		8657C85523FDE6C90018E7D2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86F2574C23FC609A00C25BBE /* Stress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F2574F23FC609A00C25BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +198,32 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		869702FE23FF075600375308 /* LevelDesignerScene */ = {
+			isa = PBXGroup;
+			children = (
+				86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */,
+				8657C85523FDE6C90018E7D2 /* Palette.swift */,
+				860BCE7923FF16530007AE58 /* Tool.swift */,
+			);
+			path = LevelDesignerScene;
+			sourceTree = "<group>";
+		};
+		869702FF23FF079800375308 /* TitleScreen */ = {
+			isa = PBXGroup;
+			children = (
+				864DA1D623FDCFA7005805FF /* TitleScreen.swift */,
+			);
+			path = TitleScreen;
+			sourceTree = "<group>";
+		};
+		8697030023FF07A100375308 /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				86F2577723FC659E00C25BBE /* GameScene.swift */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
 		86F2574323FC609A00C25BBE = {
 			isa = PBXGroup;
 			children = (
@@ -245,9 +279,12 @@
 		86F2577223FC653500C25BBE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				864DA1D623FDCFA7005805FF /* TitleScreen.swift */,
-				86F2577723FC659E00C25BBE /* GameScene.swift */,
-				86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */,
+				8697030023FF07A100375308 /* GameScene */,
+				869702FF23FF079800375308 /* TitleScreen */,
+				869702FE23FF075600375308 /* LevelDesignerScene */,
+				869702FC23FF01B700375308 /* Background.swift */,
+				86F257CC23FC6B1100C25BBE /* PegView.swift */,
+				860BCE7723FF0DE70007AE58 /* Spacer.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -290,7 +327,6 @@
 			children = (
 				86F2575523FC609A00C25BBE /* Main.storyboard */,
 				86F2575A23FC609B00C25BBE /* LaunchScreen.storyboard */,
-				86F257CC23FC6B1100C25BBE /* PegView.swift */,
 				8650447023FD647E003F105D /* Dialogs.swift */,
 			);
 			path = Views;
@@ -550,11 +586,13 @@
 				86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */,
 				8650447723FD728E003F105D /* GKState.swift in Sources */,
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
+				8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */,
 				86F2577C23FC65C100C25BBE /* Peg.swift in Sources */,
 				864DA1D923FDD052005805FF /* SceneState.swift in Sources */,
 				8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */,
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
+				860BCE7A23FF16530007AE58 /* Tool.swift in Sources */,
 				8650447523FD726C003F105D /* GKStateMachine.swift in Sources */,
 				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
 				86F257C223FC6AFF00C25BBE /* BKPhysicsWorld.swift in Sources */,
@@ -581,7 +619,9 @@
 				86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */,
 				86F257C623FC6AFF00C25BBE /* BKPhysicsBodyDelegate.swift in Sources */,
 				86F2577823FC659E00C25BBE /* GameScene.swift in Sources */,
+				869702FD23FF01B700375308 /* Background.swift in Sources */,
 				86F2578223FC660C00C25BBE /* Cannon.swift in Sources */,
+				860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */,
 				86F2578423FC661400C25BBE /* Exit.swift in Sources */,
 				86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */,
 				86F257C423FC6AFF00C25BBE /* BKLineProtocol.swift in Sources */,

@@ -34,10 +34,7 @@ class Peg: GKEntity {
         let transformComponent = TransformComponent(position: center)
         addComponent(transformComponent)
 
-        let diameter = radius * 2
-        let view = PegView(frame: .zero)
-        view.image = StressSettings.defaultPegImage(for: type)
-        view.bounds.size = CGSize(width: diameter, height: diameter)
+        let view = PegView(type: type)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
 

@@ -11,7 +11,7 @@ import UIKit
 /// A `GameScene` represents the main gameplay scene in Stress.
 class GameScene: GKScene {
     var level: Level?
-    let background: UIImageView
+    let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
     let cannon: Cannon
     unowned let stress: Stress
@@ -24,12 +24,6 @@ class GameScene: GKScene {
         let topRight = CGPoint(x: size.width, y: 0)
         let bottomLeft = CGPoint(x: 0, y: size.height)
         let bottomRight = CGPoint(x: size.width, y: size.height)
-        background = UIImageView(frame: .zero)
-        background.image = StressSettings.defaultBackgroundImage
-        background.contentMode = .scaleAspectFill
-        background.center = CGPoint(x: size.width / 2, y: size.height / 2)
-        background.bounds.size = size
-        background.isUserInteractionEnabled = true
 
         menuButton.bounds.size = CGSize(width: 48, height: 48)
         menuButton.center = CGPoint(x: topRight.x - 100, y: 80)
@@ -59,10 +53,6 @@ class GameScene: GKScene {
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        _ = background.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        _ = background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        _ = background.topAnchor.constraint(equalTo: view.topAnchor)
-        _ = background.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
                 .forEach { view.addSubview($0) }
     }

@@ -11,7 +11,7 @@ import Foundation
 /// A finite-state machine—a collection of state objects that each define logic for a
 /// particular state of gameplay and rules for transitioning between states.
 class GKStateMachine {
-    var states: [GKState]
+    let states: [GKState]
     /// The state machine’s current state.
     private(set) var currentState: GKState?
     /// Initializes a state machine with the specified states.

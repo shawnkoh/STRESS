@@ -13,3 +13,5 @@ struct BKLine: BKLineProtocol {
     var from: CGPoint
     var to: CGPoint
 }
+
+extension BKLine: Equatable {}
