@@ -89,39 +89,64 @@ class LevelDesignerScene: GKScene {
 
     // MARK: Private methods
 
-    private func hasNoOverlappingPegs(at location: CGPoint) -> Bool {
-        level.entities(ofType: Peg.self)
-            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-            .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
-    }
-
-    private func hasNoOverlappingPegs(at location: CGPoint, ignoredPeg peg: Peg) -> Bool {
+    private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
         level.entities(ofType: Peg.self)
             .filter { $0 != peg }
             .compactMap { $0.component(ofType: VisualComponent.self)?.view }
             .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
     }
 
+    private func canPlace(peg: Peg, at location: CGPoint) -> Bool {
+        guard let view = peg.component(ofType: VisualComponent.self)?.view else {
+            fatalError("Unable to access the Peg's visual component.")
+        }
+        let radius = view.frame.width / 2
+        guard location.x >= radius &&
+            location.x <= self.stage.frame.width - radius &&
+            location.y >= radius &&
+            location.y <= self.stage.frame.height - radius else {
+            return false
+        }
+        return self.hasNoOverlappingPegs(at: location, ignore: peg)
+    }
+
     private func createPeg(at location: CGPoint, type: PegType) {
-        guard hasNoOverlappingPegs(at: location) else {
+        let peg = Peg(center: location, type: type)
+        guard canPlace(peg: peg, at: location) else {
             return
         }
-        let peg = Peg(center: location, type: type)
-        let draggableComponent = DraggableComponent(canDragTo: { location in
-            guard let view = peg.component(ofType: VisualComponent.self)?.view else {
-                fatalError("Unable to access the Peg's visual component.")
+
+        let panGesture = UIPanGestureRecognizer()
+        let panAction: (UIGestureRecognizer) -> Void = { sender in
+            guard let transformComponent = peg.component(ofType: TransformComponent.self) else {
+                fatalError("Unable to access transform component")
             }
-            let radius = view.frame.width / 2
-            guard location.x >= radius &&
-                location.x <= self.stage.frame.width - radius &&
-                location.y >= radius &&
-                location.y <= self.stage.frame.height - radius else {
-                return false
+            let location = sender.location(in: self.stage)
+            if self.canPlace(peg: peg, at: location) {
+                transformComponent.position = location
             }
-            return self.hasNoOverlappingPegs(at: location, ignoredPeg: peg)
-        })
-        peg.addComponent(draggableComponent)
-        peg.addComponent(DestroyableComponent())
+        }
+        let panComponent = InteractableComponent(gestureRecognizer: panGesture, action: panAction)
+        peg.addComponent(panComponent)
+
+        let longPressGesture = UILongPressGestureRecognizer()
+        let longPressAction: (UIGestureRecognizer) -> Void = { sender in
+            if sender.state == .ended {
+                peg.scene?.removeEntity(peg)
+            }
+        }
+        let longPressComponent = InteractableComponent(gestureRecognizer: longPressGesture, action: longPressAction)
+        peg.addComponent(longPressComponent)
+
+        let tapGesture = UITapGestureRecognizer()
+        let tapAction: (UIGestureRecognizer) -> Void = { sender in
+            if case .delete = self.palette.currentToolType {
+                peg.scene?.removeEntity(peg)
+            }
+        }
+        let tapComponent = InteractableComponent(gestureRecognizer: tapGesture, action: tapAction)
+        peg.addComponent(tapComponent)
+
         level.addEntity(peg)
     }
 

@@ -28,7 +28,7 @@ class DraggableComponent: GKComponent {
         super.init()
     }
 
-    override func didAddToEntity() {
+    override func didAddToEntity(_ entity: GKEntity) {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(drag(_:)))
         visualComponent.view.addGestureRecognizer(panGestureRecognizer)
         visualComponent.view.isUserInteractionEnabled = true

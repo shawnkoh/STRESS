@@ -41,12 +41,13 @@ class GKEntity: Identifiable {
     func addComponent(_ component: GKComponent) {
         component.entity = self
         components.append(component)
+        component.didAddToEntity(self)
     }
 
     func removeComponent<ComponentType>(ofType componentClass: ComponentType.Type) where ComponentType: GKComponent {
         if let component = component(ofType: componentClass) {
             if let index = components.firstIndex(of: component) {
-                component.willRemoveFromEntity()
+                component.willRemoveFromEntity(self)
                 components.remove(at: index)
             }
         }
@@ -64,13 +65,13 @@ class GKEntity: Identifiable {
     /// Notifies the entity that it has been assigned to a scene.
     private func didAddToScene(scene: GKScene) {
         components.forEach { component in
-            component.didAddToEntity()
+            component.didAddToScene(scene)
         }
     }
 
     private func willRemoveFromScene(scene: GKScene) {
         components.forEach { component in
-            component.willRemoveFromEntity()
+            component.willRemoveFromScene(scene)
         }
     }
 }

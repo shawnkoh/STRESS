@@ -15,8 +15,10 @@ class GKComponent: Identifiable {
 
     func update(deltaTime: TimeInterval) {}
 
-    func didAddToEntity() {}
-    func willRemoveFromEntity() {}
+    func didAddToEntity(_ entity: GKEntity) {}
+    func willRemoveFromEntity(_ entity: GKEntity) {}
+    func didAddToScene(_ scene: GKScene) {}
+    func willRemoveFromScene(_ scene: GKScene) {}
 }
 
 extension GKComponent: Equatable {

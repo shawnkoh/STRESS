@@ -20,8 +20,8 @@ class PhysicsComponent: GKComponent {
         super.init()
     }
 
-    override func didAddToEntity() {
-        entity?.scene?.physicsWorld.addBody(physicsBody)
+    override func didAddToScene(_ scene: GKScene) {
+        scene.physicsWorld.addBody(physicsBody)
 
         if let transformComponent = entity?.component(ofType: TransformComponent.self) {
             physicsBody.delegate = transformComponent
@@ -32,7 +32,11 @@ class PhysicsComponent: GKComponent {
         }
     }
 
-    override func willRemoveFromEntity() {
-        entity?.scene?.physicsWorld.removeBody(physicsBody)
+    override func willRemoveFromScene(_ scene: GKScene) {
+        scene.physicsWorld.removeBody(physicsBody)
+    }
+
+    override func willRemoveFromEntity(_ entity: GKEntity) {
+        entity.scene?.physicsWorld.removeBody(physicsBody)
     }
 }

@@ -28,7 +28,6 @@
 		8653E0C22400F0AD00DAEF2D /* SelectingLevelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */; };
 		8653E0C52400F0FA00DAEF2D /* SelectingLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C42400F0FA00DAEF2D /* SelectingLevelScene.swift */; };
 		8653E0C72400F1FC00DAEF2D /* DraggableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C62400F1FC00DAEF2D /* DraggableComponent.swift */; };
-		8653E0C92401226200DAEF2D /* DestroyableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C82401226200DAEF2D /* DestroyableComponent.swift */; };
 		8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657C85523FDE6C90018E7D2 /* Palette.swift */; };
 		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
@@ -79,6 +78,7 @@
 		86F257D823FCDFCA00C25BBE /* LevelDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */; };
 		86F257DA23FCE14300C25BBE /* LevelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D923FCE14300C25BBE /* LevelDelegate.swift */; };
 		86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DB240155B300914142 /* LevelNameLabel.swift */; };
+		86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DD24015BC200914142 /* InteractableComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +116,6 @@
 		8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingLevelState.swift; sourceTree = "<group>"; };
 		8653E0C42400F0FA00DAEF2D /* SelectingLevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingLevelScene.swift; sourceTree = "<group>"; };
 		8653E0C62400F1FC00DAEF2D /* DraggableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableComponent.swift; sourceTree = "<group>"; };
-		8653E0C82401226200DAEF2D /* DestroyableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroyableComponent.swift; sourceTree = "<group>"; };
 		8657C85523FDE6C90018E7D2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
@@ -171,6 +170,7 @@
 		86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesigner.swift; sourceTree = "<group>"; };
 		86F257D923FCE14300C25BBE /* LevelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDelegate.swift; sourceTree = "<group>"; };
 		86FB25DB240155B300914142 /* LevelNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNameLabel.swift; sourceTree = "<group>"; };
+		86FB25DD24015BC200914142 /* InteractableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractableComponent.swift; sourceTree = "<group>"; };
 		88F0BC15E5498DC1AD859C4B /* Pods-StressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.debug.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,7 +340,7 @@
 				86F2578723FC664900C25BBE /* PhysicsComponent.swift */,
 				86F2578923FC665000C25BBE /* FiringComponent.swift */,
 				8653E0C62400F1FC00DAEF2D /* DraggableComponent.swift */,
-				8653E0C82401226200DAEF2D /* DestroyableComponent.swift */,
+				86FB25DD24015BC200914142 /* InteractableComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -671,7 +671,6 @@
 				860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */,
 				86F2578423FC661400C25BBE /* Exit.swift in Sources */,
 				86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */,
-				8653E0C92401226200DAEF2D /* DestroyableComponent.swift in Sources */,
 				86F257C423FC6AFF00C25BBE /* BKLineProtocol.swift in Sources */,
 				86F257CB23FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift in Sources */,
 				86F257D823FCDFCA00C25BBE /* LevelDesigner.swift in Sources */,
@@ -687,6 +686,7 @@
 				8650447C23FD783C003F105D /* PlayingState.swift in Sources */,
 				86F2579723FC6A6B00C25BBE /* StressSettings.swift in Sources */,
 				86F257D423FCDEB500C25BBE /* Store.swift in Sources */,
+				86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,
 				86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */,
