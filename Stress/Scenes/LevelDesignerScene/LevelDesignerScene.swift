@@ -52,29 +52,7 @@ class LevelDesignerScene: GKScene {
         }
         let location = sender.location(in: stage)
         if case .create(let type) = type {
-            guard hasNoOverlappingPegs(at: location) else {
-                return
-            }
-            let peg = Peg(center: location, type: type)
-            let draggableComponent = DraggableComponent(canDragTo: { location in
-                guard let view = peg.component(ofType: VisualComponent.self)?.view else {
-                    fatalError("Unable to access the Peg's visual component.")
-                }
-                let radius = view.frame.width / 2
-                guard location.x >= radius &&
-                    location.x <= self.stage.frame.width - radius &&
-                    location.y >= radius &&
-                    location.y <= self.stage.frame.height - radius else {
-                    return false
-                }
-                let pegs = self.level.entities(ofType: Peg.self)
-                return pegs.filter { $0 != peg }
-                           .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-                           .allSatisfy { location.distance(to: $0.center) >= $0.frame.width }
-            })
-            peg.addComponent(draggableComponent)
-            peg.addComponent(DestroyableComponent())
-            level.addEntity(peg)
+            createPeg(at: location, type: type)
         }
     }
 
@@ -103,6 +81,36 @@ class LevelDesignerScene: GKScene {
         level.entities(ofType: Peg.self)
             .compactMap { $0.component(ofType: VisualComponent.self)?.view }
             .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
+    }
+
+    private func hasNoOverlappingPegs(at location: CGPoint, ignoredPeg peg: Peg) -> Bool {
+        level.entities(ofType: Peg.self)
+            .filter { $0 != peg }
+            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
+            .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
+    }
+
+    private func createPeg(at location: CGPoint, type: PegType) {
+        guard hasNoOverlappingPegs(at: location) else {
+            return
+        }
+        let peg = Peg(center: location, type: type)
+        let draggableComponent = DraggableComponent(canDragTo: { location in
+            guard let view = peg.component(ofType: VisualComponent.self)?.view else {
+                fatalError("Unable to access the Peg's visual component.")
+            }
+            let radius = view.frame.width / 2
+            guard location.x >= radius &&
+                location.x <= self.stage.frame.width - radius &&
+                location.y >= radius &&
+                location.y <= self.stage.frame.height - radius else {
+                return false
+            }
+            return self.hasNoOverlappingPegs(at: location, ignoredPeg: peg)
+        })
+        peg.addComponent(draggableComponent)
+        peg.addComponent(DestroyableComponent())
+        level.addEntity(peg)
     }
 
     /// Constructs a `Level` from a `LevelData`.
