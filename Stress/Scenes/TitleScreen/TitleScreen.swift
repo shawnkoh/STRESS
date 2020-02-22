@@ -63,7 +63,7 @@ class TitleScreen: GKScene {
     }
 
     @objc func clickPlay() {
-        stress.sceneStateMachine.enter(PlayingState.self)
+        stress.sceneStateMachine.enter(SelectingLevelState.self)
     }
 
     @objc func clickDesigner() {

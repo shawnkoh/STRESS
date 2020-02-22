@@ -12,11 +12,12 @@ class SelectingLevelState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
-        stateClass is TitleScreenState.Type || stateClass is PlayingState.Type || stateClass is DesigningState
+        stateClass is TitleScreenState.Type ||
+            stateClass is PlayingState.Type ||
+            stateClass is DesigningState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        // if state = selecting level then edit from there
         presenter.presentScene(sceneStateMachine.selectingLevelScene)
     }
 

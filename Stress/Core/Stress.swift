@@ -15,6 +15,9 @@ class Stress {
     init(presenter: GKView) {
         sceneStateMachine = SceneStateMachine(stress: self,
                                               presenter: presenter,
-                                              states: [TitleScreenState(), DesigningState(), PlayingState()])
+                                              states: [TitleScreenState(),
+                                                       DesigningState(),
+                                                       PlayingState(),
+                                                       SelectingLevelState()])
     }
 }

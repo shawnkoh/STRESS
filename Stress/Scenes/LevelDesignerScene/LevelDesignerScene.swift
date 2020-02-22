@@ -7,20 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LevelDesignerScene: GKScene {
     unowned let stress: Stress
-    let levelDesigner: LevelDesigner
     let background = Background()
     let stage = Stage()
-    let palette = Palette()
     let level: LevelScene
+    let nameLabel = LevelNameLabel()
+    let palette = Palette()
 
     init(stress: Stress, size: CGSize) {
         self.stress = stress
-        levelDesigner = LevelDesigner(size: size)
         level = LevelScene(size: size)
-
+        nameLabel.text = level.name
         super.init(size: size)
 
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
@@ -38,9 +38,12 @@ class LevelDesignerScene: GKScene {
         super.didMove(to: view)
         view.addSubview(background)
         view.addSubview(stage)
+        view.addSubview(nameLabel)
         view.addSubview(palette)
         NSLayoutConstraint.activate([
-            stage.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
+            stage.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -16),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            nameLabel.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
         ])
         entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
                 .forEach { view.addSubview($0) }
@@ -70,6 +73,15 @@ class LevelDesignerScene: GKScene {
     }
 
     @objc func tapSave() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(level.constructLevelData())
+            }
+        } catch let error as NSError {
+            // TODO: dont use fatal error
+            fatalError(error.localizedDescription)
+        }
     }
 
     @objc func tapPlay() {
@@ -139,5 +151,11 @@ class LevelDesignerScene: GKScene {
                       type: type,
                       radius: CGFloat(pegData.radius))
         return peg
+    }
+}
+
+extension LevelDesignerScene: LevelNameLabelDelegate {
+    func didEditName(newName: String) {
+        level.name = newName
     }
 }

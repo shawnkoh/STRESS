@@ -78,6 +78,7 @@
 		86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D523FCDEBA00C25BBE /* PegData.swift */; };
 		86F257D823FCDFCA00C25BBE /* LevelDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */; };
 		86F257DA23FCE14300C25BBE /* LevelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D923FCE14300C25BBE /* LevelDelegate.swift */; };
+		86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DB240155B300914142 /* LevelNameLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,7 @@
 		86F257D523FCDEBA00C25BBE /* PegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegData.swift; sourceTree = "<group>"; };
 		86F257D723FCDFCA00C25BBE /* LevelDesigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesigner.swift; sourceTree = "<group>"; };
 		86F257D923FCE14300C25BBE /* LevelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDelegate.swift; sourceTree = "<group>"; };
+		86FB25DB240155B300914142 /* LevelNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNameLabel.swift; sourceTree = "<group>"; };
 		88F0BC15E5498DC1AD859C4B /* Pods-StressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.debug.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				86F257CE23FCDE3B00C25BBE /* LevelDesignerScene.swift */,
-				860BCE7D24004CFD0007AE58 /* Stage.swift */,
 				8657C85523FDE6C90018E7D2 /* Palette.swift */,
 				860BCE7923FF16530007AE58 /* Tool.swift */,
 				860BCE7B23FFB56C0007AE58 /* Control.swift */,
@@ -306,14 +307,11 @@
 		86F2577223FC653500C25BBE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				86FB25DA2401552B00914142 /* Common */,
 				8653E0C32400F0EE00DAEF2D /* SelectingLevelScene */,
 				8697030023FF07A100375308 /* PlayingScene */,
 				869702FF23FF079800375308 /* TitleScreen */,
 				869702FE23FF075600375308 /* LevelDesignerScene */,
-				869702FC23FF01B700375308 /* Background.swift */,
-				86F257CC23FC6B1100C25BBE /* PegView.swift */,
-				860BCE7723FF0DE70007AE58 /* Spacer.swift */,
-				860BCE7F2400A6AC0007AE58 /* LevelScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -416,6 +414,19 @@
 				86F257D523FCDEBA00C25BBE /* PegData.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		86FB25DA2401552B00914142 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				860BCE7D24004CFD0007AE58 /* Stage.swift */,
+				860BCE7723FF0DE70007AE58 /* Spacer.swift */,
+				86F257CC23FC6B1100C25BBE /* PegView.swift */,
+				869702FC23FF01B700375308 /* Background.swift */,
+				860BCE7F2400A6AC0007AE58 /* LevelScene.swift */,
+				86FB25DB240155B300914142 /* LevelNameLabel.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		CDDB2F35EA47E853BB607ED6 /* Pods */ = {
@@ -679,6 +690,7 @@
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,
 				86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */,
+				86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */,
 				86F257CA23FC6AFF00C25BBE /* BKPhysicsEdge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

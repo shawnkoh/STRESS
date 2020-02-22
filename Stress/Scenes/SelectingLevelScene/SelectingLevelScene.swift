@@ -7,25 +7,47 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SelectingLevelScene: GKScene {
     unowned let stress: Stress
     let background = Background()
-    let stage = Stage()
-    let level: LevelScene
+    private var realm: Realm
+    private var levels: Results<LevelData>
 
     init(stress: Stress, size: CGSize) {
         self.stress = stress
-        level = LevelScene(size: size)
-
+        do {
+            realm = try Realm()
+            levels = realm.objects(LevelData.self)
+        } catch let error as NSError {
+            // TODO: Don't use fatal error
+            fatalError(error.localizedDescription)
+        }
         super.init(size: size)
-
     }
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        view.addSubview(stage)
+        let root = UIStackView()
+        view.addSubview(root)
+        root.axis = .vertical
+        root.distribution = .equalSpacing
+        root.alignment = .center
+        root.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            root.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            root.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            root.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            root.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
+        ])
+        // TODO: Make a better level selector
+        levels.forEach { level in
+            let label = UILabel(frame: .zero)
+            label.text = level.name
+            root.addArrangedSubview(label)
+        }
         entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
                 .forEach { view.addSubview($0) }
     }
@@ -34,16 +56,7 @@ class SelectingLevelScene: GKScene {
         stress.sceneStateMachine.enter(TitleScreenState.self)
     }
 
-    @objc func tapReset() {
-        level.entities(ofType: Peg.self).forEach {
-            level.removeEntity($0)
-        }
-    }
-
     @objc func tapLoad() {
-    }
-
-    @objc func tapSave() {
     }
 
     @objc func tapPlay() {

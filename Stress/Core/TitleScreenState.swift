@@ -12,7 +12,7 @@ class TitleScreenState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
-        stateClass is PlayingState.Type || stateClass is DesigningState.Type
+        stateClass is SelectingLevelState.Type || stateClass is DesigningState.Type
     }
 
     func didEnter(from previousState: GKState?) {
