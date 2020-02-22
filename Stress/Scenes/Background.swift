@@ -23,9 +23,14 @@ class Background: UIImageView {
     }
 
     override func didMoveToSuperview() {
-        superview?.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        superview?.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        superview?.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        superview?.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        guard let superview = superview else {
+            return
+        }
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+            topAnchor.constraint(equalTo: superview.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+        ])
     }
 }

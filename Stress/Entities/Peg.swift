@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 /**
  `Peg` is an entity that represents a peg in Stress.
@@ -59,5 +60,11 @@ enum PegType: Int {
 extension Peg: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
+    }
+}
+
+extension Peg: Savable {
+    func save() -> Object {
+        PegData(peg: self)
     }
 }

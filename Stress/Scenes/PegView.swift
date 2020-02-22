@@ -17,7 +17,7 @@ class PegView: UIImageView {
     init(type: PegType) {
         super.init(frame: .zero)
         image = StressSettings.defaultPegImage(for: type)
-        let diameter = StressSettings.defaultPegRadius
+        let diameter = StressSettings.defaultPegRadius * 2
         frame.size = CGSize(width: diameter, height: diameter)
     }
 

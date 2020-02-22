@@ -14,12 +14,14 @@ enum ToolType {
 }
 
 class Tool: UIButton {
+    let type: ToolType
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not supported")
     }
 
     init(type: ToolType) {
+        self.type = type
         super.init(frame: .zero)
         let diameter = StressSettings.defaultPegRadius * 2
         frame.size = CGSize(width: diameter, height: diameter)

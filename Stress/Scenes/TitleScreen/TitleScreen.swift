@@ -22,7 +22,7 @@ class TitleScreen: GKScene {
         title = UILabel(frame: .zero)
         title.frame.size = CGSize(width: size.width - 400, height: 150)
         title.center = center - CGVector(dx: 0, dy: 200)
-        title.text = "stress"
+        title.text = "STRESS"
         title.textAlignment = .center
         title.font = title.font.withSize(80)
         title.backgroundColor = .white
@@ -31,7 +31,7 @@ class TitleScreen: GKScene {
         play.frame.size = CGSize(width: size.width - 400, height: 100)
         play.center = center
         play.backgroundColor = .white
-        play.setTitle("play", for: .normal)
+        play.setTitle("PLAY", for: .normal)
         play.setTitleColor(.black, for: .normal)
         play.titleLabel?.font = play.titleLabel?.font.withSize(50)
 
@@ -39,7 +39,7 @@ class TitleScreen: GKScene {
         designer.frame.size = CGSize(width: size.width - 400, height: 100)
         designer.center = center + CGVector(dx: 0, dy: 150)
         designer.backgroundColor = .white
-        designer.setTitle("level designer", for: .normal)
+        designer.setTitle("CREATE LEVEL", for: .normal)
         designer.setTitleColor(.black, for: .normal)
         designer.titleLabel?.font = designer.titleLabel?.font.withSize(50)
 

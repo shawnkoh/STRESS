@@ -19,6 +19,10 @@ class GKView: UIView {
         isUserInteractionEnabled = true
     }
 
+    init() {
+        super.init(frame: .zero)
+    }
+
     /// Presents a scene.
     /// - Parameter scene: The scene to present.
     func presentScene(_ scene: GKScene) {

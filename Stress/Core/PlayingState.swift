@@ -32,9 +32,9 @@ class PlayingState: GKState, SceneState {
         level.addPeg(Peg(center: CGPoint(x: 300, y: 550), type: .objective))
         level.addPeg(Peg(center: CGPoint(x: 360, y: 500), type: .objective))
 
-        let gameScene = sceneStateMachine.gameScene
-        gameScene.loadLevel(level)
-        presenter.presentScene(gameScene)
+        let playingScene = sceneStateMachine.playingScene
+        playingScene.loadLevel(level)
+        presenter.presentScene(playingScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {

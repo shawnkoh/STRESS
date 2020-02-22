@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  PlayingScene.swift
 //  Stress
 //
 //  Created by Shawn Koh on 19/2/20.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// A `GameScene` represents the main gameplay scene in Stress.
-class GameScene: GKScene {
+/// A `PlayingScene` represents the main gameplay scene in Stress.
+class PlayingScene: GKScene {
     var level: Level?
     let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
