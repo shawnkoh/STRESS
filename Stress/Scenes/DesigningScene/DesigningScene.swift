@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class DesigningScene: GKScene {
     unowned let stress: Stress
@@ -82,19 +81,7 @@ class DesigningScene: GKScene {
 
     @objc func tapSave() {
         do {
-            let realm = try Realm()
-            try realm.write {
-                // TODO: This will leave orphan pegs.
-                let pegDatas = level.pegs.compactMap { $0.save() as? PegData }
-                let pegs = List<PegData>()
-                pegs.append(objectsIn: pegDatas)
-                let levelData = LevelData(id: level.id,
-                                          name: level.name,
-                                          width: Double(level.size.width),
-                                          height: Double(level.size.height),
-                                          pegs: pegs)
-                realm.add(levelData, update: .modified)
-            }
+            try stress.store.saveLevel(level)
         } catch let error as NSError {
             // TODO: dont use fatal error
             fatalError(error.localizedDescription)

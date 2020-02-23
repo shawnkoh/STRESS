@@ -51,7 +51,8 @@ struct Store {
         let pegs = levelData.pegs.map { self.constructPeg(from: $0) }
         let level = Level(name: levelData.name,
                           size: CGSize(width: levelData.width, height: levelData.height),
-                          pegs: Set(pegs))
+                          pegs: Set(pegs),
+                          id: levelData.id)
         return level
     }
 

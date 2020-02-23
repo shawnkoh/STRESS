@@ -13,7 +13,7 @@ import UIKit
  */
 class Level: Identifiable {
     // MARK: Properties
-    let id: String = UUID().uuidString
+    let id: String
     var name: String
     var size: CGSize
     var pegs: Set<Peg>
@@ -21,7 +21,8 @@ class Level: Identifiable {
 
     // TODO: Level might be more fitting as a struct
 
-    init(name: String, size: CGSize, pegs: Set<Peg> = []) {
+    init(name: String, size: CGSize, pegs: Set<Peg> = [], id: String = UUID().uuidString) {
+        self.id = id
         self.name = name
         self.size = size
         self.pegs = pegs
