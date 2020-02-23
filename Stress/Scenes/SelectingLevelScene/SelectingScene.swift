@@ -1,5 +1,5 @@
 //
-//  SelectingLevelScene.swift
+//  SelectingScene.swift
 //  Stress
 //
 //  Created by Shawn Koh on 22/2/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectingLevelScene: GKScene {
+class SelectingScene: GKScene {
     unowned let stress: Stress
     let background = Background()
 

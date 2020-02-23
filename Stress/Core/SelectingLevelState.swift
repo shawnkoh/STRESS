@@ -19,8 +19,8 @@ class SelectingLevelState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let selectingLevelScene = SelectingLevelScene(stress: sceneStateMachine.stress)
-        presenter.presentScene(selectingLevelScene)
+        let selectingScene = SelectingScene(stress: sceneStateMachine.stress)
+        presenter.presentScene(selectingScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {
