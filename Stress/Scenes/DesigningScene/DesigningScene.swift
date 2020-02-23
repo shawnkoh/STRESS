@@ -1,5 +1,5 @@
 //
-//  LevelDesignerScene.swift
+//  DesigningScene.swift
 //  Stress
 //
 //  Created by Shawn Koh on 19/2/20.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class LevelDesignerScene: GKScene {
+class DesigningScene: GKScene {
     unowned let stress: Stress
     let background = Background()
     let stage = Stage()
@@ -20,7 +20,7 @@ class LevelDesignerScene: GKScene {
     /// Convenience variable
     private var level: Level {
         guard let level = stress.sceneStateMachine.state(forClass: DesigningState.self)?.level else {
-            fatalError("LevelDesignerScene requires a Level to be loaded")
+            fatalError("DesigningScene requires a Level to be loaded")
         }
         return level
     }
@@ -29,12 +29,16 @@ class LevelDesignerScene: GKScene {
         self.stress = stress
         levelScene = LevelScene()
         super.init()
-        nameLabel.delegate = self
-        nameLabel.text = level.name
 
+        stage.presentScene(levelScene)
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
         stage.addGestureRecognizer(stageGestureRecognizer)
-        stage.presentScene(levelScene)
+
+        level.pegs.forEach { levelScene.addEntity($0) }
+        level.delegate = levelScene
+
+        nameLabel.delegate = self
+        nameLabel.text = level.name
 
         palette.backControl.addTarget(self, action: #selector(tapBack), for: .touchDown)
         palette.resetControl.addTarget(self, action: #selector(tapReset), for: .touchDown)
@@ -45,7 +49,6 @@ class LevelDesignerScene: GKScene {
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
-        level.delegate = levelScene
         view.addSubview(background)
         view.addSubview(stage)
         view.addSubview(nameLabel)
@@ -55,9 +58,8 @@ class LevelDesignerScene: GKScene {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameLabel.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
         ])
-        level.pegs.forEach { addEntity($0) }
-        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
-                .forEach { view.addSubview($0) }
+//        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
+//                .forEach { view.addSubview($0) }
     }
 
     @objc func tapStage(_ sender: UITapGestureRecognizer) {
@@ -169,7 +171,7 @@ class LevelDesignerScene: GKScene {
     }
 }
 
-extension LevelDesignerScene: LevelNameLabelDelegate {
+extension DesigningScene: LevelNameLabelDelegate {
     func didEditName(newName: String) {
         level.name = newName
     }
