@@ -55,7 +55,11 @@ class SelectingScene: GKScene {
             playButton.setTitle("play", for: .normal)
             playButton.setTitleColor(.black, for: .normal)
             playButton.backgroundColor = .white
-            let playGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapPlay(_:)))
+            let playGesture = LevelTapGestureRecognizer(levelData: levelData,
+                                                        level: level,
+                                                        hStack: hStack,
+                                                        target: self,
+                                                        action: #selector(tapPlay(_:)))
             playButton.addGestureRecognizer(playGesture)
             hStack.addArrangedSubview(playButton)
 
@@ -63,7 +67,11 @@ class SelectingScene: GKScene {
             editButton.setTitle("edit", for: .normal)
             editButton.setTitleColor(.black, for: .normal)
             editButton.backgroundColor = .white
-            let editGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapEdit(_:)))
+            let editGesture = LevelTapGestureRecognizer(levelData: levelData,
+                                                        level: level,
+                                                        hStack: hStack,
+                                                        target: self,
+                                                        action: #selector(tapEdit(_:)))
             editButton.addGestureRecognizer(editGesture)
             hStack.addArrangedSubview(editButton)
 
@@ -71,7 +79,11 @@ class SelectingScene: GKScene {
             deleteButton.setTitle("delete", for: .normal)
             deleteButton.setTitleColor(.black, for: .normal)
             deleteButton.backgroundColor = .white
-            let deleteGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapDelete(_:)))
+            let deleteGesture = LevelTapGestureRecognizer(levelData: levelData,
+                                                          level: level,
+                                                          hStack: hStack,
+                                                          target: self,
+                                                          action: #selector(tapDelete(_:)))
             deleteButton.addGestureRecognizer(deleteGesture)
             hStack.addArrangedSubview(deleteButton)
         }
@@ -92,14 +104,24 @@ class SelectingScene: GKScene {
     }
 
     @objc private func tapDelete(_ sender: LevelTapGestureRecognizer) {
+        do {
+            try stress.store.removeLevelData(sender.levelData)
+        } catch let error {
+            // TODO: Add dialog
+        }
+        sender.hStack.removeFromSuperview()
     }
 }
 
 private class LevelTapGestureRecognizer: UITapGestureRecognizer {
+    let levelData: LevelData
     let level: Level
+    let hStack: UIStackView
 
-    init(level: Level, target: Any?, action: Selector?) {
+    init(levelData: LevelData, level: Level, hStack: UIStackView, target: Any?, action: Selector?) {
+        self.levelData = levelData
         self.level = level
+        self.hStack = hStack
         super.init(target: target, action: action)
     }
 }

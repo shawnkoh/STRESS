@@ -330,13 +330,13 @@
 			isa = PBXGroup;
 			children = (
 				86F2577923FC65B400C25BBE /* Level.swift */,
+				8676A16F24027110005EAA1E /* LevelDelegate.swift */,
+				860BCE812400AF460007AE58 /* Savable.swift */,
 				86F2577F23FC65F600C25BBE /* Wall.swift */,
 				86F2578323FC661400C25BBE /* Exit.swift */,
 				86F2577B23FC65C100C25BBE /* Peg.swift */,
 				86F2578123FC660C00C25BBE /* Cannon.swift */,
 				86F2577D23FC65CF00C25BBE /* Ball.swift */,
-				860BCE812400AF460007AE58 /* Savable.swift */,
-				8676A16F24027110005EAA1E /* LevelDelegate.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";

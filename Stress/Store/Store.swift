@@ -35,9 +35,8 @@ struct Store {
         }
     }
 
-    func removeLevel(_ level: Level) throws {
+    func removeLevelData(_ levelData: LevelData) throws {
         try realm.write {
-            let levelData = Store.constructLevelData(from: level)
             realm.delete(levelData)
         }
     }
