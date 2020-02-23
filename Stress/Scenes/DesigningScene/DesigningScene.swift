@@ -34,8 +34,7 @@ class DesigningScene: GKScene {
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
         stage.addGestureRecognizer(stageGestureRecognizer)
 
-        level.pegs.forEach { levelScene.addEntity($0) }
-        level.delegate = levelScene
+        loadLevel(level)
 
         nameLabel.delegate = self
         nameLabel.text = level.name
@@ -58,8 +57,6 @@ class DesigningScene: GKScene {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameLabel.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
         ])
-//        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
-//                .forEach { view.addSubview($0) }
     }
 
     @objc func tapStage(_ sender: UITapGestureRecognizer) {
@@ -109,33 +106,7 @@ class DesigningScene: GKScene {
 
     // MARK: Private methods
 
-    private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
-        level.pegs
-            .filter { $0 != peg }
-            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-            .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
-    }
-
-    private func canPlace(peg: Peg, at location: CGPoint) -> Bool {
-        guard let view = peg.component(ofType: VisualComponent.self)?.view else {
-            fatalError("Unable to access the Peg's visual component.")
-        }
-        let radius = view.frame.width / 2
-        guard location.x >= radius &&
-            location.x <= self.stage.frame.width - radius &&
-            location.y >= radius &&
-            location.y <= self.stage.frame.height - radius else {
-            return false
-        }
-        return self.hasNoOverlappingPegs(at: location, ignore: peg)
-    }
-
-    private func createPeg(at location: CGPoint, type: PegType) {
-        let peg = Peg(center: location, type: type)
-        guard canPlace(peg: peg, at: location) else {
-            return
-        }
-
+    private func addInteractableComponents(to peg: Peg) {
         let panGesture = UIPanGestureRecognizer()
         let panAction: (UIGestureRecognizer) -> Void = { sender in
             guard let transformComponent = peg.component(ofType: TransformComponent.self) else {
@@ -166,7 +137,43 @@ class DesigningScene: GKScene {
         }
         let tapComponent = InteractableComponent(gestureRecognizer: tapGesture, action: tapAction)
         peg.addComponent(tapComponent)
+    }
 
+    private func loadLevel(_ level: Level) {
+        level.pegs.forEach { peg in
+            addInteractableComponents(to: peg)
+            levelScene.addEntity(peg)
+        }
+        level.delegate = levelScene
+    }
+
+    private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
+        level.pegs
+            .filter { $0 != peg }
+            .compactMap { $0.component(ofType: VisualComponent.self)?.view }
+            .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
+    }
+
+    private func canPlace(peg: Peg, at location: CGPoint) -> Bool {
+        guard let view = peg.component(ofType: VisualComponent.self)?.view else {
+            fatalError("Unable to access the Peg's visual component.")
+        }
+        let radius = view.frame.width / 2
+        guard location.x >= radius &&
+            location.x <= self.stage.frame.width - radius &&
+            location.y >= radius &&
+            location.y <= self.stage.frame.height - radius else {
+            return false
+        }
+        return self.hasNoOverlappingPegs(at: location, ignore: peg)
+    }
+
+    private func createPeg(at location: CGPoint, type: PegType) {
+        let peg = Peg(center: location, type: type)
+        guard canPlace(peg: peg, at: location) else {
+            return
+        }
+        addInteractableComponents(to: peg)
         level.addPeg(peg)
     }
 }
