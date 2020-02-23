@@ -10,21 +10,21 @@ import Foundation
 
 class DesigningState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
+    var level: Level?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type || stateClass is PlayingState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        // if state = selecting level then edit from there
+        if level == nil {
+            level = Level(name: StressSettings.defaultLevelName,
+                          size: StressSettings.defaultLevelSize)
+        }
         presenter.presentScene(sceneStateMachine.levelDesignerScene)
     }
 
-    func update(deltaTime seconds: TimeInterval) {
+    func update(deltaTime seconds: TimeInterval) {}
 
-    }
-
-    func willExit(to nextState: GKState) {
-
-    }
+    func willExit(to nextState: GKState) {}
 }

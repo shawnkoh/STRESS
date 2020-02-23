@@ -11,13 +11,9 @@ import RealmSwift
 /// The `Store` represents the persisted state of Peggle.
 struct Store {
     /// The instance of the Realm database used to persist the state of Peggle.
-    static let shared = Store().realm
-    private var realm: Realm
+    let realm: Realm
 
-    /// Initialises an instance of `Store`.
-    /// This is restricted because `Store` is a singleton.
-    /// You may access the `Store`'s static functions and variables directly.
-    private init() {
+    init() {
         do {
             realm = try Realm()
         } catch let error as NSError {
@@ -26,45 +22,65 @@ struct Store {
     }
 
     /// An auto-updating list of `LevelData`s.
-    static var levelDatas: Results<LevelData> {
-        shared.objects(LevelData.self)
+    var levelDatas: Results<LevelData> {
+        realm.objects(LevelData.self)
     }
 
     /// Saves a `LevelData` into the store.
     /// - Parameter _: The level data to be saved.
-    @discardableResult
-    static func saveLevelData(_ levelData: LevelData) throws -> LevelData {
-        try shared.write {
-            shared.add(levelData)
+    func saveLevel(_ level: Level) throws {
+        try realm.write {
+            let levelData = Store.constructLevelData(from: level)
+            realm.add(levelData, update: .modified)
         }
-        return levelData
     }
 
     /// Removes a `LevelData` from the store.
     /// - Parameter _: The level data to be removed.
-    static func removeLevelData(_ levelData: LevelData) throws {
-        try shared.write {
-            shared.delete(levelData)
+    func removeLevelData(_ levelData: LevelData) throws {
+        try realm.write {
+            realm.delete(levelData)
         }
     }
 
-    /// Updates the level data stored in Realm with the given level,
-    /// or stores a new level data if it is invalidated.
+    /// Constructs a `Level` from a `LevelData`.
     /// - Parameters:
-    ///     - levelData: The level data to update.
-    ///     - level: The level to update the data with.
-    /// - Returns: The level data that was updated, or a new level data if it was invalidated.
-    static func updateLevelData(_ levelData: LevelData, level: Level) throws -> LevelData {
-        guard !levelData.isInvalidated else {
-            return try saveLevelData(levelData)
+    ///     - levelData: The `LevelData` to construct from.
+    ///     - delegate: The delegate to bind to the `Level`.
+    /// - Returns:The constructed `Level`
+    static func constructLevel(from levelData: LevelData) -> Level {
+        let pegs = levelData.pegs.map { self.constructPeg(from: $0) }
+        let level = Level(name: levelData.name,
+                          size: CGSize(width: levelData.width, height: levelData.height),
+                          pegs: Set(pegs))
+        return level
+    }
+
+    /// Constructs a `Peg` from a `PegData`.
+    /// - Parameter pegData: The `PegData` to construct from.
+    /// - Returns: The constructed `Peg`.
+    static func constructPeg(from pegData: PegData) -> Peg {
+        guard let type = PegType(rawValue: pegData.type) else {
+            // TODO: DONT USE FATAL ERROR
+            fatalError("An invalid PegType was provided.")
         }
 
-        try shared.write {
-            levelData.name = level.name
-            levelData.pegs.removeAll()
-            let pegDatas = level.pegs.map { PegData(peg: $0) }
-            levelData.pegs.append(objectsIn: pegDatas)
-        }
+        let peg = Peg(center: CGPoint(x: pegData.centerX, y: pegData.centerY),
+                      type: type,
+                      radius: CGFloat(pegData.radius))
+        return peg
+    }
+
+    static func constructLevelData(from level: Level) -> LevelData {
+        let pegDatas = level.pegs.compactMap { $0.save() as? PegData }
+        let pegs: List<PegData> = List()
+        // TODO: Might be problematic because we need to do this in a realm
+        pegs.append(objectsIn: pegDatas)
+        let levelData = LevelData(id: level.id,
+                                  name: level.name,
+                                  width: Double(level.size.width),
+                                  height: Double(level.size.height),
+                                  pegs: pegs)
         return levelData
     }
 }

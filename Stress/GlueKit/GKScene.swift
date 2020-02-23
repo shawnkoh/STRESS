@@ -61,6 +61,10 @@ class GKScene: Identifiable {
         }
     }
 
+    func removeAllEntities() {
+        entities.forEach { removeEntity($0) }
+    }
+
     /// A convenience variable to retrieve all entities of type `EntityType`.
     func entities<EntityType: GKEntity>(ofType: EntityType.Type) -> [EntityType] {
         entities.compactMap {

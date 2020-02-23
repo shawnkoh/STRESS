@@ -26,9 +26,7 @@ class GKView: UIView {
     /// Presents a scene.
     /// - Parameter scene: The scene to present.
     func presentScene(_ scene: GKScene) {
-        subviews.forEach { subview in
-            subview.removeFromSuperview()
-        }
+        subviews.forEach { $0.removeFromSuperview() }
 
         self.scene = scene
         scene.view = self

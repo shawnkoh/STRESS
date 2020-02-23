@@ -36,11 +36,12 @@ class PegData: Object {
     ///     - centerY: The y position of the peg's center.
     ///     - radius: The radius of the peg.
     ///     - type: An integer representing the peg's `PegType`.
-    convenience init(centerX: Double, centerY: Double, radius: Double, type: Int) {
+    convenience init(id: String, centerX: Double, centerY: Double, radius: Double, type: Int) {
         guard PegType(rawValue: type) != nil else {
             fatalError("An incorrect PegType was provided.")
         }
         self.init()
+        self.id = id
         self.centerX = centerX
         self.centerY = centerY
         self.radius = radius
@@ -58,7 +59,8 @@ class PegData: Object {
             fatalError("The Peg does not have a VisualComponent.")
         }
 
-        self.init(centerX: Double(transformComponent.position.x),
+        self.init(id: peg.id,
+                  centerX: Double(transformComponent.position.x),
                   centerY: Double(transformComponent.position.y),
                   radius: Double(visualComponent.view.bounds.size.width / 2),
                   type: peg.type.rawValue)

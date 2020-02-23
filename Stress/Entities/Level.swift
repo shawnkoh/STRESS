@@ -19,11 +19,12 @@ class Level: Identifiable {
     var pegs: Set<Peg>
     weak var delegate: LevelDelegate?
 
-    init(name: String, size: CGSize, pegs: Set<Peg> = [], delegate: LevelDelegate? = nil) {
+    // TODO: Level might be more fitting as a struct
+
+    init(name: String, size: CGSize, pegs: Set<Peg> = []) {
         self.name = name
         self.size = size
         self.pegs = pegs
-        self.delegate = delegate
     }
 
     /// Adds a `Peg` into the level.
@@ -32,6 +33,7 @@ class Level: Identifiable {
     @discardableResult
     func addPeg(_ peg: Peg) -> Bool {
         pegs.insert(peg)
+        delegate?.didAddPeg(peg)
         return true
     }
 
@@ -42,14 +44,10 @@ class Level: Identifiable {
      */
     @discardableResult
     func removePeg(_ peg: Peg) -> Peg? {
-        guard let index = pegs.firstIndex(of: peg) else {
-            return nil
+        let result = pegs.remove(peg)
+        if let removedPeg = result {
+            delegate?.didRemovePeg(removedPeg)
         }
-        return pegs.remove(at: index)
-    }
-
-    func removeAllPegs() {
-        pegs = Set()
-        delegate?.didRemoveAllPegs()
+        return result
     }
 }

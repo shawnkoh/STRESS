@@ -13,6 +13,10 @@ enum StressSettings {
     static let defaultUpdateFrequency: Int = 4
 
     static let defaultLevelName: String = "Level Name"
+    static let pegsOnAxis: Int = 40
+    static let defaultLevelSize = CGSize(width: CGFloat(pegsOnAxis) * defaultPegRadius,
+                                         height: CGFloat(pegsOnAxis) * defaultPegRadius)
+//    static let defaultLevelSize: CGSize = CGSize(width: 834, height: 1194)
 
     static let selectedPegToolBorderWidth: CGFloat = 2
     static let selectedPegToolBorderColor: CGColor = UIColor.red.cgColor
@@ -22,7 +26,7 @@ enum StressSettings {
     static let defaultEmptyCannonImage = UIImage(named: "cannon-empty")!
     static let defaultCannonSize = CGSize(width: 96, height: 96)
 
-    static let defaultPegRadius: CGFloat = 16
+    static let defaultPegRadius: CGFloat = 20
     static var defaultPegSize: CGSize {
         CGSize(width: defaultPegRadius * 2, height: defaultPegRadius * 2)
     }

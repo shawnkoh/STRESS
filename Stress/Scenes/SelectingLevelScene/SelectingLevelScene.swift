@@ -30,35 +30,51 @@ class SelectingLevelScene: GKScene {
     override func didMove(to view: GKView) {
         super.didMove(to: view)
         view.addSubview(background)
-        let root = UIStackView()
-        view.addSubview(root)
-        root.axis = .vertical
-        root.distribution = .equalSpacing
-        root.alignment = .center
-        root.translatesAutoresizingMaskIntoConstraints = false
+
+        let stackView = UIStackView(frame: .zero)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.spacing = 32
+        view.addSubview(stackView)
+
         NSLayoutConstraint.activate([
-            root.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            root.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            root.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-            root.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200)
         ])
-        // TODO: Make a better level selector
-        levels.forEach { level in
-            let label = UILabel(frame: .zero)
-            label.text = level.name
-            root.addArrangedSubview(label)
+
+        for levelData in levels {
+            let level = Store.constructLevel(from: levelData)
+            let playButton = UIButton(frame: .zero)
+            playButton.setTitle(levelData.name, for: .normal)
+            playButton.setTitleColor(.black, for: .normal)
+            playButton.backgroundColor = .white
+            let tapGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapPlay(_:)))
+            playButton.addGestureRecognizer(tapGesture)
+            stackView.addArrangedSubview(playButton)
         }
-        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
-                .forEach { view.addSubview($0) }
     }
+//        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
+//                .forEach { view.addSubview($0) }
 
     @objc func tapBack() {
         stress.sceneStateMachine.enter(TitleScreenState.self)
     }
 
-    @objc func tapLoad() {
+    @objc func tapPlay(_ sender: LevelTapGestureRecognizer) {
+        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevel = sender.level
+        stress.sceneStateMachine.enter(PlayingState.self)
     }
+}
 
-    @objc func tapPlay() {
+class LevelTapGestureRecognizer: UITapGestureRecognizer {
+    let level: Level
+
+    init(level: Level, target: Any?, action: Selector?) {
+        self.level = level
+        super.init(target: target, action: action)
     }
 }

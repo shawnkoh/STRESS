@@ -13,19 +13,29 @@ class LevelDesignerScene: GKScene {
     unowned let stress: Stress
     let background = Background()
     let stage = Stage()
-    let level: LevelScene
+    let levelScene: LevelScene
     let nameLabel = LevelNameLabel()
     let palette = Palette()
 
+    /// Convenience variable
+    private var level: Level {
+        guard let level = stress.sceneStateMachine.state(forClass: DesigningState.self)?.level else {
+            fatalError("LevelDesignerScene requires a Level to be loaded")
+        }
+        return level
+    }
+
     init(stress: Stress, size: CGSize) {
         self.stress = stress
-        level = LevelScene(size: size)
-        nameLabel.text = level.name
+        levelScene = LevelScene(size: size)
         super.init(size: size)
+        level.delegate = levelScene
+        nameLabel.delegate = self
+        nameLabel.text = level.name
 
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
         stage.addGestureRecognizer(stageGestureRecognizer)
-        stage.presentScene(level)
+        stage.presentScene(levelScene)
 
         palette.backControl.addTarget(self, action: #selector(tapBack), for: .touchDown)
         palette.resetControl.addTarget(self, action: #selector(tapReset), for: .touchDown)
@@ -64,9 +74,7 @@ class LevelDesignerScene: GKScene {
     }
 
     @objc func tapReset() {
-        level.entities(ofType: Peg.self).forEach {
-            level.removeEntity($0)
-        }
+        level.pegs.forEach { level.removePeg($0) }
     }
 
     @objc func tapLoad() {
@@ -76,7 +84,16 @@ class LevelDesignerScene: GKScene {
         do {
             let realm = try Realm()
             try realm.write {
-                realm.add(level.constructLevelData())
+                // TODO: This will leave orphan pegs.
+                let pegDatas = level.pegs.compactMap { $0.save() as? PegData }
+                let pegs = List<PegData>()
+                pegs.append(objectsIn: pegDatas)
+                let levelData = LevelData(id: level.id,
+                                          name: level.name,
+                                          width: Double(level.size.width),
+                                          height: Double(level.size.height),
+                                          pegs: pegs)
+                realm.add(levelData, update: .modified)
             }
         } catch let error as NSError {
             // TODO: dont use fatal error
@@ -90,7 +107,7 @@ class LevelDesignerScene: GKScene {
     // MARK: Private methods
 
     private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
-        level.entities(ofType: Peg.self)
+        level.pegs
             .filter { $0 != peg }
             .compactMap { $0.component(ofType: VisualComponent.self)?.view }
             .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
@@ -147,35 +164,7 @@ class LevelDesignerScene: GKScene {
         let tapComponent = InteractableComponent(gestureRecognizer: tapGesture, action: tapAction)
         peg.addComponent(tapComponent)
 
-        level.addEntity(peg)
-    }
-
-    /// Constructs a `Level` from a `LevelData`.
-    /// - Parameters:
-    ///     - levelData: The `LevelData` to construct from.
-    ///     - delegate: The delegate to bind to the `Level`.
-    /// - Returns:The constructed `Level`
-    private func constructLevel(from levelData: LevelData, delegate: LevelDelegate?) -> LevelScene {
-        let pegs = levelData.pegs.map { self.constructPeg(from: $0) }
-        let level = LevelScene(size: CGSize(width: levelData.width, height: levelData.height),
-                               name: levelData.name)
-        pegs.forEach { level.addEntity($0) }
-        return level
-    }
-
-    /// Constructs a `Peg` from a `PegData`.
-    /// - Parameter pegData: The `PegData` to construct from.
-    /// - Returns: The constructed `Peg`.
-    private func constructPeg(from pegData: PegData) -> Peg {
-        guard let type = PegType(rawValue: pegData.type) else {
-            // TODO: DONT USE FATAL ERROR
-            fatalError("An invalid PegType was provided.")
-        }
-
-        let peg = Peg(center: CGPoint(x: pegData.centerX, y: pegData.centerY),
-                      type: type,
-                      radius: CGFloat(pegData.radius))
-        return peg
+        level.addPeg(peg)
     }
 }
 
