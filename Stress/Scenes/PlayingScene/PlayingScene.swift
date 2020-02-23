@@ -12,19 +12,16 @@ import UIKit
 class PlayingScene: GKScene {
     let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
-    let cannon: Cannon
+    var cannon: Cannon?
     unowned let stress: Stress
 
-    /// Convenience variable
-    init(stress: Stress, size: CGSize) {
+    init(stress: Stress) {
         self.stress = stress
+        super.init()
 
         menuButton.bounds.size = CGSize(width: 48, height: 48)
-        menuButton.center = CGPoint(x: size.width - 100, y: 80)
         menuButton.isUserInteractionEnabled = true
         background.addSubview(menuButton)
-        cannon = Cannon(center: CGPoint(x: size.width / 2, y: 80), size: StressSettings.defaultCannonSize)
-        super.init(size: size)
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(controlCannon(_:)))
         background.addGestureRecognizer(panGesture)
@@ -35,6 +32,7 @@ class PlayingScene: GKScene {
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
+        let size = view.frame.size
         let topLeft = CGPoint(x: 0, y: 0)
         let topRight = CGPoint(x: size.width, y: 0)
         let bottomLeft = CGPoint(x: 0, y: size.height)
@@ -43,6 +41,10 @@ class PlayingScene: GKScene {
         let leftWall = Wall(from: topLeft, to: bottomLeft)
         let rightWall = Wall(from: topRight, to: bottomRight)
         let exit = Exit(from: bottomLeft, to: bottomRight)
+
+        menuButton.center = CGPoint(x: size.width - 100, y: 80)
+        let cannon = Cannon(center: CGPoint(x: size.width / 2, y: 80), size: StressSettings.defaultCannonSize)
+        self.cannon = cannon
 
         removeAllEntities()
         addEntity(cannon)
@@ -64,11 +66,11 @@ class PlayingScene: GKScene {
         let location = sender.location(in: background)
 
         if sender.state == .changed {
-            cannon.rotate(to: location)
+            cannon?.rotate(to: location)
         }
 
         if sender.state == .ended {
-            cannon.component(ofType: FiringComponent.self)?.fire()
+            cannon?.component(ofType: FiringComponent.self)?.fire()
         }
     }
 

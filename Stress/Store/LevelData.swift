@@ -38,7 +38,6 @@ class LevelData: Object {
 
     init(id: String) {
         self.pegs = List()
-        print(self.id)
     }
 
     init(id: String, name: String, width: Double, height: Double, pegs: List<PegData>) {

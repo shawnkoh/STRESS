@@ -35,10 +35,9 @@ struct Store {
         }
     }
 
-    /// Removes a `LevelData` from the store.
-    /// - Parameter _: The level data to be removed.
-    func removeLevelData(_ levelData: LevelData) throws {
+    func removeLevel(_ level: Level) throws {
         try realm.write {
+            let levelData = Store.constructLevelData(from: level)
             realm.delete(levelData)
         }
     }

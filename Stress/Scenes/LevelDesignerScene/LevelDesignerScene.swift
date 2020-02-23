@@ -25,11 +25,10 @@ class LevelDesignerScene: GKScene {
         return level
     }
 
-    init(stress: Stress, size: CGSize) {
+    init(stress: Stress) {
         self.stress = stress
-        levelScene = LevelScene(size: size)
-        super.init(size: size)
-        level.delegate = levelScene
+        levelScene = LevelScene()
+        super.init()
         nameLabel.delegate = self
         nameLabel.text = level.name
 
@@ -46,6 +45,7 @@ class LevelDesignerScene: GKScene {
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
+        level.delegate = levelScene
         view.addSubview(background)
         view.addSubview(stage)
         view.addSubview(nameLabel)
@@ -55,6 +55,7 @@ class LevelDesignerScene: GKScene {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameLabel.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
         ])
+        level.pegs.forEach { addEntity($0) }
         entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
                 .forEach { view.addSubview($0) }
     }

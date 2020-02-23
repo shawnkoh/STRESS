@@ -16,14 +16,17 @@ class TitleScreenState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        presenter.presentScene(sceneStateMachine.titleScreen)
+        let titleScreen = TitleScreen(stress: sceneStateMachine.stress)
+        presenter.presentScene(titleScreen)
     }
 
     func update(deltaTime: TimeInterval) {
         // not sure
     }
 
-    func willExit(to: GKState) {
-        // not sure, clean up perhaps?
+    func willExit(to nextState: GKState) {
+        if let designingState = nextState as? DesigningState {
+            designingState.level = nil
+        }
     }
 }

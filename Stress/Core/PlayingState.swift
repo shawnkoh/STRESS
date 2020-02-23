@@ -18,7 +18,8 @@ class PlayingState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        presenter.presentScene(sceneStateMachine.playingScene)
+        let playingScene = PlayingScene(stress: sceneStateMachine.stress)
+        presenter.presentScene(playingScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {}

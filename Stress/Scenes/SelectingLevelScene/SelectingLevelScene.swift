@@ -7,24 +7,14 @@
 //
 
 import UIKit
-import RealmSwift
 
 class SelectingLevelScene: GKScene {
     unowned let stress: Stress
     let background = Background()
-    private var realm: Realm
-    private var levels: Results<LevelData>
 
-    init(stress: Stress, size: CGSize) {
+    init(stress: Stress) {
         self.stress = stress
-        do {
-            realm = try Realm()
-            levels = realm.objects(LevelData.self)
-        } catch let error as NSError {
-            // TODO: Don't use fatal error
-            fatalError(error.localizedDescription)
-        }
-        super.init(size: size)
+        super.init()
     }
 
     override func didMove(to view: GKView) {
@@ -46,31 +36,66 @@ class SelectingLevelScene: GKScene {
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200)
         ])
 
-        for levelData in levels {
+        for levelData in stress.store.levelDatas {
             let level = Store.constructLevel(from: levelData)
+
+            let hStack = UIStackView(frame: .zero)
+            hStack.axis = .horizontal
+            hStack.alignment = .center
+            hStack.distribution = .equalSpacing
+            hStack.spacing = 16
+            stackView.addArrangedSubview(hStack)
+
+            let nameLabel = UILabel(frame: .zero)
+            nameLabel.text = level.name
+            nameLabel.backgroundColor = .white
+            hStack.addArrangedSubview(nameLabel)
+
             let playButton = UIButton(frame: .zero)
-            playButton.setTitle(levelData.name, for: .normal)
+            playButton.setTitle("play", for: .normal)
             playButton.setTitleColor(.black, for: .normal)
             playButton.backgroundColor = .white
-            let tapGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapPlay(_:)))
-            playButton.addGestureRecognizer(tapGesture)
-            stackView.addArrangedSubview(playButton)
+            let playGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapPlay(_:)))
+            playButton.addGestureRecognizer(playGesture)
+            hStack.addArrangedSubview(playButton)
+
+            let editButton = UIButton(frame: .zero)
+            editButton.setTitle("edit", for: .normal)
+            editButton.setTitleColor(.black, for: .normal)
+            editButton.backgroundColor = .white
+            let editGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapEdit(_:)))
+            editButton.addGestureRecognizer(editGesture)
+            hStack.addArrangedSubview(editButton)
+
+            let deleteButton = UIButton(frame: .zero)
+            deleteButton.setTitle("delete", for: .normal)
+            deleteButton.setTitleColor(.black, for: .normal)
+            deleteButton.backgroundColor = .white
+            let deleteGesture = LevelTapGestureRecognizer(level: level, target: self, action: #selector(tapDelete(_:)))
+            deleteButton.addGestureRecognizer(deleteGesture)
+            hStack.addArrangedSubview(deleteButton)
         }
     }
-//        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
-//                .forEach { view.addSubview($0) }
 
     @objc func tapBack() {
         stress.sceneStateMachine.enter(TitleScreenState.self)
     }
 
-    @objc func tapPlay(_ sender: LevelTapGestureRecognizer) {
+    @objc private func tapPlay(_ sender: LevelTapGestureRecognizer) {
         stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevel = sender.level
         stress.sceneStateMachine.enter(PlayingState.self)
     }
+
+    @objc private func tapEdit(_ sender: LevelTapGestureRecognizer) {
+        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevel = sender.level
+        stress.sceneStateMachine.enter(DesigningState.self)
+    }
+
+    @objc private func tapDelete(_ sender: LevelTapGestureRecognizer) {
+    }
 }
 
-class LevelTapGestureRecognizer: UITapGestureRecognizer {
+private class LevelTapGestureRecognizer: UITapGestureRecognizer {
     let level: Level
 
     init(level: Level, target: Any?, action: Selector?) {

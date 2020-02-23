@@ -12,13 +12,17 @@ import CoreGraphics
 /// An object that organizes all of the active GlueKit content.
 class GKScene: Identifiable {
     let id = UUID().uuidString
-    /// The dimensions of the scene, in points.
-    var size: CGSize
     /// The list of EntityKit entities managed by the scene.
     var entities = [GKEntity]()
     var componentSystems: [GKComponentSystem] = .init()
     /// The physics simulation associated with the scene.
-    let physicsWorld: BKPhysicsWorld
+    var physicsWorld: BKPhysicsWorld {
+        guard let physicsWorld = _physicsWorld else {
+            fatalError("Physics World has not been initialised")
+        }
+        return physicsWorld
+    }
+    private var _physicsWorld: BKPhysicsWorld?
     /// The view that is currently presenting this scene
     weak var view: GKView? {
         didSet {
@@ -31,13 +35,8 @@ class GKScene: Identifiable {
     weak var delegate: GKSceneDelegate?
 
     /// Initializes a new scene object.
-    /// - Parameter size: The size of the scene in points.
     /// - Returns: A newly initialized scene object.
-    init(size: CGSize) {
-        self.size = size
-        physicsWorld = BKPhysicsWorld(size: size)
-        physicsWorld.contactDelegate = self
-    }
+    init() {}
 
     /// Adds an entity to the list of entities managed by the scene.
     func addEntity(_ entity: GKEntity) {
@@ -99,7 +98,11 @@ class GKScene: Identifiable {
 
     /// Tells you when the scene is presented by a view.
     /// This method is meant to be overriden.
-    func didMove(to view: GKView) {}
+    func didMove(to view: GKView) {
+        let size = view.frame.size
+        _physicsWorld = BKPhysicsWorld(size: size)
+        physicsWorld.contactDelegate = self
+    }
 }
 
 extension GKScene: BKPhysicsContactDelegate {

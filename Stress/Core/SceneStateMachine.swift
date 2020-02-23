@@ -11,10 +11,6 @@ import Foundation
 class SceneStateMachine: GKStateMachine {
     unowned var stress: Stress
     unowned var presenter: GKView
-    lazy var titleScreen = TitleScreen(stress: stress, size: presenter.frame.size)
-    lazy var selectingLevelScene = SelectingLevelScene(stress: stress, size: presenter.frame.size)
-    lazy var playingScene = PlayingScene(stress: stress, size: presenter.frame.size)
-    lazy var levelDesignerScene = LevelDesignerScene(stress: stress, size: presenter.frame.size)
 
     init(stress: Stress, presenter: GKView, states: [GKState]) {
         self.stress = stress

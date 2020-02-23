@@ -19,7 +19,8 @@ class SelectingLevelState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        presenter.presentScene(sceneStateMachine.selectingLevelScene)
+        let selectingLevelScene = SelectingLevelScene(stress: sceneStateMachine.stress)
+        presenter.presentScene(selectingLevelScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {
@@ -29,6 +30,8 @@ class SelectingLevelState: GKState, SceneState {
     func willExit(to nextState: GKState) {
         if let playingState = nextState as? PlayingState {
             playingState.level = selectedLevel
+        } else if let designingState = nextState as? DesigningState {
+            designingState.level = selectedLevel
         }
     }
 }

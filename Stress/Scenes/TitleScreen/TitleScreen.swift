@@ -11,43 +11,45 @@ import UIKit
 class TitleScreen: GKScene {
     unowned let stress: Stress
     let background = Background()
-    let title: UILabel
-    let play: UIButton
-    let designer: UIButton
+    let title = UILabel(frame: .zero)
+    let play = UIButton(frame: .zero)
+    let designer = UIButton(frame: .zero)
 
-    init(stress: Stress, size: CGSize) {
+    init(stress: Stress) {
         self.stress = stress
-        let center = CGPoint(x: size.width / 2, y: size.height / 2)
+        super.init()
 
-        title = UILabel(frame: .zero)
-        title.frame.size = CGSize(width: size.width - 400, height: 150)
-        title.center = center - CGVector(dx: 0, dy: 200)
         title.text = "STRESS"
         title.textAlignment = .center
         title.font = title.font.withSize(80)
         title.backgroundColor = .white
+        title.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            title.widthAnchor.constraint(equalToConstant: 400),
+            title.heightAnchor.constraint(equalToConstant: 100)
+        ])
 
-        play = UIButton(frame: .zero)
-        play.frame.size = CGSize(width: size.width - 400, height: 100)
-        play.center = center
-        play.backgroundColor = .white
         play.setTitle("PLAY", for: .normal)
         play.setTitleColor(.black, for: .normal)
         play.titleLabel?.font = play.titleLabel?.font.withSize(50)
+        play.backgroundColor = .white
+        play.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            play.widthAnchor.constraint(equalToConstant: 400),
+            play.heightAnchor.constraint(equalToConstant: 100)
+        ])
+        let playGesture = UITapGestureRecognizer(target: self, action: #selector(clickPlay))
+        play.addGestureRecognizer(playGesture)
 
-        designer = UIButton(frame: .zero)
-        designer.frame.size = CGSize(width: size.width - 400, height: 100)
-        designer.center = center + CGVector(dx: 0, dy: 150)
         designer.backgroundColor = .white
         designer.setTitle("CREATE LEVEL", for: .normal)
         designer.setTitleColor(.black, for: .normal)
         designer.titleLabel?.font = designer.titleLabel?.font.withSize(50)
-
-        super.init(size: size)
-
-        let playGesture = UITapGestureRecognizer(target: self, action: #selector(clickPlay))
-        play.addGestureRecognizer(playGesture)
-
+        designer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            designer.widthAnchor.constraint(equalToConstant: 400),
+            designer.heightAnchor.constraint(equalToConstant: 100)
+        ])
         let designerGesture = UITapGestureRecognizer(target: self, action: #selector(clickDesigner))
         designer.addGestureRecognizer(designerGesture)
     }
@@ -58,6 +60,14 @@ class TitleScreen: GKScene {
         view.addSubview(title)
         view.addSubview(play)
         view.addSubview(designer)
+        NSLayoutConstraint.activate([
+            title.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            title.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            play.centerXAnchor.constraint(equalTo: title.centerXAnchor),
+            play.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 32),
+            designer.centerXAnchor.constraint(equalTo: play.centerXAnchor),
+            designer.topAnchor.constraint(equalTo: play.bottomAnchor, constant: 32)
+        ])
         entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
                 .forEach { view.addSubview($0) }
     }

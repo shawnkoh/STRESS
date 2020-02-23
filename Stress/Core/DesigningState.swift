@@ -21,7 +21,8 @@ class DesigningState: GKState, SceneState {
             level = Level(name: StressSettings.defaultLevelName,
                           size: StressSettings.defaultLevelSize)
         }
-        presenter.presentScene(sceneStateMachine.levelDesignerScene)
+        let levelDesignerScene = LevelDesignerScene(stress: sceneStateMachine.stress)
+        presenter.presentScene(levelDesignerScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {}
