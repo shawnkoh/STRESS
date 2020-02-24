@@ -13,8 +13,6 @@ class GKComponent: Identifiable {
     let id = UUID().uuidString
     weak var entity: GKEntity?
 
-    func update(deltaTime: TimeInterval) {}
-
     func didAddToEntity(_ entity: GKEntity) {}
     func willRemoveFromEntity(_ entity: GKEntity) {}
     func didAddToScene(_ scene: GKScene) {}
