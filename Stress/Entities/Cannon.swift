@@ -12,18 +12,6 @@ import UIKit
  `Cannon` is an entity that represents a cannon in Stress.
 */
 class Cannon: GKEntity {
-    /// Convenience variable to access the cannon's image view
-    var view: UIImageView {
-        guard let view = component(ofType: VisualComponent.self)?.view as? UIImageView else {
-            fatalError("Cannon's image view could not be accessed")
-        }
-        return view
-    }
-    /// Convenience variable to access the cannon's center
-    var center: CGPoint {
-        view.center
-    }
-
     init(center: CGPoint, size: CGSize) {
         super.init()
 
