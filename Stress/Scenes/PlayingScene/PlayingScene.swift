@@ -66,6 +66,9 @@ class PlayingScene: GKScene {
         view.addSubview(background)
         view.addSubview(stage)
         view.addSubview(menuButton)
+        NSLayoutConstraint.activate([
+            stage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
         menuButton.center = CGPoint(x: size.width - 100, y: 80)
     }
 
