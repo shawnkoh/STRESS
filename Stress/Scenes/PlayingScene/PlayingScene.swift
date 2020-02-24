@@ -10,29 +10,11 @@ import UIKit
 
 /// A `PlayingScene` represents the main gameplay scene in Stress.
 class PlayingScene: GKScene {
-    let background = Background()
-    let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
-    var cannon: Cannon?
     unowned let stress: Stress
-
-    init(stress: Stress) {
-        self.stress = stress
-        super.init()
-
-        menuButton.bounds.size = CGSize(width: 48, height: 48)
-        menuButton.isUserInteractionEnabled = true
-        background.addSubview(menuButton)
-
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(controlCannon(_:)))
-        background.addGestureRecognizer(panGesture)
-
-        let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
-        menuButton.addGestureRecognizer(menuGesture)
-    }
-
-    override func didMove(to view: GKView) {
-        super.didMove(to: view)
-        let size = view.frame.size
+    lazy var stage: Stage = {
+        let stage = Stage(size: level.size)
+        stage.presentScene(levelScene)
+        let size = level.size
         let topLeft = CGPoint(x: 0, y: 0)
         let topRight = CGPoint(x: size.width, y: 0)
         let bottomLeft = CGPoint(x: 0, y: size.height)
@@ -41,36 +23,61 @@ class PlayingScene: GKScene {
         let leftWall = Wall(from: topLeft, to: bottomLeft)
         let rightWall = Wall(from: topRight, to: bottomRight)
         let exit = Exit(from: bottomLeft, to: bottomRight)
-
-        menuButton.center = CGPoint(x: size.width - 100, y: 80)
-        let cannon = Cannon(center: CGPoint(x: size.width / 2, y: 80), size: StressSettings.defaultCannonSize)
-        self.cannon = cannon
-
-        removeAllEntities()
-        addEntity(cannon)
-        addEntity(topWall)
-        addEntity(leftWall)
-        addEntity(rightWall)
-        addEntity(exit)
+        levelScene.addEntity(cannon)
+        levelScene.addEntity(topWall)
+        levelScene.addEntity(leftWall)
+        levelScene.addEntity(rightWall)
+        levelScene.addEntity(exit)
+        level.pegs.forEach { levelScene.addEntity($0) }
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(controlCannon(_:)))
+        stage.addGestureRecognizer(panGesture)
+        return stage
+    }()
+    lazy var levelScene: LevelScene = {
+        let levelScene = LevelScene()
+        level.delegate = levelScene
+        return levelScene
+    }()
+    let background = Background()
+    let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
+    lazy var cannon = Cannon(center: CGPoint(x: level.size.width / 2, y: 80),
+                             size: StressSettings.defaultCannonSize)
+    unowned var level: Level {
         guard let level = stress.sceneStateMachine.state(forClass: PlayingState.self)?.level else {
             fatalError("Unable to access level")
         }
-        level.pegs.forEach { addEntity($0) }
+        return level
+    }
 
+    init(stress: Stress) {
+        self.stress = stress
+        super.init()
+
+        menuButton.bounds.size = CGSize(width: 48, height: 48)
+        menuButton.isUserInteractionEnabled = true
+        let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
+        menuButton.addGestureRecognizer(menuGesture)
+        background.addSubview(menuButton)
+    }
+
+    override func didMove(to view: GKView) {
+        super.didMove(to: view)
+        let size = level.size
         view.addSubview(background)
-        entities.compactMap { $0.component(ofType: VisualComponent.self)?.view }
-                .forEach { view.addSubview($0) }
+        view.addSubview(stage)
+        view.addSubview(menuButton)
+        menuButton.center = CGPoint(x: size.width - 100, y: 80)
     }
 
     @objc func controlCannon(_ sender: UIPanGestureRecognizer) {
         let location = sender.location(in: background)
 
         if sender.state == .changed {
-            cannon?.rotate(to: location)
+            cannon.rotate(to: location)
         }
 
         if sender.state == .ended {
-            cannon?.component(ofType: FiringComponent.self)?.fire()
+            cannon.component(ofType: FiringComponent.self)?.fire()
         }
     }
 

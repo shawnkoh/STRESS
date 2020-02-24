@@ -10,12 +10,6 @@ import UIKit
 
 class DesigningScene: GKScene {
     unowned let stress: Stress
-    let background = Background()
-    let stage = Stage()
-    let levelScene: LevelScene
-    let nameLabel = LevelNameLabel()
-    let palette = Palette()
-
     /// Convenience variable
     private var level: Level {
         guard let level = stress.sceneStateMachine.state(forClass: DesigningState.self)?.level else {
@@ -24,16 +18,29 @@ class DesigningScene: GKScene {
         return level
     }
 
-    init(stress: Stress) {
-        self.stress = stress
-        levelScene = LevelScene()
-        super.init()
-
+    let background = Background()
+    lazy var stage: Stage = {
+        let stage = Stage(size: level.size)
         stage.presentScene(levelScene)
+        level.pegs.forEach { peg in
+            addInteractableComponents(to: peg)
+            levelScene.addEntity(peg)
+        }
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
         stage.addGestureRecognizer(stageGestureRecognizer)
+        return stage
+    }()
+    lazy var levelScene: LevelScene = {
+        let levelScene = LevelScene()
+        level.delegate = levelScene
+        return levelScene
+    }()
+    let nameLabel = LevelNameLabel()
+    let palette = Palette()
 
-        loadLevel(level)
+    init(stress: Stress) {
+        self.stress = stress
+        super.init()
 
         nameLabel.delegate = self
         nameLabel.text = level.name
@@ -126,13 +133,13 @@ class DesigningScene: GKScene {
         peg.addComponent(tapComponent)
     }
 
-    private func loadLevel(_ level: Level) {
-        level.pegs.forEach { peg in
-            addInteractableComponents(to: peg)
-            levelScene.addEntity(peg)
-        }
-        level.delegate = levelScene
-    }
+//    private func loadLevel(_ level: Level) {
+//        level.pegs.forEach { peg in
+//            addInteractableComponents(to: peg)
+//            levelScene.addEntity(peg)
+//        }
+//        level.delegate = levelScene
+//    }
 
     private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
         level.pegs

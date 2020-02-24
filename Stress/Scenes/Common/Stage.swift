@@ -9,12 +9,15 @@
 import UIKit
 
 class Stage: GKView {
+    var size: CGSize
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not supported")
     }
 
-    override init() {
+    init(size: CGSize) {
+        self.size = size
         super.init()
         backgroundColor = .lightGray
         translatesAutoresizingMaskIntoConstraints = false
@@ -27,9 +30,9 @@ class Stage: GKView {
             return
         }
         NSLayoutConstraint.activate([
-            leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 16),
-            trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -16),
-            heightAnchor.constraint(equalToConstant: 800)
+            centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            heightAnchor.constraint(equalToConstant: size.height),
+            widthAnchor.constraint(equalToConstant: size.width)
         ])
     }
 }
