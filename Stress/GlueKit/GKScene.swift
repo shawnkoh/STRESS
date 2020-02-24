@@ -14,7 +14,7 @@ class GKScene: Identifiable {
     let id = UUID().uuidString
     /// The list of EntityKit entities managed by the scene.
     var entities = [GKEntity]()
-    var componentSystems: [GKComponentSystem] = .init()
+    private(set) var systems: [GKSystem] = .init()
     /// The physics simulation associated with the scene.
     var physicsWorld: BKPhysicsWorld {
         guard let physicsWorld = _physicsWorld else {
@@ -38,14 +38,17 @@ class GKScene: Identifiable {
     /// - Returns: A newly initialized scene object.
     init() {}
 
+    func addSystem(_ system: GKSystem) {
+        systems.append(system)
+        entities.forEach { system.addEntity($0) }
+    }
+
     /// Adds an entity to the list of entities managed by the scene.
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
         entity.scene = self
 
-        componentSystems.forEach { componentSystem in
-            componentSystem.addComponent(foundIn: entity)
-        }
+        systems.forEach { $0.addEntity(entity) }
     }
 
     /// Removes an entity from the list of entities managed by the scene.
@@ -55,9 +58,7 @@ class GKScene: Identifiable {
             entity.scene = nil
         }
 
-        componentSystems.forEach { componentSystem in
-            componentSystem.removeComponent(foundIn: entity)
-        }
+        systems.forEach { $0.removeEntity(entity) }
     }
 
     func removeAllEntities() {
@@ -80,8 +81,6 @@ class GKScene: Identifiable {
 
     /// Tells your app to perform any app-specific logic to update your scene.
     func update(timestep: CGFloat, updateFrequency: Int) {
-        // Implements Scott Bilas ECS
-        // https://gist.github.com/LearnCocos2D/77f0ced228292676689f
         let deltaTime = timestep / updateFrequency
         delegate?.update(for: self)
 
@@ -90,9 +89,7 @@ class GKScene: Identifiable {
         }
         delegate?.didSimulatePhysics(for: self)
 
-        componentSystems.forEach { componentSystem in
-            componentSystem.update(deltaTime: TimeInterval(deltaTime))
-        }
+        systems.forEach { $0.update(deltaTime: TimeInterval(deltaTime)) }
         delegate?.didFinishUpdate(for: self)
     }
 

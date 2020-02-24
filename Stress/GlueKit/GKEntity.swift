@@ -53,7 +53,7 @@ class GKEntity: Identifiable {
         }
     }
 
-    func component<ComponentType>(ofType: ComponentType.Type) -> ComponentType? {
+    func component<ComponentType>(ofType: ComponentType.Type) -> ComponentType? where ComponentType: GKComponent {
         for component in components {
             if let component = component as? ComponentType {
                 return component

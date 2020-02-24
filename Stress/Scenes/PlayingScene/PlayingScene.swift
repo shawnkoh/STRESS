@@ -14,6 +14,9 @@ class PlayingScene: GKScene {
     lazy var stage: Stage = {
         let stage = Stage(size: level.size)
         stage.presentScene(levelScene)
+        levelScene.addSystem(CannonControlSystem(controller: stage))
+        levelScene.addSystem(TransformSystem())
+
         let size = level.size
         let topLeft = CGPoint(x: 0, y: 0)
         let topRight = CGPoint(x: size.width, y: 0)
@@ -29,8 +32,6 @@ class PlayingScene: GKScene {
         levelScene.addEntity(rightWall)
         levelScene.addEntity(exit)
         level.pegs.forEach { levelScene.addEntity($0) }
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(controlCannon(_:)))
-        stage.addGestureRecognizer(panGesture)
         return stage
     }()
     lazy var levelScene: LevelScene = {
@@ -52,7 +53,6 @@ class PlayingScene: GKScene {
     init(stress: Stress) {
         self.stress = stress
         super.init()
-
         menuButton.bounds.size = CGSize(width: 48, height: 48)
         menuButton.isUserInteractionEnabled = true
         let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
@@ -70,18 +70,6 @@ class PlayingScene: GKScene {
             stage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         menuButton.center = CGPoint(x: size.width - 100, y: 80)
-    }
-
-    @objc func controlCannon(_ sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: background)
-
-        if sender.state == .changed {
-            cannon.rotate(to: location)
-        }
-
-        if sender.state == .ended {
-            cannon.component(ofType: FiringComponent.self)?.fire()
-        }
     }
 
     @objc func tapMenu(_ sender: UITapGestureRecognizer) {

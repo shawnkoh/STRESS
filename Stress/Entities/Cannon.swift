@@ -23,8 +23,6 @@ class Cannon: GKEntity {
     var center: CGPoint {
         view.center
     }
-    /// The current angle of the cannon
-    private var angle = CGFloat.pi * 0.5
 
     init(center: CGPoint, size: CGSize) {
         super.init()
@@ -38,31 +36,11 @@ class Cannon: GKEntity {
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
 
+        addComponent(RotatableComponent())
+
         let firingComponent = FiringComponent(projectileConstructor: {
-            let dx = StressSettings.defaultBallSpeed * cos(self.angle)
-            let dy = StressSettings.defaultBallSpeed * sin(self.angle)
-            let velocity = CGVector(dx: dx, dy: dy)
-            let ball = Ball(center: center, velocity: velocity)
-            return ball
+            Ball(center: .zero, velocity: .zero)
         })
         addComponent(firingComponent)
-    }
-
-    /// Rotates the cannon so that it faces the given point.
-    /// - Parameter point: The point that the cannon is to face.
-    func rotate(to point: CGPoint) {
-        let newAngle = shootingAngle(to: point)
-        view.transform = view.transform.rotated(by: newAngle - angle)
-        angle = newAngle
-    }
-
-    /// Calculates the constrained angle from the cannon to a point.
-    /// - Parameter point: The point to shoot towards.
-    /// - Returns: The angle to fire at.
-    private func shootingAngle(to point: CGPoint) -> CGFloat {
-        let deltaX = point.x - center.x
-        let deltaY = point.y - center.y
-        let newDeltaY = max(deltaY, StressSettings.cannonShootingAngleConstraint)
-        return atan2(newDeltaY, deltaX)
     }
 }
