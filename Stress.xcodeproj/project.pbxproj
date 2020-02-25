@@ -27,6 +27,9 @@
 		8653E0C22400F0AD00DAEF2D /* SelectingLevelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */; };
 		8653E0C52400F0FA00DAEF2D /* SelectingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C42400F0FA00DAEF2D /* SelectingScene.swift */; };
 		8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657C85523FDE6C90018E7D2 /* Palette.swift */; };
+		865B2D822405959C00512296 /* WillDestroyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D812405959C00512296 /* WillDestroyComponent.swift */; };
+		865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D83240597EC00512296 /* ScoreComponent.swift */; };
+		865B2D862405A3F200512296 /* PegComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D852405A3F200512296 /* PegComponent.swift */; };
 		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
 		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
@@ -83,6 +86,8 @@
 		86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D123FCDEAE00C25BBE /* LevelData.swift */; };
 		86F257D423FCDEB500C25BBE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D323FCDEB500C25BBE /* Store.swift */; };
 		86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D523FCDEBA00C25BBE /* PegData.swift */; };
+		86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAF5AB240594E600EDD629 /* ScoreSystem.swift */; };
+		86FAF5AE2405954900EDD629 /* DestroySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAF5AD2405954900EDD629 /* DestroySystem.swift */; };
 		86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DB240155B300914142 /* LevelNameLabel.swift */; };
 		86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DD24015BC200914142 /* InteractableComponent.swift */; };
 /* End PBXBuildFile section */
@@ -121,6 +126,9 @@
 		8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingLevelState.swift; sourceTree = "<group>"; };
 		8653E0C42400F0FA00DAEF2D /* SelectingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingScene.swift; sourceTree = "<group>"; };
 		8657C85523FDE6C90018E7D2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		865B2D812405959C00512296 /* WillDestroyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillDestroyComponent.swift; sourceTree = "<group>"; };
+		865B2D83240597EC00512296 /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
+		865B2D852405A3F200512296 /* PegComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegComponent.swift; sourceTree = "<group>"; };
 		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
 		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
@@ -181,6 +189,8 @@
 		86F257D123FCDEAE00C25BBE /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
 		86F257D323FCDEB500C25BBE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		86F257D523FCDEBA00C25BBE /* PegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegData.swift; sourceTree = "<group>"; };
+		86FAF5AB240594E600EDD629 /* ScoreSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystem.swift; sourceTree = "<group>"; };
+		86FAF5AD2405954900EDD629 /* DestroySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroySystem.swift; sourceTree = "<group>"; };
 		86FB25DB240155B300914142 /* LevelNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNameLabel.swift; sourceTree = "<group>"; };
 		86FB25DD24015BC200914142 /* InteractableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractableComponent.swift; sourceTree = "<group>"; };
 		88F0BC15E5498DC1AD859C4B /* Pods-StressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.debug.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -274,6 +284,8 @@
 				869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */,
 				869DEAC82403E72F00D79C46 /* TransformSystem.swift */,
 				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
+				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
+				86FAF5AD2405954900EDD629 /* DestroySystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -367,6 +379,9 @@
 				86FB25DD24015BC200914142 /* InteractableComponent.swift */,
 				869DEAC32403C0C900D79C46 /* RotatableComponent.swift */,
 				86BF17B62405607500BAE651 /* CollisionComponent.swift */,
+				865B2D83240597EC00512296 /* ScoreComponent.swift */,
+				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
+				865B2D852405A3F200512296 /* PegComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -644,6 +659,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86FAF5AE2405954900EDD629 /* DestroySystem.swift in Sources */,
+				865B2D822405959C00512296 /* WillDestroyComponent.swift in Sources */,
 				86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */,
 				869DEAC92403E72F00D79C46 /* TransformSystem.swift in Sources */,
 				869DEAC22403C0B300D79C46 /* CannonControlSystem.swift in Sources */,
@@ -659,6 +676,7 @@
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
 				860BCE7A23FF16530007AE58 /* Tool.swift in Sources */,
 				8650447523FD726C003F105D /* GKStateMachine.swift in Sources */,
+				865B2D862405A3F200512296 /* PegComponent.swift in Sources */,
 				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
 				86F257C223FC6AFF00C25BBE /* BKPhysicsWorld.swift in Sources */,
 				860BCE7C23FFB56C0007AE58 /* Control.swift in Sources */,
@@ -684,6 +702,7 @@
 				86F257C723FC6AFF00C25BBE /* BKPhysicsBody.swift in Sources */,
 				8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */,
 				86F2578A23FC665000C25BBE /* FiringComponent.swift in Sources */,
+				865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */,
 				86F257CF23FCDE3B00C25BBE /* DesigningScene.swift in Sources */,
 				8676A16E2402395B005EAA1E /* Cell.swift in Sources */,
 				864DA1D523FDA794005805FF /* SceneStateMachine.swift in Sources */,
@@ -712,6 +731,7 @@
 				86F257D423FCDEB500C25BBE /* Store.swift in Sources */,
 				86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
+				86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,
 				86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */,
 				86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */,

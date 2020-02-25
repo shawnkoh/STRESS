@@ -51,18 +51,18 @@ class PegData: Object {
     /// Constructs a new `PegData`.
     /// - Parameter peg: A peg entity
     convenience init(peg: Peg) {
-        guard let transformComponent = peg.component(ofType: TransformComponent.self) else {
-            fatalError("The Peg does not have a TransformComponent")
-        }
-
-        guard let visualComponent = peg.component(ofType: VisualComponent.self) else {
-            fatalError("The Peg does not have a VisualComponent.")
+        guard
+            let type = peg.component(ofType: PegComponent.self)?.type,
+            let transformComponent = peg.component(ofType: TransformComponent.self),
+            let view = peg.component(ofType: VisualComponent.self)?.view
+        else {
+            fatalError("The Peg does not have the required components")
         }
 
         self.init(id: peg.id,
                   centerX: Double(transformComponent.position.x),
                   centerY: Double(transformComponent.position.y),
-                  radius: Double(visualComponent.view.bounds.size.width / 2),
-                  type: peg.type.rawValue)
+                  radius: Double(view.bounds.size.width / 2),
+                  type: type.rawValue)
     }
 }

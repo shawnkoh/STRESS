@@ -17,6 +17,8 @@ class PlayingScene: GKScene {
         levelScene.addSystem(CannonControlSystem(scene: levelScene, controller: stage))
         levelScene.addSystem(TransformSystem(scene: levelScene))
         levelScene.addSystem(CollisionSystem(scene: levelScene))
+        levelScene.addSystem(ScoreSystem(scene: levelScene))
+        levelScene.addSystem(DestroySystem(scene: levelScene))
 
         let size = level.size
         let topLeft = CGPoint(x: 0, y: 0)

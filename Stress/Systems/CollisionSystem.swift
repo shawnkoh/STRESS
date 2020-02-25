@@ -6,7 +6,7 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CollisionSystem: GKSystem {
     init(scene: GKScene) {
@@ -33,14 +33,22 @@ class CollisionSystem: GKSystem {
     private func resolveCollisionEnd(entityA: GKEntity, entityB: GKEntity) {}
 
     private func resolveCollision(ball: Ball, peg: Peg) {
-        peg.isHit = true
+        guard
+            let type = peg.component(ofType: PegComponent.self)?.type,
+            let view = peg.component(ofType: VisualComponent.self)?.view as? UIImageView
+        else {
+            fatalError("Unable to access required components")
+        }
+        view.image = StressSettings.defaultPegImage(for: type, didHit: true)
+        peg.component(ofType: PegComponent.self)?.isHit = true
+        peg.component(ofType: ScoreComponent.self)?.shouldCount = true
     }
 
     private func resolveCollision(ball: Ball, exit: Exit) {
+        ball.addComponent(WillDestroyComponent())
         scene.entities(ofType: Peg.self)
-            .filter { $0.isHit }
-            .forEach { scene.removeEntity($0) }
-        scene.removeEntity(ball)
+            .filter { $0.component(ofType: PegComponent.self)?.isHit ?? false }
+            .forEach { $0.addComponent(WillDestroyComponent()) }
     }
 }
 

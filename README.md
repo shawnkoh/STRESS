@@ -18,6 +18,7 @@
 3. Do not burn out. Have fun!
 
 ## Dev Guide
+https://github.com/SanderMertens/ecs-faq
 You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
