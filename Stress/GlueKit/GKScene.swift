@@ -16,13 +16,12 @@ class GKScene: Identifiable {
     var entities = [GKEntity]()
     private(set) var systems: [GKSystem] = .init()
     /// The physics simulation associated with the scene.
-    var physicsWorld: BKPhysicsWorld {
-        guard let physicsWorld = _physicsWorld else {
-            fatalError("Physics World has not been initialised")
+    lazy var physicsWorld: BKPhysicsWorld = {
+        guard let view = view else {
+            fatalError("GKScene has not been presented by a GKView.")
         }
-        return physicsWorld
-    }
-    private var _physicsWorld: BKPhysicsWorld?
+        return BKPhysicsWorld(size: view.frame.size)
+    }()
     /// The view that is currently presenting this scene
     weak var view: GKView? {
         didSet {
@@ -72,13 +71,6 @@ class GKScene: Identifiable {
         }
     }
 
-    /// Convenience function to get an entity in the scene with the specified physics body.
-    fileprivate func entity(withPhysicsBody physicsBody: BKPhysicsBody) -> GKEntity? {
-        entities.first { entity in
-            physicsBody == entity.component(ofType: PhysicsComponent.self)?.physicsBody
-        }
-    }
-
     /// Tells your app to perform any app-specific logic to update your scene.
     func update(timestep: CGFloat, updateFrequency: Int) {
         let deltaTime = timestep / updateFrequency
@@ -95,39 +87,7 @@ class GKScene: Identifiable {
 
     /// Tells you when the scene is presented by a view.
     /// This method is meant to be overriden.
-    func didMove(to view: GKView) {
-        let size = view.frame.size
-        _physicsWorld = BKPhysicsWorld(size: size)
-        physicsWorld.contactDelegate = self
-    }
-}
-
-extension GKScene: BKPhysicsContactDelegate {
-    func didBegin(_ contact: BKPhysicsContact) {
-        let entityA = entity(withPhysicsBody: contact.bodyA)
-        let entityB = entity(withPhysicsBody: contact.bodyB)
-
-        if let entityA = entityA as? GKContactNotifiable, let entityB = entityB {
-            entityA.contactDidBegin(with: entityB)
-        }
-
-        if let entityB = entityB as? GKContactNotifiable, let entityA = entityA {
-            entityB.contactDidBegin(with: entityA)
-        }
-    }
-
-    func didEnd(_ contact: BKPhysicsContact) {
-        let entityA = entity(withPhysicsBody: contact.bodyA)
-        let entityB = entity(withPhysicsBody: contact.bodyB)
-
-        if let entityA = entityA as? GKContactNotifiable, let entityB = entityB {
-            entityA.contactDidEnd(with: entityB)
-        }
-
-        if let entityB = entityB as? GKContactNotifiable, let entityA = entityA {
-            entityB.contactDidEnd(with: entityA)
-        }
-    }
+    func didMove(to view: GKView) {}
 }
 
 extension GKScene: Equatable {

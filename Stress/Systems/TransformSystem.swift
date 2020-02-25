@@ -10,8 +10,8 @@ import Foundation
 import CoreGraphics
 
 class TransformSystem: GKSystem {
-    init() {
-        super.init(componentClasses: [TransformComponent.self, RotatableComponent.self])
+    init(scene: GKScene) {
+        super.init(scene: scene, componentClasses: [TransformComponent.self, RotatableComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

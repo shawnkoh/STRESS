@@ -14,8 +14,9 @@ class PlayingScene: GKScene {
     lazy var stage: Stage = {
         let stage = Stage(size: level.size)
         stage.presentScene(levelScene)
-        levelScene.addSystem(CannonControlSystem(controller: stage))
-        levelScene.addSystem(TransformSystem())
+        levelScene.addSystem(CannonControlSystem(scene: levelScene, controller: stage))
+        levelScene.addSystem(TransformSystem(scene: levelScene))
+        levelScene.addSystem(CollisionSystem(scene: levelScene))
 
         let size = level.size
         let topLeft = CGPoint(x: 0, y: 0)

@@ -11,9 +11,10 @@ import UIKit
 class CannonControlSystem: GKSystem {
     unowned let controller: UIView
 
-    init(controller: UIView) {
+    init(scene: GKScene, controller: UIView) {
         self.controller = controller
-        super.init(componentClasses: [TransformComponent.self, RotatableComponent.self, FiringComponent.self])
+        super.init(scene: scene,
+                   componentClasses: [TransformComponent.self, RotatableComponent.self, FiringComponent.self])
 
         controller.isUserInteractionEnabled = true
 

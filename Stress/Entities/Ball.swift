@@ -28,23 +28,7 @@ class Ball: GKEntity {
         let physicsBody = BKPhysicsCircle(center: center, radius: radius, mass: 1.125, velocity: velocity)
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
         addComponent(physicsComponent)
-    }
-}
 
-extension Ball: GKContactNotifiable {
-    func contactDidBegin(with entity: GKEntity) {
-        switch entity {
-        case let peg as Peg:
-            peg.isHit = true
-
-        case _ as Exit:
-            scene?.entities(ofType: Peg.self)
-                .filter { $0.isHit }
-                .forEach { scene?.removeEntity($0) }
-            scene?.removeEntity(self)
-
-        default:
-            ()
-        }
+        addComponent(CollisionComponent())
     }
 }

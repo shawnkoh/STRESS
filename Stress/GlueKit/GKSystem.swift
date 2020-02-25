@@ -9,10 +9,12 @@
 import Foundation
 
 class GKSystem {
+    unowned let scene: GKScene
     let componentClasses: [GKComponent.Type]
     private(set) var entities: [GKEntity] = []
 
-    init(componentClasses: [GKComponent.Type]) {
+    init(scene: GKScene, componentClasses: [GKComponent.Type]) {
+        self.scene = scene
         self.componentClasses = componentClasses
     }
 
@@ -39,6 +41,12 @@ class GKSystem {
         return nil
     }
 
+    // MARK: Methods meant to be overriden
+
+    /// This method is meant to be overriden.
+    func willRemoveFromScene(_ scene: GKScene) {}
+    /// This method is meant to be overriden.
+    func didAddToScene(_ scene: GKScene) {}
     /// Tells all component instances managed by the system to perform their custom periodic actions.
     func update(deltaTime: TimeInterval) {}
 }

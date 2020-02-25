@@ -38,6 +38,8 @@
 		869DEAC42403C0C900D79C46 /* RotatableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC32403C0C900D79C46 /* RotatableComponent.swift */; };
 		869DEAC72403CFCF00D79C46 /* GKSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC62403CFCF00D79C46 /* GKSystem.swift */; };
 		869DEAC92403E72F00D79C46 /* TransformSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC82403E72F00D79C46 /* TransformSystem.swift */; };
+		86BF17B524051DDB00BAE651 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B424051DDB00BAE651 /* CollisionSystem.swift */; };
+		86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B62405607500BAE651 /* CollisionComponent.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2574F23FC609A00C25BBE /* AppDelegate.swift */; };
 		86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575123FC609A00C25BBE /* SceneDelegate.swift */; };
@@ -63,7 +65,6 @@
 		86F257AF23FC6ADF00C25BBE /* GKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257A823FC6ADF00C25BBE /* GKScene.swift */; };
 		86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257A923FC6ADF00C25BBE /* GKView.swift */; };
 		86F257B123FC6ADF00C25BBE /* GKEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257AA23FC6ADF00C25BBE /* GKEntity.swift */; };
-		86F257B223FC6ADF00C25BBE /* GKContactNotifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257AB23FC6ADF00C25BBE /* GKContactNotifiable.swift */; };
 		86F257B423FC6ADF00C25BBE /* GKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257AD23FC6ADF00C25BBE /* GKSceneDelegate.swift */; };
 		86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257AE23FC6ADF00C25BBE /* GKComponent.swift */; };
 		86F257C123FC6AFF00C25BBE /* BKPhysicsCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257B623FC6AFF00C25BBE /* BKPhysicsCircle.swift */; };
@@ -131,6 +132,8 @@
 		869DEAC32403C0C900D79C46 /* RotatableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableComponent.swift; sourceTree = "<group>"; };
 		869DEAC62403CFCF00D79C46 /* GKSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKSystem.swift; sourceTree = "<group>"; };
 		869DEAC82403E72F00D79C46 /* TransformSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSystem.swift; sourceTree = "<group>"; };
+		86BF17B424051DDB00BAE651 /* CollisionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
+		86BF17B62405607500BAE651 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86F2574C23FC609A00C25BBE /* Stress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F2574F23FC609A00C25BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +163,6 @@
 		86F257A823FC6ADF00C25BBE /* GKScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKScene.swift; sourceTree = "<group>"; };
 		86F257A923FC6ADF00C25BBE /* GKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKView.swift; sourceTree = "<group>"; };
 		86F257AA23FC6ADF00C25BBE /* GKEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKEntity.swift; sourceTree = "<group>"; };
-		86F257AB23FC6ADF00C25BBE /* GKContactNotifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKContactNotifiable.swift; sourceTree = "<group>"; };
 		86F257AD23FC6ADF00C25BBE /* GKSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKSceneDelegate.swift; sourceTree = "<group>"; };
 		86F257AE23FC6ADF00C25BBE /* GKComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKComponent.swift; sourceTree = "<group>"; };
 		86F257B623FC6AFF00C25BBE /* BKPhysicsCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BKPhysicsCircle.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */,
 				869DEAC82403E72F00D79C46 /* TransformSystem.swift */,
+				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				86F2578923FC665000C25BBE /* FiringComponent.swift */,
 				86FB25DD24015BC200914142 /* InteractableComponent.swift */,
 				869DEAC32403C0C900D79C46 /* RotatableComponent.swift */,
+				86BF17B62405607500BAE651 /* CollisionComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -383,7 +387,6 @@
 				86F257AA23FC6ADF00C25BBE /* GKEntity.swift */,
 				86F257AE23FC6ADF00C25BBE /* GKComponent.swift */,
 				869DEAC62403CFCF00D79C46 /* GKSystem.swift */,
-				86F257AB23FC6ADF00C25BBE /* GKContactNotifiable.swift */,
 				86F257A823FC6ADF00C25BBE /* GKScene.swift */,
 				86F257AD23FC6ADF00C25BBE /* GKSceneDelegate.swift */,
 				86F257A923FC6ADF00C25BBE /* GKView.swift */,
@@ -667,14 +670,15 @@
 				864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */,
 				8676A17024027110005EAA1E /* LevelDelegate.swift in Sources */,
 				86F257C823FC6AFF00C25BBE /* BKPhysicsBodyWithVolume.swift in Sources */,
+				86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */,
 				86F257B423FC6ADF00C25BBE /* GKSceneDelegate.swift in Sources */,
 				869DEAC42403C0C900D79C46 /* RotatableComponent.swift in Sources */,
 				8650447123FD647E003F105D /* Dialogs.swift in Sources */,
 				8650447E23FD7849003F105D /* DesigningState.swift in Sources */,
-				86F257B223FC6ADF00C25BBE /* GKContactNotifiable.swift in Sources */,
 				86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */,
 				86F257CD23FC6B1100C25BBE /* PegView.swift in Sources */,
 				86F257C323FC6AFF00C25BBE /* BKSettings.swift in Sources */,
+				86BF17B524051DDB00BAE651 /* CollisionSystem.swift in Sources */,
 				86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */,
 				86F257AF23FC6ADF00C25BBE /* GKScene.swift in Sources */,
 				86F257C723FC6AFF00C25BBE /* BKPhysicsBody.swift in Sources */,
