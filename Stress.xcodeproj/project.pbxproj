@@ -30,6 +30,7 @@
 		865B2D822405959C00512296 /* WillDestroyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D812405959C00512296 /* WillDestroyComponent.swift */; };
 		865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D83240597EC00512296 /* ScoreComponent.swift */; };
 		865B2D862405A3F200512296 /* PegComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D852405A3F200512296 /* PegComponent.swift */; };
+		865B2D8D2405ACBB00512296 /* LevelPlayingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */; };
 		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
 		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
@@ -129,6 +130,7 @@
 		865B2D812405959C00512296 /* WillDestroyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillDestroyComponent.swift; sourceTree = "<group>"; };
 		865B2D83240597EC00512296 /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
 		865B2D852405A3F200512296 /* PegComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegComponent.swift; sourceTree = "<group>"; };
+		865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPlayingScene.swift; sourceTree = "<group>"; };
 		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
 		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				86F2577723FC659E00C25BBE /* PlayingScene.swift */,
+				865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */,
 			);
 			path = PlayingScene;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				865B2D862405A3F200512296 /* PegComponent.swift in Sources */,
 				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
 				86F257C223FC6AFF00C25BBE /* BKPhysicsWorld.swift in Sources */,
+				865B2D8D2405ACBB00512296 /* LevelPlayingScene.swift in Sources */,
 				860BCE7C23FFB56C0007AE58 /* Control.swift in Sources */,
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,

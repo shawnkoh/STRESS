@@ -18,7 +18,10 @@ class PlayingState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let playingScene = PlayingScene(stress: sceneStateMachine.stress)
+        guard let level = level else {
+            fatalError("Level has not been loaded.")
+        }
+        let playingScene = PlayingScene(stress: sceneStateMachine.stress, level: level)
         presenter.presentScene(playingScene)
     }
 

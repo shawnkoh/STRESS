@@ -11,50 +11,20 @@ import UIKit
 /// A `PlayingScene` represents the main gameplay scene in Stress.
 class PlayingScene: GKScene {
     unowned let stress: Stress
+    unowned var level: Level
     lazy var stage: Stage = {
         let stage = Stage(size: level.size)
         stage.presentScene(levelScene)
-        levelScene.addSystem(CannonControlSystem(scene: levelScene, controller: stage))
-        levelScene.addSystem(TransformSystem(scene: levelScene))
-        levelScene.addSystem(CollisionSystem(scene: levelScene))
-        levelScene.addSystem(ScoreSystem(scene: levelScene))
-        levelScene.addSystem(DestroySystem(scene: levelScene))
-
-        let size = level.size
-        let topLeft = CGPoint(x: 0, y: 0)
-        let topRight = CGPoint(x: size.width, y: 0)
-        let bottomLeft = CGPoint(x: 0, y: size.height)
-        let bottomRight = CGPoint(x: size.width, y: size.height)
-        let topWall = Wall(from: topLeft, to: topRight)
-        let leftWall = Wall(from: topLeft, to: bottomLeft)
-        let rightWall = Wall(from: topRight, to: bottomRight)
-        let exit = Exit(from: bottomLeft, to: bottomRight)
-        levelScene.addEntity(cannon)
-        levelScene.addEntity(topWall)
-        levelScene.addEntity(leftWall)
-        levelScene.addEntity(rightWall)
-        levelScene.addEntity(exit)
         level.pegs.forEach { levelScene.addEntity($0) }
         return stage
     }()
-    lazy var levelScene: LevelScene = {
-        let levelScene = LevelScene()
-        level.delegate = levelScene
-        return levelScene
-    }()
+    lazy var levelScene = LevelPlayingScene(level: level)
     let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
-    lazy var cannon = Cannon(center: CGPoint(x: level.size.width / 2, y: 80),
-                             size: StressSettings.defaultCannonSize)
-    unowned var level: Level {
-        guard let level = stress.sceneStateMachine.state(forClass: PlayingState.self)?.level else {
-            fatalError("Unable to access level")
-        }
-        return level
-    }
 
-    init(stress: Stress) {
+    init(stress: Stress, level: Level) {
         self.stress = stress
+        self.level = level
         super.init()
         menuButton.bounds.size = CGSize(width: 48, height: 48)
         menuButton.isUserInteractionEnabled = true

@@ -9,20 +9,21 @@
 import UIKit
 
 class CannonControlSystem: GKSystem {
-    unowned let controller: UIView
+    weak var controller: UIView? {
+        didSet {
+            controller?.isUserInteractionEnabled = true
 
-    init(scene: GKScene, controller: UIView) {
-        self.controller = controller
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(rotate(_:)))
+            controller?.addGestureRecognizer(panGesture)
+
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(shoot(_:)))
+            controller?.addGestureRecognizer(tapGesture)
+        }
+    }
+
+    init(scene: GKScene) {
         super.init(scene: scene,
                    componentClasses: [TransformComponent.self, RotatableComponent.self, FiringComponent.self])
-
-        controller.isUserInteractionEnabled = true
-
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(rotate(_:)))
-        controller.addGestureRecognizer(panGesture)
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(shoot(_:)))
-        controller.addGestureRecognizer(tapGesture)
     }
 
     private var initialTapLocation: CGPoint = .zero
@@ -37,7 +38,10 @@ class CannonControlSystem: GKSystem {
             return
         }
         entities.forEach {
-            guard let rotatableComponent = $0.component(ofType: RotatableComponent.self) else {
+            guard
+                let controller = controller,
+                let rotatableComponent = $0.component(ofType: RotatableComponent.self)
+            else {
                 fatalError("Entity does not have a RotatableComponent")
             }
             let tapLocation = sender.location(in: controller)
