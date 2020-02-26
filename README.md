@@ -64,4 +64,35 @@ tests in code, please delete this section.
 > - if you were to redo the entire application, is there anything you would
 >   have done differently?
 
-Your answer here
+#### Technical Debt: Unity ECS query
+here’s my planned design that is loosely based on Unity ECS without their idea of chunks (ive no idea if this is correct btw XD)
+
+1. in a GKScene, register component types
+the goal is to allocate a unique index to each component type
+componentA = 1, componentB = 2, componentC = 3, …
+
+2. create entities with its components defined.
+e.g. entity with componentC, componentA
+store the components in an array that matches the ordering in #1 i.e. [componentA, nil, componentC]
+
+check if the GKScene has ever defined such an archetype {componentA, componentC}, and if not, add it to the list of archetypes
+
+add the component array into the archetype {componentA, componentC}
+
+3. in a system, when you query for the entities to iterate, you must specify the component types.
+
+iterate through the list of archetypes to find all archetypes that contains the component types (can possibly use set intersection here)
+iterate through each archetype to get the entities needed.
+BUT instead of returning an array of entities, return an ordered array of the specified components (based on their ordering in #1)
+
+—
+what happens when an entity adds a component?
+remove the component array from the current archetype
+add the component into the entity’s component array
+create the archetype if it does not exist in the GKScene
+store the component array into the archetype,
+
+vice versa for removing a component
+
+—
+when removing a component array from an archetype, use the trick of replacing the element at the specified index with the last element and nil the last element to avoid O(N) deletion
