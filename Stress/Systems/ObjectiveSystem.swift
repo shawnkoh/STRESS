@@ -12,4 +12,10 @@ class ObjectiveSystem: GKSystem {
     init(scene: GKScene) {
         super.init(scene: scene, componentClasses: [ObjectiveComponent.self])
     }
+
+    override func update(deltaTime: TimeInterval) {
+        if entities.isEmpty {
+            // end game
+        }
+    }
 }

@@ -14,7 +14,6 @@ class DestroySystem: GKSystem {
     }
 
     override func update(deltaTime: TimeInterval) {
-        scene.entities.filter { $0.component(ofType: WillDestroyComponent.self) != nil }
-                      .forEach { scene.removeEntity($0) }
+        entities.forEach { scene.removeEntity($0) }
     }
 }

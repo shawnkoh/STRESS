@@ -35,15 +35,12 @@ class GKScene: Identifiable {
 
     func addSystem(_ system: GKSystem) {
         systems.append(system)
-        entities.forEach { system.addEntity($0) }
     }
 
     /// Adds an entity to the list of entities managed by the scene.
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
         entity.scene = self
-
-        systems.forEach { $0.addEntity(entity) }
     }
 
     /// Removes an entity from the list of entities managed by the scene.
@@ -52,8 +49,6 @@ class GKScene: Identifiable {
             entities.remove(at: index)
             entity.scene = nil
         }
-
-        systems.forEach { $0.removeEntity(entity) }
     }
 
     func removeAllEntities() {

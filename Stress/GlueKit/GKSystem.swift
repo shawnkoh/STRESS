@@ -11,34 +11,26 @@ import Foundation
 class GKSystem {
     unowned let scene: GKScene
     let componentClasses: [GKComponent.Type]
-    private(set) var entities: [GKEntity] = []
 
     init(scene: GKScene, componentClasses: [GKComponent.Type]) {
         self.scene = scene
         self.componentClasses = componentClasses
     }
 
-    @discardableResult
-    func addEntity(_ entity: GKEntity) -> Bool {
+    var entities: [GKEntity] {
+        scene.entities.compactMap {
+            containsComponents($0) ? $0 : nil
+        }
+    }
+
+    private func containsComponents(_ entity: GKEntity) -> Bool {
         let entityComponentTypes = entity.components.map { type(of: $0) }
-        guard componentClasses.allSatisfy({ componentClass in
+        return componentClasses.allSatisfy({ componentClass in
             let contains = entityComponentTypes.firstIndex { entityComponentType in
                 componentClass == entityComponentType
             }
             return contains != nil
-        }) else {
-            return false
-        }
-        entities.append(entity)
-        return true
-    }
-
-    @discardableResult
-    func removeEntity(_ entity: GKEntity) -> GKEntity? {
-        if let index = entities.firstIndex(of: entity) {
-            return entities.remove(at: index)
-        }
-        return nil
+        })
     }
 
     // MARK: Methods meant to be overriden
