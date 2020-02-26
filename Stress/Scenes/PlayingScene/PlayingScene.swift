@@ -14,13 +14,17 @@ class PlayingScene: GKScene {
     unowned var level: Level
     lazy var stage: Stage = {
         let stage = Stage(size: level.size)
-        stage.presentScene(levelScene)
-        level.pegs.forEach { levelScene.addEntity($0) }
+
         return stage
     }()
-    lazy var levelScene = LevelPlayingScene(level: level)
+    lazy var levelScene = LevelPlayingScene(parent: self, level: level)
     let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
+    lazy var stateMachine = GameStateMachine(playingScene: self,
+                                             states: [GamePlayingState(),
+                                                      GameWinState(),
+                                                      GameLoseState(),
+                                                      GamePausedState()])
 
     init(stress: Stress, level: Level) {
         self.stress = stress
@@ -31,6 +35,7 @@ class PlayingScene: GKScene {
         let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
         menuButton.addGestureRecognizer(menuGesture)
         background.addSubview(menuButton)
+        stateMachine.enter(GamePlayingState.self)
     }
 
     override func didMove(to view: GKView) {

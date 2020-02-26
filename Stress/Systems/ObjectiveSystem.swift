@@ -14,8 +14,11 @@ class ObjectiveSystem: GKSystem {
     }
 
     override func update(deltaTime: TimeInterval) {
+        guard let levelScene = scene as? LevelPlayingScene else {
+            fatalError("ObjectiveSystem has been attached to an incorrect scene")
+        }
         if entities.isEmpty {
-            // end game
+            levelScene.parent.stateMachine.enter(GameWinState.self)
         }
     }
 }

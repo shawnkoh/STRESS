@@ -9,17 +9,20 @@
 import CoreGraphics
 
 class LevelPlayingScene: GKScene {
+    unowned let parent: PlayingScene
     unowned var level: Level
     lazy var cannonControlSystem = CannonControlSystem(scene: self)
 
-    init(level: Level) {
+    init(parent: PlayingScene, level: Level) {
+        self.parent = parent
         self.level = level
         super.init()
+        addSystem(cannonControlSystem)
         addSystem(TransformSystem(scene: self))
         addSystem(CollisionSystem(scene: self))
         addSystem(ScoreSystem(scene: self))
         addSystem(DestroySystem(scene: self))
-        addSystem(cannonControlSystem)
+        addSystem(ObjectiveSystem(scene: self))
     }
 
     override func didMove(to view: GKView) {
