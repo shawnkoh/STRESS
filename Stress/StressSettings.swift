@@ -34,16 +34,31 @@ enum StressSettings {
         CGSize(width: defaultPegRadius * 2, height: defaultPegRadius * 2)
     }
     static let defaultPegFadeDuration: TimeInterval = 0.8
-    static let objectivePegImage = UIImage(named: "peg-orange")!
-    static let objectivePegHitImage = UIImage(named: "peg-orange-glow")!
-    static let normalPegImage = UIImage(named: "peg-blue")!
-    static let normalPegHitImage = UIImage(named: "peg-blue-glow")!
-    static func defaultPegImage(for type: PegType, didHit: Bool = false) -> UIImage {
-        switch type {
-        case .objective:
-            return didHit ? objectivePegHitImage : objectivePegImage
-        case .normal:
-            return didHit ? normalPegHitImage : normalPegImage
+
+    static let circleObjectivePegImage = UIImage(named: "peg-orange")!
+    static let circleObjectivePegHitImage = UIImage(named: "peg-orange-glow")!
+    static let circlePegImage = UIImage(named: "peg-blue")!
+    static let circlePegHitImage = UIImage(named: "peg-blue-glow")!
+
+    static let triangleObjectivePegImage = UIImage(named: "peg-orange-triangle")!
+    static let triangleObjectivePegHitImage = UIImage(named: "peg-orange-glow-triangle")!
+    static let trianglePegImage = UIImage(named: "peg-blue-triangle")!
+    static let trianglePegHitImage = UIImage(named: "peg-blue-glow-triangle")!
+
+    static func defaultPegImage(for shape: PegShape, isObjective: Bool = false, didHit: Bool = false) -> UIImage {
+        switch shape {
+        case .circle:
+            if isObjective {
+                return didHit ? circleObjectivePegHitImage : circleObjectivePegImage
+            } else {
+                return didHit ? circlePegHitImage : circlePegImage
+            }
+        case .triangle:
+            if isObjective {
+                return didHit ? triangleObjectivePegHitImage : triangleObjectivePegImage
+            } else {
+                return didHit ? trianglePegHitImage : trianglePegImage
+            }
         }
     }
 

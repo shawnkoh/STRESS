@@ -32,7 +32,11 @@ class Palette: UIView {
         let root = createRoot()
 
         let toolStack = createToolStack(root: root)
-        let tools = [Tool(type: .create(type: .normal)), Tool(type: .create(type: .objective)), Tool(type: .delete)]
+        let tools = [Tool(type: .create(shape: .circle, isObjective: true)),
+                     Tool(type: .create(shape: .circle, isObjective: false)),
+                     Tool(type: .create(shape: .triangle, isObjective: true)),
+                     Tool(type: .create(shape: .triangle, isObjective: false)),
+                     Tool(type: .delete)]
         tools.forEach { tool in
             toolStack.addArrangedSubview(tool)
             let gesture = UITapGestureRecognizer(target: self, action: #selector(selectTool(_:)))

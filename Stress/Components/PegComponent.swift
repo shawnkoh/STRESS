@@ -9,22 +9,22 @@
 import Foundation
 
 class PegComponent: GKComponent {
-    var type: PegType
+    var shape: PegShape
     var isHit: Bool = false
 
-    init(type: PegType) {
-        self.type = type
+    init(shape: PegShape) {
+        self.shape = shape
     }
 }
 
 /**
  The `PegType` enumeration represents the various types of pegs in Stress.
  */
-enum PegType: Int {
+enum PegShape: Int {
     /// An `objective` peg has to be eliminated in order to complete the level.
     /// When it is eliminated, it provides points.
-    case objective
+    case circle
     /// A `normal` peg does not need to be eliminated in order to complete the level.
     /// When it is eliminated, it provides points.
-    case normal
+    case triangle
 }

@@ -71,7 +71,7 @@ class DesigningScene: GKScene {
         }
         let location = sender.location(in: stage)
         if case .create(let type) = type {
-            createPeg(at: location, type: type)
+            createPeg(at: location, shape: type.shape, isObjective: type.isObjective)
         }
     }
 
@@ -133,14 +133,6 @@ class DesigningScene: GKScene {
         peg.addComponent(tapComponent)
     }
 
-//    private func loadLevel(_ level: Level) {
-//        level.pegs.forEach { peg in
-//            addInteractableComponents(to: peg)
-//            levelScene.addEntity(peg)
-//        }
-//        level.delegate = levelScene
-//    }
-
     private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
         level.pegs
             .filter { $0 != peg }
@@ -162,8 +154,8 @@ class DesigningScene: GKScene {
         return self.hasNoOverlappingPegs(at: location, ignore: peg)
     }
 
-    private func createPeg(at location: CGPoint, type: PegType) {
-        let peg = Peg(center: location, type: type)
+    private func createPeg(at location: CGPoint, shape: PegShape, isObjective: Bool) {
+        let peg = Peg(center: location, shape: shape, isObjective: isObjective)
         guard canPlace(peg: peg, at: location) else {
             return
         }

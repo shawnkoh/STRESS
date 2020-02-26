@@ -9,7 +9,7 @@
 import UIKit
 
 enum ToolType {
-    case create(type: PegType)
+    case create(shape: PegShape, isObjective: Bool)
     case delete
 }
 
@@ -26,12 +26,18 @@ class Tool: UIButton {
         let diameter = StressSettings.defaultPegRadius * 2
         frame.size = CGSize(width: diameter, height: diameter)
         switch type {
-        case .create(type: .normal):
-            setImage(StressSettings.defaultPegImage(for: .normal), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .normal, didHit: true), for: .selected)
-        case .create(type: .objective):
-            setImage(StressSettings.defaultPegImage(for: .objective), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .objective, didHit: true), for: .selected)
+        case .create(shape: .circle, isObjective: true):
+            setImage(StressSettings.defaultPegImage(for: .circle, isObjective: true), for: .normal)
+            setImage(StressSettings.defaultPegImage(for: .circle, isObjective: true, didHit: true), for: .selected)
+        case .create(shape: .circle, isObjective: false):
+            setImage(StressSettings.defaultPegImage(for: .circle), for: .normal)
+            setImage(StressSettings.defaultPegImage(for: .circle, didHit: true), for: .selected)
+        case .create(shape: .triangle, isObjective: true):
+            setImage(StressSettings.defaultPegImage(for: .triangle, isObjective: true), for: .normal)
+            setImage(StressSettings.defaultPegImage(for: .triangle, isObjective: true, didHit: true), for: .selected)
+        case .create(shape: .triangle, isObjective: false):
+            setImage(StressSettings.defaultPegImage(for: .triangle), for: .normal)
+            setImage(StressSettings.defaultPegImage(for: .triangle, didHit: true), for: .selected)
         case .delete:
             // TODO: Using the symbol sucks cos we can't adjust the size dynamically this way.
             setImage(UIImage(systemName: "xmark.circle",

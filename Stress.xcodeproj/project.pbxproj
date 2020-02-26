@@ -31,6 +31,8 @@
 		865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D83240597EC00512296 /* ScoreComponent.swift */; };
 		865B2D862405A3F200512296 /* PegComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D852405A3F200512296 /* PegComponent.swift */; };
 		865B2D8D2405ACBB00512296 /* LevelPlayingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */; };
+		865B2D8F2406236900512296 /* ObjectiveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8E2406236900512296 /* ObjectiveComponent.swift */; };
+		865B2D912406237E00512296 /* ObjectiveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D902406237E00512296 /* ObjectiveSystem.swift */; };
 		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
 		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
@@ -131,6 +133,8 @@
 		865B2D83240597EC00512296 /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
 		865B2D852405A3F200512296 /* PegComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegComponent.swift; sourceTree = "<group>"; };
 		865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPlayingScene.swift; sourceTree = "<group>"; };
+		865B2D8E2406236900512296 /* ObjectiveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveComponent.swift; sourceTree = "<group>"; };
+		865B2D902406237E00512296 /* ObjectiveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveSystem.swift; sourceTree = "<group>"; };
 		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
 		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
 				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
 				86FAF5AD2405954900EDD629 /* DestroySystem.swift */,
+				865B2D902406237E00512296 /* ObjectiveSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				865B2D83240597EC00512296 /* ScoreComponent.swift */,
 				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
 				865B2D852405A3F200512296 /* PegComponent.swift */,
+				865B2D8E2406236900512296 /* ObjectiveComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -678,6 +684,7 @@
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
 				860BCE7A23FF16530007AE58 /* Tool.swift in Sources */,
+				865B2D912406237E00512296 /* ObjectiveSystem.swift in Sources */,
 				8650447523FD726C003F105D /* GKStateMachine.swift in Sources */,
 				865B2D862405A3F200512296 /* PegComponent.swift in Sources */,
 				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
@@ -719,6 +726,7 @@
 				86F2578223FC660C00C25BBE /* Cannon.swift in Sources */,
 				860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */,
 				86F2578423FC661400C25BBE /* Exit.swift in Sources */,
+				865B2D8F2406236900512296 /* ObjectiveComponent.swift in Sources */,
 				86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */,
 				86F257C423FC6AFF00C25BBE /* BKLineProtocol.swift in Sources */,
 				86F257CB23FC6AFF00C25BBE /* BKPhysicsContactDelegate.swift in Sources */,
