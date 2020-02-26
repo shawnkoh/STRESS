@@ -15,9 +15,4 @@ class FiringComponent: GKComponent {
         self.projectileConstructor = projectileConstructor
         super.init()
     }
-
-    func fire() {
-        let projectile = projectileConstructor()
-        entity?.scene?.addEntity(projectile)
-    }
 }
