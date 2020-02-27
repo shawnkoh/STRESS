@@ -28,6 +28,7 @@ enum StressSettings {
     static let cannonMaxAngle: CGFloat = .pi / 2
     static let cannonMinAngle: CGFloat = -.pi / 2
     static let cannonSensitivity: CGFloat = 0.3
+    static let cannonAmmo: Int = 10
 
     static let defaultPegRadius: CGFloat = 20
     static var defaultPegSize: CGSize {

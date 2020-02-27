@@ -1,5 +1,5 @@
 //
-//  ObjectiveSystem.swift
+//  WinSystem.swift
 //  Stress
 //
 //  Created by Shawn Koh on 26/2/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ObjectiveSystem: GKSystem {
+class WinSystem: GKSystem {
     init(scene: GKScene) {
         super.init(scene: scene, componentClasses: [ObjectiveComponent.self])
     }

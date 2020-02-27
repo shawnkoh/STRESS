@@ -16,7 +16,9 @@ class LoseState: GKState, GameState {
         stateClass is PlayingState.Type
     }
 
-    func didEnter(from previousState: GKState?) {}
+    func didEnter(from previousState: GKState?) {
+        print("lost")
+    }
 
     func update(deltaTime seconds: TimeInterval) {}
 

@@ -23,7 +23,10 @@ class CannonControlSystem: GKSystem {
 
     init(scene: GKScene) {
         super.init(scene: scene,
-                   componentClasses: [TransformComponent.self, RotatableComponent.self, FiringComponent.self])
+                   componentClasses: [TransformComponent.self,
+                                      RotatableComponent.self,
+                                      FiringComponent.self,
+                                      AmmoComponent.self])
     }
 
     private var initialTapLocation: CGPoint = .zero
@@ -70,24 +73,38 @@ class CannonControlSystem: GKSystem {
             guard
                 let cannonTransformComponent = entity.component(ofType: TransformComponent.self),
                 let cannonRotatableComponent = entity.component(ofType: RotatableComponent.self),
-                let cannonFiringComponent = entity.component(ofType: FiringComponent.self)
+                let cannonFiringComponent = entity.component(ofType: FiringComponent.self),
+                let cannonAmmoComponent = entity.component(ofType: AmmoComponent.self)
             else {
                 fatalError("Entity does not have a RotatableComponent")
             }
-
-            let projectile = cannonFiringComponent.projectileConstructor()
-            guard
-                let projectileTransformComponent = projectile.component(ofType: TransformComponent.self),
-                let projectilePhysics = projectile.component(ofType: PhysicsComponent.self)?.physicsBody
-                    as? BKPhysicsCircle
-            else {
-                fatalError("Projectile does not have the required components")
+            guard cannonAmmoComponent.ammo > 0 else {
+                return
             }
-            projectileTransformComponent.position = cannonTransformComponent.position
+            cannonAmmoComponent.ammo -= 1
+
             let dx = StressSettings.defaultBallSpeed * -sin(cannonRotatableComponent.angle)
             let dy = StressSettings.defaultBallSpeed * cos(cannonRotatableComponent.angle)
-            projectilePhysics.velocity = CGVector(dx: dx, dy: dy)
+            let projectileVelocity = CGVector(dx: dx, dy: dy)
+
+            let projectile = createProjectile(constructor: cannonFiringComponent.projectileConstructor,
+                                              position: cannonTransformComponent.position,
+                                              velocity: projectileVelocity)
             scene.addEntity(projectile)
         }
+    }
+
+    private func createProjectile(constructor: () -> GKEntity, position: CGPoint, velocity: CGVector) -> GKEntity {
+        let projectile = constructor()
+        guard
+            let transformComponent = projectile.component(ofType: TransformComponent.self),
+            let physicsBody = projectile.component(ofType: PhysicsComponent.self)?.physicsBody
+                as? BKPhysicsBodyWithVolume
+        else {
+            fatalError("Projectile does not have the required components")
+        }
+        transformComponent.position = position
+        physicsBody.velocity = velocity
+        return projectile
     }
 }

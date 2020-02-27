@@ -30,5 +30,7 @@ class Cannon: GKEntity {
             Ball(center: .zero, velocity: .zero)
         })
         addComponent(firingComponent)
+
+        addComponent(AmmoComponent(ammo: StressSettings.cannonAmmo))
     }
 }

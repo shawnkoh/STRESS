@@ -31,7 +31,7 @@
 		865B2D862405A3F200512296 /* PegComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D852405A3F200512296 /* PegComponent.swift */; };
 		865B2D8D2405ACBB00512296 /* LevelPlayingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */; };
 		865B2D8F2406236900512296 /* ObjectiveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8E2406236900512296 /* ObjectiveComponent.swift */; };
-		865B2D912406237E00512296 /* ObjectiveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D902406237E00512296 /* ObjectiveSystem.swift */; };
+		865B2D912406237E00512296 /* WinSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D902406237E00512296 /* WinSystem.swift */; };
 		865B2D9524068E1C00512296 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D9424068E1C00512296 /* PausedState.swift */; };
 		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
@@ -54,6 +54,8 @@
 		86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B62405607500BAE651 /* CollisionComponent.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86EFDE61240816B3001E4174 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFDE60240816B3001E4174 /* GameState.swift */; };
+		86EFDE6324082379001E4174 /* AmmoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFDE6224082379001E4174 /* AmmoComponent.swift */; };
+		86EFDE65240826C5001E4174 /* LoseSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFDE64240826C5001E4174 /* LoseSystem.swift */; };
 		86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2574F23FC609A00C25BBE /* AppDelegate.swift */; };
 		86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575123FC609A00C25BBE /* SceneDelegate.swift */; };
 		86F2575423FC609A00C25BBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2575323FC609A00C25BBE /* ViewController.swift */; };
@@ -145,7 +147,7 @@
 		865B2D852405A3F200512296 /* PegComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegComponent.swift; sourceTree = "<group>"; };
 		865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPlayingScene.swift; sourceTree = "<group>"; };
 		865B2D8E2406236900512296 /* ObjectiveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveComponent.swift; sourceTree = "<group>"; };
-		865B2D902406237E00512296 /* ObjectiveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveSystem.swift; sourceTree = "<group>"; };
+		865B2D902406237E00512296 /* WinSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinSystem.swift; sourceTree = "<group>"; };
 		865B2D9424068E1C00512296 /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
 		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
@@ -168,6 +170,8 @@
 		86BF17B62405607500BAE651 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86EFDE60240816B3001E4174 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		86EFDE6224082379001E4174 /* AmmoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoComponent.swift; sourceTree = "<group>"; };
+		86EFDE64240826C5001E4174 /* LoseSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseSystem.swift; sourceTree = "<group>"; };
 		86F2574C23FC609A00C25BBE /* Stress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F2574F23FC609A00C25BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86F2575123FC609A00C25BBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -315,7 +319,8 @@
 				869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */,
 				86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */,
 				86FAF5AD2405954900EDD629 /* DestroySystem.swift */,
-				865B2D902406237E00512296 /* ObjectiveSystem.swift */,
+				86EFDE64240826C5001E4174 /* LoseSystem.swift */,
+				865B2D902406237E00512296 /* WinSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
 				865B2D852405A3F200512296 /* PegComponent.swift */,
 				865B2D8E2406236900512296 /* ObjectiveComponent.swift */,
+				86EFDE6224082379001E4174 /* AmmoComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -739,12 +745,14 @@
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
 				860BCE7A23FF16530007AE58 /* Tool.swift in Sources */,
 				86F763C02406A86700F49B44 /* WinState.swift in Sources */,
-				865B2D912406237E00512296 /* ObjectiveSystem.swift in Sources */,
+				865B2D912406237E00512296 /* WinSystem.swift in Sources */,
 				8650447523FD726C003F105D /* GKStateMachine.swift in Sources */,
+				86EFDE65240826C5001E4174 /* LoseSystem.swift in Sources */,
 				865B2D862405A3F200512296 /* PegComponent.swift in Sources */,
 				86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */,
 				86F257C223FC6AFF00C25BBE /* BKPhysicsWorld.swift in Sources */,
 				865B2D8D2405ACBB00512296 /* LevelPlayingScene.swift in Sources */,
+				86EFDE6324082379001E4174 /* AmmoComponent.swift in Sources */,
 				860BCE7C23FFB56C0007AE58 /* Control.swift in Sources */,
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,

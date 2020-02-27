@@ -27,7 +27,8 @@ class LevelPlayingScene: GKScene {
         addSystem(CleanupVisualSystem(scene: self))
         addSystem(CleanupPhysicsSystem(scene: self))
         addSystem(DestroySystem(scene: self))
-        addSystem(ObjectiveSystem(scene: self))
+        addSystem(LoseSystem(scene: self))
+        addSystem(WinSystem(scene: self))
     }
 
     override func didMove(to view: GKView) {
