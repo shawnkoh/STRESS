@@ -13,8 +13,10 @@ class GameWinView: UIView {
     let titleLabel = UILabel(frame: .zero)
     let scoreLabel = UILabel(frame: .zero)
     let replayButton = Button(width: 140, title: "REPLAY")
+    let replayAction: () -> Void
 
-    init(score: Int) {
+    init(score: Int, replayAction: @escaping () -> Void) {
+        self.replayAction = replayAction
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
@@ -30,6 +32,7 @@ class GameWinView: UIView {
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scoreLabel)
 
+        replayButton.addTarget(self, action: #selector(replay(_:)), for: .touchUpInside)
         addSubview(replayButton)
 
         NSLayoutConstraint.activate([
@@ -63,5 +66,6 @@ class GameWinView: UIView {
     }
 
     @objc func replay(_ sender: UITapGestureRecognizer) {
+        replayAction()
     }
 }

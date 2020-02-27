@@ -13,9 +13,14 @@ class GamePausedView: UIView {
     let titleLabel = UILabel(frame: .zero)
     let restartButton = Button(width: 140, title: "Restart Level")
     let quitButton = Button(width: 140, title: "Quit Level")
+    let restartAction: () -> Void
+    let quitAction: () -> Void
 
-    init() {
+    init(restartAction: @escaping () -> Void, quitAction: @escaping () -> Void) {
+        self.restartAction = restartAction
+        self.quitAction = quitAction
         super.init(frame: .zero)
+
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
         layer.cornerRadius = 16
@@ -36,6 +41,9 @@ class GamePausedView: UIView {
             quitButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             quitButton.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 16)
         ])
+
+        restartButton.addTarget(self, action: #selector(restart(_:)), for: .touchUpInside)
+        quitButton.addTarget(self, action: #selector(quit(_:)), for: .touchUpInside)
     }
 
     @available(*, unavailable)
@@ -54,5 +62,13 @@ class GamePausedView: UIView {
             widthAnchor.constraint(equalTo: superview.widthAnchor, multiplier: 0.4),
             heightAnchor.constraint(equalTo: superview.heightAnchor, multiplier: 0.4)
         ])
+    }
+
+    @objc func restart(_ sender: Button) {
+        restartAction()
+    }
+
+    @objc func quit(_ sender: Button) {
+        quitAction()
     }
 }

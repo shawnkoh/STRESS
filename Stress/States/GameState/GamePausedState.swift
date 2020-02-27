@@ -16,24 +16,25 @@ class GamePausedState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let view = GamePausedView()
-        gameStateMachine.playingScene.stage.addSubview(view)
-        view.restartButton.addTarget(self, action: #selector(restartLevel(_:)), for: .touchUpInside)
-        view.quitButton.addTarget(self, action: #selector(quitLevel(_:)), for: .touchUpInside)
+        playingScene.stage.displayLink?.invalidate()
+
+        let restartLevel = {
+            self.playingScene.restartLevel()
+            self.gameStateMachine.enter(GamePlayingState.self)
+        }
+
+        let quitLevel = {
+            self.playingScene.stress.sceneStateMachine.enter(TitleScreenState.self)
+            return
+        }
+
+        let view = GamePausedView(restartAction: restartLevel, quitAction: quitLevel)
+        playingScene.stage.addSubview(view)
     }
 
     func update(deltaTime seconds: TimeInterval) {
     }
 
     func willExit(to nextState: GKState) {
-    }
-
-    @objc func restartLevel(_ sender: Button) {
-        playingScene.restartLevel()
-        gameStateMachine.enter(GamePlayingState.self)
-    }
-
-    @objc func quitLevel(_ sender: Button) {
-        playingScene.stress.sceneStateMachine.enter(TitleScreenState.self)
     }
 }

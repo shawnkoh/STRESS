@@ -17,9 +17,13 @@ class GameWinState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let view = GameWinView(score: playingScene.levelScene.scoreSystem.score)
+        playingScene.stage.displayLink?.invalidate()
+        let replayAction = {
+            self.playingScene.restartLevel()
+            self.gameStateMachine.enter(GamePlayingState.self)
+        }
+        let view = GameWinView(score: playingScene.levelScene.scoreSystem.score, replayAction: replayAction)
         playingScene.stage.addSubview(view)
-//        playingScene.stage.displayLink.invalidate()
     }
 
     func update(deltaTime seconds: TimeInterval) {}
