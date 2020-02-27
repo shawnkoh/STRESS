@@ -35,7 +35,7 @@ class PausedState: GKState, GameState {
     }()
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
-        stateClass is PlayingState.Type
+        stateClass is PlayingState.Type || stateClass is TitleScreenState.Type
     }
 
     func didEnter(from previousState: GKState?) {
