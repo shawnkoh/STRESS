@@ -23,23 +23,22 @@ class GameWinView: UIView {
         titleLabel.font = titleLabel.font.withSize(32)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16)
-        ])
 
         scoreLabel.text = String(score)
         scoreLabel.textColor = .blue
         scoreLabel.font = scoreLabel.font.withSize(48)
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scoreLabel)
-        NSLayoutConstraint.activate([
-            scoreLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            scoreLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
 
         addSubview(replayButton)
+
         NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+
+            scoreLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scoreLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+
             replayButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             replayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
