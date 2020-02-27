@@ -9,7 +9,7 @@
 import UIKit
 
 class DesigningScene: GKScene {
-    unowned let stress: Stress
+    unowned let store: Store
     unowned var levelData: LevelData
 
     let background = Background()
@@ -17,10 +17,12 @@ class DesigningScene: GKScene {
     var levelScene = LevelScene()
     let nameLabel = LevelNameLabel()
     let palette = Palette()
+    let backAction: () -> Void
 
-    init(stress: Stress, levelData: LevelData) {
-        self.stress = stress
+    init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
+        self.store = store
         self.levelData = levelData
+        self.backAction = backAction
         self.stage = Stage(size: CGSize(width: levelData.width, height: levelData.height))
 
         super.init()
@@ -62,7 +64,7 @@ class DesigningScene: GKScene {
     }
 
     @objc func tapBack() {
-        stress.sceneStateMachine.enter(TitleScreenState.self)
+        backAction()
     }
 
     @objc func tapReset() {
@@ -79,7 +81,7 @@ class DesigningScene: GKScene {
         do {
             let pegs = levelScene.entities(ofType: Peg.self)
             let level = Level(name: levelName, size: stage.size, pegs: Set(pegs), id: levelData.id)
-            try stress.store.saveLevel(level)
+            try store.saveLevel(level)
         } catch let error as NSError {
             // TODO: dont use fatal error
             fatalError(error.localizedDescription)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DesigningState: GKState, SceneState {
+class DesigningState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
     var levelData: LevelData?
 
@@ -20,8 +20,14 @@ class DesigningState: GKState, SceneState {
         if levelData == nil {
             levelData = LevelData()
         }
-        let designingScene = DesigningScene(stress: sceneStateMachine.stress, levelData: levelData!)
-        presenter.presentScene(designingScene)
+        let backAction = {
+            self.gameStateMachine.enter(TitleScreenState.self)
+            return
+        }
+        let designingScene = DesigningScene(store: gameStateMachine.stress.store,
+                                            levelData: levelData!,
+                                            backAction: backAction)
+        gameStateMachine.presenter.presentScene(designingScene)
     }
 
     func update(deltaTime seconds: TimeInterval) {}

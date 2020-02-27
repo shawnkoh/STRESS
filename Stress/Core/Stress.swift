@@ -10,15 +10,18 @@ import CoreGraphics
 
 /// An object representing the entire state of the game `Stress`.
 class Stress {
-    private(set) var sceneStateMachine: SceneStateMachine!
+    private(set) var stateMachine: GameStateMachine!
     let store = Store()
 
     init(presenter: GKView) {
-        sceneStateMachine = SceneStateMachine(stress: self,
-                                              presenter: presenter,
-                                              states: [TitleScreenState(),
-                                                       DesigningState(),
-                                                       PlayingState(),
-                                                       SelectingLevelState()])
+        stateMachine = GameStateMachine(stress: self,
+                                        presenter: presenter,
+                                        states: [TitleScreenState(),
+                                                 DesigningState(),
+                                                 PlayingState(),
+                                                 WinState(),
+                                                 LoseState(),
+                                                 PausedState(),
+                                                 SelectingLevelState()])
     }
 }

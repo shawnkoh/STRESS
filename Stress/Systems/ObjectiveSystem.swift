@@ -18,7 +18,7 @@ class ObjectiveSystem: GKSystem {
             fatalError("ObjectiveSystem has been attached to an incorrect scene")
         }
         if entities.isEmpty {
-            levelScene.parent.stateMachine.enter(GameWinState.self)
+            levelScene.parent.stateMachine.enter(WinState.self)
         }
     }
 }

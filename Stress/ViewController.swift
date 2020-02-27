@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        stress.sceneStateMachine.enter(TitleScreenState.self)
+        stress.stateMachine.enter(TitleScreenState.self)
     }
 
     override var prefersStatusBarHidden: Bool {

@@ -10,21 +10,16 @@ import UIKit
 
 /// A `PlayingScene` represents the main gameplay scene in Stress.
 class PlayingScene: GKScene {
-    unowned let stress: Stress
+    unowned let stateMachine: GameStateMachine
     unowned var levelData: LevelData
     lazy var level = Store.constructLevel(from: levelData)
     lazy var stage = Stage(size: level.size)
     lazy var levelScene = LevelPlayingScene(parent: self, level: level)
     let background = Background()
     let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
-    lazy var stateMachine = GameStateMachine(playingScene: self,
-                                             states: [GamePlayingState(),
-                                                      GameWinState(),
-                                                      GameLoseState(),
-                                                      GamePausedState()])
 
-    init(stress: Stress, levelData: LevelData) {
-        self.stress = stress
+    init(stateMachine: GameStateMachine, levelData: LevelData) {
+        self.stateMachine = stateMachine
         self.levelData = levelData
         super.init()
         menuButton.bounds.size = CGSize(width: 48, height: 48)
@@ -44,11 +39,10 @@ class PlayingScene: GKScene {
             stage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         menuButton.center = CGPoint(x: size.width - 100, y: 80)
-        stateMachine.enter(GamePlayingState.self)
     }
 
     @objc func tapMenu(_ sender: UITapGestureRecognizer) {
-        stateMachine.enter(GamePausedState.self)
+        stateMachine.enter(PausedState.self)
     }
 
     func restartLevel() {

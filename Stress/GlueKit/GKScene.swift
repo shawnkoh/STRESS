@@ -27,10 +27,21 @@ class GKScene: Identifiable {
     }
     /// A delegate to be called during the animation loop.
     weak var delegate: GKSceneDelegate?
+    var isPaused: Bool {
+        didSet {
+            if isPaused {
+                view?.displayLink?.remove(from: .current, forMode: .common)
+            } else {
+                view?.displayLink?.add(to: .current, forMode: .common)
+            }
+        }
+    }
 
     /// Initializes a new scene object.
     /// - Returns: A newly initialized scene object.
-    init() {}
+    init() {
+        self.isPaused = false
+    }
 
     func addSystem(_ system: GKSystem) {
         systems.append(system)

@@ -9,7 +9,7 @@
 import RealmSwift
 
 /// The `Store` represents the persisted state of Peggle.
-struct Store {
+class Store {
     /// The instance of the Realm database used to persist the state of Peggle.
     let realm: Realm
 

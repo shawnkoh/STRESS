@@ -9,11 +9,20 @@
 import UIKit
 
 class SelectingScene: GKScene {
-    unowned let stress: Stress
+    unowned let store: Store
     let background = Background()
+    let backAction: () -> Void
+    let playAction: (LevelData) -> Void
+    let editAction: (LevelData) -> Void
 
-    init(stress: Stress) {
-        self.stress = stress
+    init(store: Store,
+         backAction: @escaping () -> Void,
+         playAction: @escaping (LevelData) -> Void,
+         editAction: @escaping (LevelData) -> Void) {
+        self.store = store
+        self.backAction = backAction
+        self.playAction = playAction
+        self.editAction = editAction
         super.init()
     }
 
@@ -36,7 +45,7 @@ class SelectingScene: GKScene {
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200)
         ])
 
-        for levelData in stress.store.levelDatas {
+        for levelData in store.levelDatas {
             let hStack = UIStackView(frame: .zero)
             hStack.axis = .horizontal
             hStack.alignment = .center
@@ -85,22 +94,20 @@ class SelectingScene: GKScene {
     }
 
     @objc func tapBack() {
-        stress.sceneStateMachine.enter(TitleScreenState.self)
+        backAction()
     }
 
     @objc private func tapPlay(_ sender: LevelTapGestureRecognizer) {
-        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevelData = sender.levelData
-        stress.sceneStateMachine.enter(PlayingState.self)
+        playAction(sender.levelData)
     }
 
     @objc private func tapEdit(_ sender: LevelTapGestureRecognizer) {
-        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevelData = sender.levelData
-        stress.sceneStateMachine.enter(DesigningState.self)
+        editAction(sender.levelData)
     }
 
     @objc private func tapDelete(_ sender: LevelTapGestureRecognizer) {
         do {
-            try stress.store.removeLevelData(sender.levelData)
+            try store.removeLevelData(sender.levelData)
         } catch let error {
             // TODO: Add dialog
         }

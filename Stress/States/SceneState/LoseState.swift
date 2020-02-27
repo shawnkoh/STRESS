@@ -1,5 +1,5 @@
 //
-//  GameLoseState.swift
+//  LoseState.swift
 //  Stress
 //
 //  Created by Shawn Koh on 26/2/20.
@@ -8,11 +8,12 @@
 
 import Foundation
 
-class GameLoseState: GKState, GameState {
+class LoseState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
+    weak var playingScene: PlayingScene?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
-        stateClass is GamePlayingState.Type
+        stateClass is PlayingState.Type
     }
 
     func didEnter(from previousState: GKState?) {}

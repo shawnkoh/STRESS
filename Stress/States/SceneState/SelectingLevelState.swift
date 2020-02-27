@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SelectingLevelState: GKState, SceneState {
+class SelectingLevelState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
     weak var selectedLevelData: LevelData?
 
@@ -19,13 +19,27 @@ class SelectingLevelState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let selectingScene = SelectingScene(stress: sceneStateMachine.stress)
-        presenter.presentScene(selectingScene)
+        let backAction = {
+            self.gameStateMachine.enter(TitleScreenState.self)
+            return
+        }
+        let playLevel: (LevelData) -> Void = { levelData in
+            self.selectedLevelData = levelData
+            self.gameStateMachine.enter(PlayingState.self)
+        }
+        let editLevel: (LevelData) -> Void = { levelData in
+            self.selectedLevelData = levelData
+            self.gameStateMachine.enter(DesigningState.self)
+        }
+
+        let selectingScene = SelectingScene(store: gameStateMachine.stress.store,
+                                            backAction: backAction,
+                                            playAction: playLevel,
+                                            editAction: editLevel)
+        gameStateMachine.presenter.presentScene(selectingScene)
     }
 
-    func update(deltaTime seconds: TimeInterval) {
-
-    }
+    func update(deltaTime seconds: TimeInterval) {}
 
     func willExit(to nextState: GKState) {
         if let playingState = nextState as? PlayingState {

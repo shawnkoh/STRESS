@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TitleScreenState: GKState, SceneState {
+class TitleScreenState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
@@ -16,8 +16,17 @@ class TitleScreenState: GKState, SceneState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let titleScreen = TitleScreen(stress: sceneStateMachine.stress)
-        presenter.presentScene(titleScreen)
+        let selectLevel = {
+            self.gameStateMachine.enter(SelectingLevelState.self)
+            return
+        }
+        let createLevel = {
+            self.gameStateMachine.enter(DesigningState.self)
+            return
+        }
+        let titleScreen = TitleScreen(playAction: selectLevel, designAction: createLevel)
+
+        gameStateMachine.presenter.presentScene(titleScreen)
     }
 
     func update(deltaTime: TimeInterval) {

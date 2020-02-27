@@ -17,7 +17,6 @@ class GKStateMachine {
     /// Initializes a state machine with the specified states.
     init(states: [GKState]) {
         self.states = states
-        states.forEach { $0.stateMachine = self }
     }
 
     func state<StateType>(forClass stateClass: StateType.Type) -> StateType? where StateType: GKState {
@@ -38,10 +37,10 @@ class GKStateMachine {
     /// - Returns: true if the transition was successful; otherwise false.
     @discardableResult
     func enter<StateType>(_ stateClass: StateType.Type) -> Bool where StateType: GKState {
-        guard
-            canEnterState(stateClass.self),
-            let nextState = state(forClass: stateClass)
-        else {
+        guard let nextState = state(forClass: stateClass) else {
+            fatalError("The state being accessed does not belong to this state machine.")
+        }
+        guard canEnterState(stateClass.self) else {
             return false
         }
         currentState?.willExit(to: nextState)
