@@ -17,7 +17,17 @@ class LoseState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        print("lost")
+        guard let playingScene = playingScene else {
+            fatalError("Unable to access PlayingScene")
+        }
+
+        playingScene.stage.displayLink?.invalidate()
+        let replayAction = {
+            self.playingScene?.restartLevel()
+            self.gameStateMachine.enter(PlayingState.self)
+        }
+        let view = GameLoseView(score: playingScene.levelScene.scoreSystem.score, replayAction: replayAction)
+        playingScene.stage.addSubview(view)
     }
 
     func update(deltaTime seconds: TimeInterval) {}
