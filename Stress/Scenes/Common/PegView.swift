@@ -26,6 +26,8 @@ class PegView: UIImageView {
             self.alpha = 0.0
         }, completion: { finished in
             if finished {
+                // TODO: This causes a crash if the user quits the level before the callback is triggered.
+                // FIX: Use a manual timer by counting frames instead of a callback.
                 super.removeFromSuperview()
             }
         })

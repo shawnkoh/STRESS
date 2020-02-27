@@ -10,15 +10,39 @@ import UIKit
 
 /// A `GameWinView` represents the winning view in Stress.
 class GameWinView: UIView {
-    let label = UILabel(frame: .zero)
+    let titleLabel = UILabel(frame: .zero)
+    let scoreLabel = UILabel(frame: .zero)
+    let replayButton = Button(width: 140, title: "REPLAY")
 
-    init() {
+    init(score: Int) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
 
-        label.text = "YOU WIN!"
-        addSubview(label)
+        titleLabel.text = "YOU WIN!"
+        titleLabel.font = titleLabel.font.withSize(32)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(titleLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16)
+        ])
+
+        scoreLabel.text = String(score)
+        scoreLabel.textColor = .blue
+        scoreLabel.font = scoreLabel.font.withSize(48)
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scoreLabel)
+        NSLayoutConstraint.activate([
+            scoreLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scoreLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+
+        addSubview(replayButton)
+        NSLayoutConstraint.activate([
+            replayButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            replayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
     }
 
     @available(*, unavailable)
@@ -39,4 +63,6 @@ class GameWinView: UIView {
         ])
     }
 
+    @objc func replay(_ sender: UITapGestureRecognizer) {
+    }
 }

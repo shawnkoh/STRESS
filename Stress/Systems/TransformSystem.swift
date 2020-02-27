@@ -11,26 +11,29 @@ import CoreGraphics
 
 class TransformSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [TransformComponent.self, RotatableComponent.self])
+        super.init(scene: scene, componentClasses: [TransformComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
         entities.forEach { entity in
-            guard
-                let transformComponent = entity.component(ofType: TransformComponent.self),
-                let rotatableComponent = entity.component(ofType: RotatableComponent.self)
-            else {
-                fatalError("Entity does not have the required components")
+            guard let transformComponent = entity.component(ofType: TransformComponent.self) else {
+                fatalError("Could not retrieve the Transform Component")
             }
 
             if let view = entity.component(ofType: VisualComponent.self)?.view {
                 view.center = transformComponent.position
-                view.transform = CGAffineTransform(rotationAngle: rotatableComponent.angle)
+
+                if let rotatableComponent = entity.component(ofType: RotatableComponent.self) {
+                    view.transform = CGAffineTransform(rotationAngle: rotatableComponent.angle)
+                }
             }
 
             if let physicsBody = entity.component(ofType: PhysicsComponent.self)?.physicsBody {
-                if let circle = physicsBody as? BKPhysicsCircle {
+                switch physicsBody {
+                case let circle as BKPhysicsCircle:
                     circle.center = transformComponent.position
+                default:
+                    ()
                 }
             }
         }

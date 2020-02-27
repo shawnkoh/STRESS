@@ -15,8 +15,6 @@ class GKComponent: Identifiable {
 
     func didAddToEntity(_ entity: GKEntity) {}
     func willRemoveFromEntity(_ entity: GKEntity) {}
-    func didAddToScene(_ scene: GKScene) {}
-    func willRemoveFromScene(_ scene: GKScene) {}
 }
 
 extension GKComponent: Equatable {

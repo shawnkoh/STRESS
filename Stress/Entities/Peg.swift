@@ -20,7 +20,7 @@ class Peg: GKEntity {
         if isObjective {
             addComponent(ObjectiveComponent())
         }
-        addComponent(ScoreComponent(score: 10))
+        addComponent(ScoreComponent(score: 100))
 
         let transformComponent = TransformComponent(position: center)
         addComponent(transformComponent)

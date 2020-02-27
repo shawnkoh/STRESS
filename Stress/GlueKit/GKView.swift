@@ -12,7 +12,7 @@ import UIKit
 class GKView: UIView {
     /// The scene currently presented by this view.
     private(set) var scene: GKScene?
-    private var displayLink: CADisplayLink?
+    var displayLink: CADisplayLink?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

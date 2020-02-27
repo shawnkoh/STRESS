@@ -45,8 +45,8 @@ class GKStateMachine {
             return false
         }
         currentState?.willExit(to: nextState)
-        currentState = nextState
         nextState.didEnter(from: currentState)
+        currentState = nextState
         return true
     }
 

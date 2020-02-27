@@ -9,7 +9,7 @@
 import Foundation
 
 class GameLoseState: GKState, GameState {
-    var stateMachine: GKStateMachine?
+    weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is GamePlayingState.Type

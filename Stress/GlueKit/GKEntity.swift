@@ -13,25 +13,7 @@ class GKEntity: Identifiable {
     let id = UUID().uuidString
     /// The entity’s list of components.
     var components: [GKComponent]
-    weak var scene: GKScene? {
-        willSet {
-            guard scene != newValue else {
-                return
-            }
-            if let scene = scene, newValue == nil {
-                willRemoveFromScene(scene: scene)
-            }
-        }
-        didSet {
-            guard scene != oldValue else {
-                return
-            }
-
-            if let scene = scene {
-                didAddToScene(scene: scene)
-            }
-        }
-    }
+    weak var scene: GKScene?
 
     init() {
         self.components = []
@@ -60,19 +42,6 @@ class GKEntity: Identifiable {
             }
         }
         return nil
-    }
-
-    /// Notifies the entity that it has been assigned to a scene.
-    private func didAddToScene(scene: GKScene) {
-        components.forEach { component in
-            component.didAddToScene(scene)
-        }
-    }
-
-    private func willRemoveFromScene(scene: GKScene) {
-        components.forEach { component in
-            component.willRemoveFromScene(scene)
-        }
     }
 }
 

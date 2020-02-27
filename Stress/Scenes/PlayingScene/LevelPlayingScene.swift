@@ -12,15 +12,20 @@ class LevelPlayingScene: GKScene {
     unowned let parent: PlayingScene
     unowned var level: Level
     lazy var cannonControlSystem = CannonControlSystem(scene: self)
+    lazy var scoreSystem = ScoreSystem(scene: self)
 
     init(parent: PlayingScene, level: Level) {
         self.parent = parent
         self.level = level
         super.init()
+        addSystem(VisualSystem(scene: self))
+        addSystem(PhysicsSystem(scene: self))
         addSystem(cannonControlSystem)
         addSystem(TransformSystem(scene: self))
         addSystem(CollisionSystem(scene: self))
-        addSystem(ScoreSystem(scene: self))
+        addSystem(scoreSystem)
+        addSystem(CleanupVisualSystem(scene: self))
+        addSystem(CleanupPhysicsSystem(scene: self))
         addSystem(DestroySystem(scene: self))
         addSystem(ObjectiveSystem(scene: self))
     }

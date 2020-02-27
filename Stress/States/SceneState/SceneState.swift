@@ -12,13 +12,13 @@ protocol SceneState where Self: GKState {
 }
 
 extension SceneState {
-    var sceneStateMachine: SceneStateMachine {
+    unowned var sceneStateMachine: SceneStateMachine {
         guard let sceneStateMachine = stateMachine as? SceneStateMachine else {
             fatalError("PlayingState must be bounded to a SceneStateMachine")
         }
         return sceneStateMachine
     }
-    var presenter: GKView {
+    unowned var presenter: GKView {
         sceneStateMachine.presenter
     }
 }

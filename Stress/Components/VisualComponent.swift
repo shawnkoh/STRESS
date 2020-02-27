@@ -19,20 +19,4 @@ class VisualComponent: GKComponent {
         self.view = view
         super.init()
     }
-
-    override func didAddToScene(_ scene: GKScene) {
-        scene.view?.addSubview(view)
-
-        if let transformComponent = entity?.component(ofType: TransformComponent.self) {
-            view.center = transformComponent.position
-        }
-    }
-
-    override func willRemoveFromScene(_ scene: GKScene) {
-        view.removeFromSuperview()
-    }
-
-    override func willRemoveFromEntity(_ entity: GKEntity) {
-        view.removeFromSuperview()
-    }
 }

@@ -14,13 +14,13 @@ protocol GameState where Self: GKState {
 }
 
 extension GameState {
-    var gameStateMachine: GameStateMachine {
+    unowned var gameStateMachine: GameStateMachine {
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
             fatalError("GameState must be bounded to a GameStateMachine")
         }
         return gameStateMachine
     }
-    var playingScene: PlayingScene {
+    unowned var playingScene: PlayingScene {
         gameStateMachine.playingScene
     }
 }

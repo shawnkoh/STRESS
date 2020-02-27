@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 class GameWinState: GKState, GameState {
-    var stateMachine: GKStateMachine?
+    weak var stateMachine: GKStateMachine?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is GamePlayingState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        let view = GameWinView()
+        let view = GameWinView(score: playingScene.levelScene.scoreSystem.score)
         playingScene.stage.addSubview(view)
+//        playingScene.stage.displayLink.invalidate()
     }
 
     func update(deltaTime seconds: TimeInterval) {}
