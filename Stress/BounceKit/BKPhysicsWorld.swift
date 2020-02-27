@@ -10,7 +10,6 @@ import CoreGraphics
 
 /// The world the physics simulation is run in.
 class BKPhysicsWorld {
-    var size: CGSize
     /**
      A vector that specifies the gravitational acceleration applied to physics bodies in the physics world.
 
@@ -29,9 +28,7 @@ class BKPhysicsWorld {
     var bodies: [BKPhysicsBody] = .init()
     weak var contactDelegate: BKPhysicsContactDelegate?
 
-    init(size: CGSize) {
-        self.size = size
-    }
+    init() {}
 
     func addBody(_ body: BKPhysicsBody) {
         bodies.append(body)

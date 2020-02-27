@@ -10,18 +10,17 @@ import Foundation
 
 class DesigningState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
-    var level: Level?
+    var levelData: LevelData?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type || stateClass is PlayingState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        if level == nil {
-            level = Level(name: StressSettings.defaultLevelName,
-                          size: StressSettings.defaultLevelSize)
+        if levelData == nil {
+            levelData = LevelData()
         }
-        let designingScene = DesigningScene(stress: sceneStateMachine.stress)
+        let designingScene = DesigningScene(stress: sceneStateMachine.stress, levelData: levelData!)
         presenter.presentScene(designingScene)
     }
 

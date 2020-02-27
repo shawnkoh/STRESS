@@ -6,7 +6,15 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-class LevelScene: GKScene {}
+class LevelScene: GKScene {
+    override init() {
+        super.init()
+        addSystem(VisualSystem(scene: self))
+        addSystem(TransformSystem(scene: self))
+        addSystem(CleanupVisualSystem(scene: self))
+        addSystem(DestroySystem(scene: self))
+    }
+}
 
 extension LevelScene: LevelDelegate {
     func didAddPeg(_ peg: Peg) {

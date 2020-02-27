@@ -37,8 +37,6 @@ class SelectingScene: GKScene {
         ])
 
         for levelData in stress.store.levelDatas {
-            let level = Store.constructLevel(from: levelData)
-
             let hStack = UIStackView(frame: .zero)
             hStack.axis = .horizontal
             hStack.alignment = .center
@@ -47,7 +45,7 @@ class SelectingScene: GKScene {
             stackView.addArrangedSubview(hStack)
 
             let nameLabel = UILabel(frame: .zero)
-            nameLabel.text = level.name
+            nameLabel.text = levelData.name
             nameLabel.backgroundColor = .white
             hStack.addArrangedSubview(nameLabel)
 
@@ -56,7 +54,6 @@ class SelectingScene: GKScene {
             playButton.setTitleColor(.black, for: .normal)
             playButton.backgroundColor = .white
             let playGesture = LevelTapGestureRecognizer(levelData: levelData,
-                                                        level: level,
                                                         hStack: hStack,
                                                         target: self,
                                                         action: #selector(tapPlay(_:)))
@@ -68,7 +65,6 @@ class SelectingScene: GKScene {
             editButton.setTitleColor(.black, for: .normal)
             editButton.backgroundColor = .white
             let editGesture = LevelTapGestureRecognizer(levelData: levelData,
-                                                        level: level,
                                                         hStack: hStack,
                                                         target: self,
                                                         action: #selector(tapEdit(_:)))
@@ -80,7 +76,6 @@ class SelectingScene: GKScene {
             deleteButton.setTitleColor(.black, for: .normal)
             deleteButton.backgroundColor = .white
             let deleteGesture = LevelTapGestureRecognizer(levelData: levelData,
-                                                          level: level,
                                                           hStack: hStack,
                                                           target: self,
                                                           action: #selector(tapDelete(_:)))
@@ -94,12 +89,12 @@ class SelectingScene: GKScene {
     }
 
     @objc private func tapPlay(_ sender: LevelTapGestureRecognizer) {
-        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevel = sender.level
+        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevelData = sender.levelData
         stress.sceneStateMachine.enter(PlayingState.self)
     }
 
     @objc private func tapEdit(_ sender: LevelTapGestureRecognizer) {
-        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevel = sender.level
+        stress.sceneStateMachine.state(forClass: SelectingLevelState.self)?.selectedLevelData = sender.levelData
         stress.sceneStateMachine.enter(DesigningState.self)
     }
 
@@ -115,12 +110,10 @@ class SelectingScene: GKScene {
 
 private class LevelTapGestureRecognizer: UITapGestureRecognizer {
     let levelData: LevelData
-    let level: Level
     let hStack: UIStackView
 
-    init(levelData: LevelData, level: Level, hStack: UIStackView, target: Any?, action: Selector?) {
+    init(levelData: LevelData, hStack: UIStackView, target: Any?, action: Selector?) {
         self.levelData = levelData
-        self.level = level
         self.hStack = hStack
         super.init(target: target, action: action)
     }

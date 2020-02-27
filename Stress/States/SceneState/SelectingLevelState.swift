@@ -10,7 +10,7 @@ import Foundation
 
 class SelectingLevelState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
-    weak var selectedLevel: Level?
+    weak var selectedLevelData: LevelData?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type ||
@@ -29,9 +29,9 @@ class SelectingLevelState: GKState, SceneState {
 
     func willExit(to nextState: GKState) {
         if let playingState = nextState as? PlayingState {
-            playingState.level = selectedLevel
+            playingState.levelData = selectedLevelData
         } else if let designingState = nextState as? DesigningState {
-            designingState.level = selectedLevel
+            designingState.levelData = selectedLevelData
         }
     }
 }

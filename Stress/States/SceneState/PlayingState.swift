@@ -7,21 +7,20 @@
 //
 
 import Foundation
-import CoreGraphics // TEMP
 
 class PlayingState: GKState, SceneState {
     weak var stateMachine: GKStateMachine?
-    var level: Level?
+    var levelData: LevelData?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        guard let level = level else {
+        guard let levelData = levelData else {
             fatalError("Level has not been loaded.")
         }
-        let playingScene = PlayingScene(stress: sceneStateMachine.stress, level: level)
+        let playingScene = PlayingScene(stress: sceneStateMachine.stress, levelData: levelData)
         presenter.presentScene(playingScene)
     }
 

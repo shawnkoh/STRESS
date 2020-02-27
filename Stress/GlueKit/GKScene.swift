@@ -16,12 +16,11 @@ class GKScene: Identifiable {
     var entities = [GKEntity]()
     private(set) var systems: [GKSystem] = .init()
     /// The physics simulation associated with the scene.
-    let physicsWorld = BKPhysicsWorld(size: .zero)
+    let physicsWorld = BKPhysicsWorld()
     /// The view that is currently presenting this scene
     weak var view: GKView? {
         didSet {
             if let view = view {
-                physicsWorld.size = view.frame.size
                 didMove(to: view)
             }
         }

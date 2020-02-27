@@ -10,13 +10,8 @@ import UIKit
 
 class DesigningScene: GKScene {
     unowned let stress: Stress
-    /// Convenience variable
-    private var level: Level {
-        guard let level = stress.sceneStateMachine.state(forClass: DesigningState.self)?.level else {
-            fatalError("DesigningScene requires a Level to be loaded")
-        }
-        return level
-    }
+    unowned var levelData: LevelData
+    private lazy var level = Store.constructLevel(from: levelData)
 
     let background = Background()
     lazy var stage: Stage = {
@@ -38,8 +33,9 @@ class DesigningScene: GKScene {
     let nameLabel = LevelNameLabel()
     let palette = Palette()
 
-    init(stress: Stress) {
+    init(stress: Stress, levelData: LevelData) {
         self.stress = stress
+        self.levelData = levelData
         super.init()
 
         nameLabel.delegate = self
@@ -117,7 +113,7 @@ class DesigningScene: GKScene {
         let longPressGesture = UILongPressGestureRecognizer()
         let longPressAction: (UIGestureRecognizer) -> Void = { sender in
             if sender.state == .ended {
-                peg.scene?.removeEntity(peg)
+                peg.addComponent(WillDestroyComponent())
             }
         }
         let longPressComponent = InteractableComponent(gestureRecognizer: longPressGesture, action: longPressAction)
@@ -126,7 +122,7 @@ class DesigningScene: GKScene {
         let tapGesture = UITapGestureRecognizer()
         let tapAction: (UIGestureRecognizer) -> Void = { sender in
             if case .delete = self.palette.currentToolType {
-                peg.scene?.removeEntity(peg)
+                peg.addComponent(WillDestroyComponent())
             }
         }
         let tapComponent = InteractableComponent(gestureRecognizer: tapGesture, action: tapAction)

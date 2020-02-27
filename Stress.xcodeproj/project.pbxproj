@@ -498,8 +498,8 @@
 		86F763C72406AF5800F49B44 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				86F763C92406AFC500F49B44 /* GameState */,
 				86F763C82406AFAC00F49B44 /* SceneState */,
+				86F763C92406AFC500F49B44 /* GameState */,
 			);
 			path = States;
 			sourceTree = "<group>";

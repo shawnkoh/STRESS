@@ -11,7 +11,8 @@ import UIKit
 /// A `PlayingScene` represents the main gameplay scene in Stress.
 class PlayingScene: GKScene {
     unowned let stress: Stress
-    unowned var level: Level
+    unowned var levelData: LevelData
+    lazy var level = Store.constructLevel(from: levelData)
     lazy var stage = Stage(size: level.size)
     lazy var levelScene = LevelPlayingScene(parent: self, level: level)
     let background = Background()
@@ -22,9 +23,9 @@ class PlayingScene: GKScene {
                                                       GameLoseState(),
                                                       GamePausedState()])
 
-    init(stress: Stress, level: Level) {
+    init(stress: Stress, levelData: LevelData) {
         self.stress = stress
-        self.level = level
+        self.levelData = levelData
         super.init()
         menuButton.bounds.size = CGSize(width: 48, height: 48)
         menuButton.isUserInteractionEnabled = true
@@ -51,6 +52,7 @@ class PlayingScene: GKScene {
     }
 
     func restartLevel() {
+        level = Store.constructLevel(from: levelData)
         levelScene = LevelPlayingScene(parent: self, level: level)
         level.pegs.forEach { levelScene.addEntity($0) }
         stage.presentScene(levelScene)
