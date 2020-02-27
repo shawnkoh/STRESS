@@ -38,7 +38,7 @@ class LevelPlayingScene: GKScene {
         let topRight = CGPoint(x: size.width, y: 0)
         let bottomLeft = CGPoint(x: 0, y: size.height)
         let bottomRight = CGPoint(x: size.width, y: size.height)
-        let cannon = Cannon(center: CGPoint(x: level.size.width / 2, y: 80), size: StressSettings.defaultCannonSize)
+        let cannon = Cannon(center: CGPoint(x: level.size.width / 2, y: 80), size: Settings.Cannon.size)
         let topWall = Wall(from: topLeft, to: topRight)
         let leftWall = Wall(from: topLeft, to: bottomLeft)
         let rightWall = Wall(from: topRight, to: bottomRight)

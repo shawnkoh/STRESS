@@ -76,7 +76,7 @@
 		86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579023FC6A1200C25BBE /* CGVector+Extensions.swift */; };
 		86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579223FC6A2300C25BBE /* CGPoint+Extensions.swift */; };
 		86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579423FC6A2B00C25BBE /* CGFloat+Extensions.swift */; };
-		86F2579723FC6A6B00C25BBE /* StressSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579623FC6A6B00C25BBE /* StressSettings.swift */; };
+		86F2579723FC6A6B00C25BBE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2579623FC6A6B00C25BBE /* Settings.swift */; };
 		86F257AF23FC6ADF00C25BBE /* GKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257A823FC6ADF00C25BBE /* GKScene.swift */; };
 		86F257B023FC6ADF00C25BBE /* GKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257A923FC6ADF00C25BBE /* GKView.swift */; };
 		86F257B123FC6ADF00C25BBE /* GKEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257AA23FC6ADF00C25BBE /* GKEntity.swift */; };
@@ -98,6 +98,7 @@
 		86F257D223FCDEAE00C25BBE /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D123FCDEAE00C25BBE /* LevelData.swift */; };
 		86F257D423FCDEB500C25BBE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D323FCDEB500C25BBE /* Store.swift */; };
 		86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F257D523FCDEBA00C25BBE /* PegData.swift */; };
+		86F578B2240852F400E54C46 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F578B1240852F400E54C46 /* Bucket.swift */; };
 		86F763BC2406A26D00F49B44 /* LoseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F763BB2406A26D00F49B44 /* LoseState.swift */; };
 		86F763C02406A86700F49B44 /* WinState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F763BF2406A86700F49B44 /* WinState.swift */; };
 		86F763C42406ACCC00F49B44 /* GameWinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F763C32406ACCC00F49B44 /* GameWinView.swift */; };
@@ -196,7 +197,7 @@
 		86F2579023FC6A1200C25BBE /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
 		86F2579223FC6A2300C25BBE /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		86F2579423FC6A2B00C25BBE /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
-		86F2579623FC6A6B00C25BBE /* StressSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressSettings.swift; sourceTree = "<group>"; };
+		86F2579623FC6A6B00C25BBE /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		86F257A823FC6ADF00C25BBE /* GKScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKScene.swift; sourceTree = "<group>"; };
 		86F257A923FC6ADF00C25BBE /* GKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKView.swift; sourceTree = "<group>"; };
 		86F257AA23FC6ADF00C25BBE /* GKEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKEntity.swift; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 		86F257D123FCDEAE00C25BBE /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
 		86F257D323FCDEB500C25BBE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		86F257D523FCDEBA00C25BBE /* PegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegData.swift; sourceTree = "<group>"; };
+		86F578B1240852F400E54C46 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		86F763BB2406A26D00F49B44 /* LoseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseState.swift; sourceTree = "<group>"; };
 		86F763BF2406A86700F49B44 /* WinState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinState.swift; sourceTree = "<group>"; };
 		86F763C32406ACCC00F49B44 /* GameWinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWinView.swift; sourceTree = "<group>"; };
@@ -361,7 +363,7 @@
 				86F2577623FC656200C25BBE /* Views */,
 				86F2574F23FC609A00C25BBE /* AppDelegate.swift */,
 				86F2575123FC609A00C25BBE /* SceneDelegate.swift */,
-				86F2579623FC6A6B00C25BBE /* StressSettings.swift */,
+				86F2579623FC6A6B00C25BBE /* Settings.swift */,
 				86F2575323FC609A00C25BBE /* ViewController.swift */,
 				86F2575823FC609B00C25BBE /* Assets.xcassets */,
 				86F2575D23FC609B00C25BBE /* Info.plist */,
@@ -400,6 +402,7 @@
 				86F2577B23FC65C100C25BBE /* Peg.swift */,
 				86F2578123FC660C00C25BBE /* Cannon.swift */,
 				86F2577D23FC65CF00C25BBE /* Ball.swift */,
+				86F578B1240852F400E54C46 /* Bucket.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -811,9 +814,10 @@
 				865B2D9524068E1C00512296 /* PausedState.swift in Sources */,
 				86EFDE61240816B3001E4174 /* GameState.swift in Sources */,
 				8650447C23FD783C003F105D /* PlayingState.swift in Sources */,
-				86F2579723FC6A6B00C25BBE /* StressSettings.swift in Sources */,
+				86F2579723FC6A6B00C25BBE /* Settings.swift in Sources */,
 				86F257D423FCDEB500C25BBE /* Store.swift in Sources */,
 				86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */,
+				86F578B2240852F400E54C46 /* Bucket.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,

@@ -16,13 +16,13 @@ class PegView: UIImageView {
 
     init(shape: PegShape, isObjective: Bool) {
         super.init(frame: .zero)
-        image = StressSettings.defaultPegImage(for: shape, isObjective: isObjective)
-        let diameter = StressSettings.defaultPegRadius * 2
+        image = Settings.Peg.image(for: shape, isObjective: isObjective)
+        let diameter = Settings.Peg.radius * 2
         frame.size = CGSize(width: diameter, height: diameter)
     }
 
     override func removeFromSuperview() {
-        UIView.animate(withDuration: StressSettings.defaultPegFadeDuration, animations: {
+        UIView.animate(withDuration: Settings.Peg.fadeDuration, animations: {
             self.alpha = 0.0
         }, completion: { finished in
             if finished {

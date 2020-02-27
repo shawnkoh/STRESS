@@ -24,7 +24,7 @@ class Control: UIButton {
 
     init(type: ControlType) {
         super.init(frame: .zero)
-        let diameter = StressSettings.defaultPegRadius * 2
+        let diameter = Settings.Peg.radius * 2
         frame.size = CGSize(width: diameter, height: diameter)
         setTitle(type.rawValue, for: .normal)
         switch type {

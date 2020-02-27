@@ -49,10 +49,10 @@ class CannonControlSystem: GKSystem {
             }
             let tapLocation = sender.location(in: controller)
             let offset = initialTapLocation.x - tapLocation.x
-            let relativeOffset = offset / controller.frame.width * StressSettings.cannonSensitivity
+            let relativeOffset = offset / controller.frame.width * Settings.Cannon.sensitivity
 
-            let minAngle = StressSettings.cannonMinAngle
-            let maxAngle = StressSettings.cannonMaxAngle
+            let minAngle = Settings.Cannon.minAngle
+            let maxAngle = Settings.Cannon.maxAngle
 
             var angle = rotatableComponent.angle + relativeOffset * (maxAngle - minAngle)
             if angle < minAngle {
@@ -83,8 +83,8 @@ class CannonControlSystem: GKSystem {
             }
             cannonAmmoComponent.ammo -= 1
 
-            let dx = StressSettings.defaultBallSpeed * -sin(cannonRotatableComponent.angle)
-            let dy = StressSettings.defaultBallSpeed * cos(cannonRotatableComponent.angle)
+            let dx = Settings.defaultBallSpeed * -sin(cannonRotatableComponent.angle)
+            let dy = Settings.defaultBallSpeed * cos(cannonRotatableComponent.angle)
             let projectileVelocity = CGVector(dx: dx, dy: dy)
 
             let projectile = createProjectile(constructor: cannonFiringComponent.projectileConstructor,

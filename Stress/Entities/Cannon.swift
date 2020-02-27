@@ -19,7 +19,7 @@ class Cannon: GKEntity {
         addComponent(transformComponent)
 
         let view = UIImageView(frame: .zero)
-        view.image = StressSettings.defaultEmptyCannonImage
+        view.image = Settings.Cannon.emptyImage
         view.bounds.size = size
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
@@ -31,6 +31,6 @@ class Cannon: GKEntity {
         })
         addComponent(firingComponent)
 
-        addComponent(AmmoComponent(ammo: StressSettings.cannonAmmo))
+        addComponent(AmmoComponent(ammo: Settings.Cannon.ammo))
     }
 }

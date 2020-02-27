@@ -23,21 +23,21 @@ class Tool: UIButton {
     init(type: ToolType) {
         self.type = type
         super.init(frame: .zero)
-        let diameter = StressSettings.defaultPegRadius * 2
+        let diameter = Settings.Peg.radius * 2
         frame.size = CGSize(width: diameter, height: diameter)
         switch type {
         case .create(shape: .circle, isObjective: true):
-            setImage(StressSettings.defaultPegImage(for: .circle, isObjective: true), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .circle, isObjective: true, didHit: true), for: .selected)
+            setImage(Settings.Peg.image(for: .circle, isObjective: true), for: .normal)
+            setImage(Settings.Peg.image(for: .circle, isObjective: true, didHit: true), for: .selected)
         case .create(shape: .circle, isObjective: false):
-            setImage(StressSettings.defaultPegImage(for: .circle), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .circle, didHit: true), for: .selected)
+            setImage(Settings.Peg.image(for: .circle), for: .normal)
+            setImage(Settings.Peg.image(for: .circle, didHit: true), for: .selected)
         case .create(shape: .triangle, isObjective: true):
-            setImage(StressSettings.defaultPegImage(for: .triangle, isObjective: true), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .triangle, isObjective: true, didHit: true), for: .selected)
+            setImage(Settings.Peg.image(for: .triangle, isObjective: true), for: .normal)
+            setImage(Settings.Peg.image(for: .triangle, isObjective: true, didHit: true), for: .selected)
         case .create(shape: .triangle, isObjective: false):
-            setImage(StressSettings.defaultPegImage(for: .triangle), for: .normal)
-            setImage(StressSettings.defaultPegImage(for: .triangle, didHit: true), for: .selected)
+            setImage(Settings.Peg.image(for: .triangle), for: .normal)
+            setImage(Settings.Peg.image(for: .triangle, didHit: true), for: .selected)
         case .delete:
             // TODO: Using the symbol sucks cos we can't adjust the size dynamically this way.
             setImage(UIImage(systemName: "xmark.circle",

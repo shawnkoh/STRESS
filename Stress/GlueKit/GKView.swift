@@ -38,6 +38,6 @@ class GKView: UIView {
 
     @objc func updateScene(displayLink: CADisplayLink) {
         let deltaTime = CGFloat(displayLink.targetTimestamp - displayLink.timestamp) // in seconds
-        scene?.update(timestep: deltaTime, updateFrequency: StressSettings.defaultUpdateFrequency)
+        scene?.update(timestep: deltaTime, updateFrequency: Settings.defaultUpdateFrequency)
     }
 }

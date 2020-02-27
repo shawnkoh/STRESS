@@ -40,7 +40,7 @@ class CollisionSystem: GKSystem {
             fatalError("Unable to access required components")
         }
         let isObjective = peg.component(ofType: ObjectiveComponent.self) != nil
-        view.image = StressSettings.defaultPegImage(for: shape, isObjective: isObjective, didHit: true)
+        view.image = Settings.Peg.image(for: shape, isObjective: isObjective, didHit: true)
         peg.component(ofType: PegComponent.self)?.isHit = true
         peg.component(ofType: ScoreComponent.self)?.shouldCount = true
     }
