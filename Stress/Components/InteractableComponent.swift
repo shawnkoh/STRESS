@@ -13,13 +13,6 @@ class InteractableComponent: GKComponent {
     let gestureRecognizer: UIGestureRecognizer
     let action: (UIGestureRecognizer) -> Void
 
-    private unowned var visualComponent: VisualComponent {
-        guard let visualComponent = entity?.component(ofType: VisualComponent.self) else {
-            fatalError("InteractableComponent requires an entity with a VisualComponent")
-        }
-        return visualComponent
-    }
-
     init(gestureRecognizer: UIGestureRecognizer, action: @escaping (UIGestureRecognizer) -> Void) {
         self.gestureRecognizer = gestureRecognizer
         self.action = action
@@ -27,9 +20,13 @@ class InteractableComponent: GKComponent {
     }
 
     override func didAddToEntity(_ entity: GKEntity) {
-        visualComponent.view.isUserInteractionEnabled = true
+        guard let view = entity.component(ofType: VisualComponent.self)?.view else {
+            fatalError("InteractableComponent requires an entity with a VisualComponent")
+        }
+
+        view.isUserInteractionEnabled = true
         gestureRecognizer.addTarget(self, action: #selector(interact(_:)))
-        visualComponent.view.addGestureRecognizer(gestureRecognizer)
+        view.addGestureRecognizer(gestureRecognizer)
     }
 
     @objc private func interact(_ sender: UIGestureRecognizer) {
