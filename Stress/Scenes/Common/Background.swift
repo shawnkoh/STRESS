@@ -11,7 +11,7 @@ import UIKit
 class Background: UIImageView {
     init() {
         super.init(frame: .zero)
-        image = Settings.defaultBackgroundImage
+        image = Settings.Background.image
         contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = true

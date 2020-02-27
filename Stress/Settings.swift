@@ -12,15 +12,19 @@ import UIKit
 enum Settings {
     static let defaultUpdateFrequency: Int = 4
 
-    static let defaultLevelName: String = "Level Name"
-    static let pegsOnAxis: Int = 40
-    static let defaultLevelSize = CGSize(width: CGFloat(pegsOnAxis) * Settings.Peg.radius,
-                                         height: CGFloat(pegsOnAxis) * Settings.Peg.radius)
+    enum Level {
+        static let name: String = "Level Name"
+        static let pegsOnAxis: Int = 40
+        static let size = CGSize(width: CGFloat(pegsOnAxis) * Peg.radius,
+                                 height: CGFloat(pegsOnAxis) * Peg.radius)
+    }
 
     static let selectedPegToolBorderWidth: CGFloat = 2
     static let selectedPegToolBorderColor: CGColor = UIColor.red.cgColor
 
-    static let defaultBackgroundImage = UIImage(named: "background")!
+    enum Background {
+        static let image = UIImage(named: "background")!
+    }
 
     enum Bucket {
         static let image = UIImage(named: "bucket")!
@@ -71,11 +75,9 @@ enum Settings {
         static let ammo: Int = 10
     }
 
-    static let defaultBallImage = UIImage(named: "ball")!
-    static let defaultBallRadius: CGFloat = 12
-
-    /// Constraints the cannon's shooting angle.
-    static let cannonShootingAngleConstraint = CGFloat(60)
-
-    static let defaultBallSpeed = CGFloat(8)
+    enum Ball {
+        static let image = UIImage(named: "ball")!
+        static let radius: CGFloat = 12
+        static let speed = CGFloat(8)
+    }
 }

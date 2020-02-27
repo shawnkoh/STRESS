@@ -12,7 +12,7 @@ import UIKit
  `Ball` is an entity that represents a ball in Stress.
 */
 class Ball: GKEntity {
-    init(center: CGPoint, velocity: CGVector, radius: CGFloat = Settings.defaultBallRadius) {
+    init(center: CGPoint, velocity: CGVector, radius: CGFloat = Settings.Ball.radius) {
         super.init()
 
         let transformComponent = TransformComponent(position: center)
@@ -20,7 +20,7 @@ class Ball: GKEntity {
 
         let diameter = radius * 2
         let view = UIImageView(frame: .zero)
-        view.image = Settings.defaultBallImage
+        view.image = Settings.Ball.image
         view.bounds.size = CGSize(width: diameter, height: diameter)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)

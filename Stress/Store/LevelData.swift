@@ -22,9 +22,9 @@ class LevelData: Object {
     @objc dynamic var id = UUID().uuidString
     // Realm requires all non optional properties to have a default value.
     // https://realm.io/docs/swift/latest/#models
-    @objc dynamic var name: String = Settings.defaultLevelName
-    @objc dynamic var width = Double(Settings.defaultLevelSize.width)
-    @objc dynamic var height = Double(Settings.defaultLevelSize.height)
+    @objc dynamic var name: String = Settings.Level.name
+    @objc dynamic var width = Double(Settings.Level.size.width)
+    @objc dynamic var height = Double(Settings.Level.size.height)
     let pegs: List<PegData>
 
     required init() {

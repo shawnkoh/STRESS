@@ -83,8 +83,8 @@ class CannonControlSystem: GKSystem {
             }
             cannonAmmoComponent.ammo -= 1
 
-            let dx = Settings.defaultBallSpeed * -sin(cannonRotatableComponent.angle)
-            let dy = Settings.defaultBallSpeed * cos(cannonRotatableComponent.angle)
+            let dx = Settings.Ball.speed * -sin(cannonRotatableComponent.angle)
+            let dy = Settings.Ball.speed * cos(cannonRotatableComponent.angle)
             let projectileVelocity = CGVector(dx: dx, dy: dy)
 
             let projectile = createProjectile(constructor: cannonFiringComponent.projectileConstructor,
