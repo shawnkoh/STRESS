@@ -11,35 +11,23 @@ import UIKit
 class DesigningScene: GKScene {
     unowned let stress: Stress
     unowned var levelData: LevelData
-    private lazy var level = Store.constructLevel(from: levelData)
 
     let background = Background()
-    lazy var stage: Stage = {
-        let stage = Stage(size: level.size)
-        stage.presentScene(levelScene)
-        level.pegs.forEach { peg in
-            addInteractableComponents(to: peg)
-            levelScene.addEntity(peg)
-        }
-        let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
-        stage.addGestureRecognizer(stageGestureRecognizer)
-        return stage
-    }()
-    lazy var levelScene: LevelScene = {
-        let levelScene = LevelScene()
-        level.delegate = levelScene
-        return levelScene
-    }()
+    var stage: Stage
+    var levelScene = LevelScene()
     let nameLabel = LevelNameLabel()
     let palette = Palette()
 
     init(stress: Stress, levelData: LevelData) {
         self.stress = stress
         self.levelData = levelData
+        self.stage = Stage(size: CGSize(width: levelData.width, height: levelData.height))
+
         super.init()
 
-        nameLabel.delegate = self
-        nameLabel.text = level.name
+        let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
+        stage.addGestureRecognizer(stageGestureRecognizer)
+        stage.presentScene(levelScene)
 
         palette.backControl.addTarget(self, action: #selector(tapBack), for: .touchDown)
         palette.resetControl.addTarget(self, action: #selector(tapReset), for: .touchDown)
@@ -59,6 +47,8 @@ class DesigningScene: GKScene {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameLabel.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -16)
         ])
+
+        loadLevelData()
     }
 
     @objc func tapStage(_ sender: UITapGestureRecognizer) {
@@ -76,14 +66,19 @@ class DesigningScene: GKScene {
     }
 
     @objc func tapReset() {
-        level.pegs.forEach { level.removePeg($0) }
+        loadLevelData()
     }
 
     @objc func tapLoad() {
     }
 
     @objc func tapSave() {
+        guard let levelName = nameLabel.text else {
+            fatalError("Name label does not have a string")
+        }
         do {
+            let pegs = levelScene.entities(ofType: Peg.self)
+            let level = Level(name: levelName, size: stage.size, pegs: Set(pegs), id: levelData.id)
             try stress.store.saveLevel(level)
         } catch let error as NSError {
             // TODO: dont use fatal error
@@ -129,8 +124,21 @@ class DesigningScene: GKScene {
         peg.addComponent(tapComponent)
     }
 
+    private func loadLevelData() {
+        nameLabel.text = levelData.name
+
+        levelScene.entities.forEach {
+            $0.addComponent(WillDestroyComponent())
+        }
+        let level = Store.constructLevel(from: levelData)
+        level.pegs.forEach { peg in
+            addInteractableComponents(to: peg)
+            levelScene.addEntity(peg)
+        }
+    }
+
     private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
-        level.pegs
+        levelScene.entities(ofType: Peg.self)
             .filter { $0 != peg }
             .compactMap { $0.component(ofType: VisualComponent.self)?.view }
             .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
@@ -156,12 +164,6 @@ class DesigningScene: GKScene {
             return
         }
         addInteractableComponents(to: peg)
-        level.addPeg(peg)
-    }
-}
-
-extension DesigningScene: LevelNameLabelDelegate {
-    func didEditName(newName: String) {
-        level.name = newName
+        levelScene.addEntity(peg)
     }
 }

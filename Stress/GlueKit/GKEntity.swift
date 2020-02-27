@@ -13,7 +13,6 @@ class GKEntity: Identifiable {
     let id = UUID().uuidString
     /// The entity’s list of components.
     var components: [GKComponent]
-    weak var scene: GKScene?
 
     init() {
         self.components = []

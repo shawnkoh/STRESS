@@ -39,19 +39,13 @@ class GKScene: Identifiable {
     /// Adds an entity to the list of entities managed by the scene.
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
-        entity.scene = self
     }
 
     /// Removes an entity from the list of entities managed by the scene.
     func removeEntity(_ entity: GKEntity) {
         if let index = entities.firstIndex(of: entity) {
             entities.remove(at: index)
-            entity.scene = nil
         }
-    }
-
-    func removeAllEntities() {
-        entities.forEach { removeEntity($0) }
     }
 
     /// A convenience variable to retrieve all entities of type `EntityType`.

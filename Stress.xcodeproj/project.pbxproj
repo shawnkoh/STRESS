@@ -38,7 +38,6 @@
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
 		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
 		8676A16E2402395B005EAA1E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16D2402395B005EAA1E /* Cell.swift */; };
-		8676A17024027110005EAA1E /* LevelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16F24027110005EAA1E /* LevelDelegate.swift */; };
 		8676A17224029589005EAA1E /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A17124029589005EAA1E /* LevelScene.swift */; };
 		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
 		869CF6F12406EA20000804FD /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F02406EA20000804FD /* Button.swift */; };
@@ -156,7 +155,6 @@
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
 		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
 		8676A16D2402395B005EAA1E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
-		8676A16F24027110005EAA1E /* LevelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDelegate.swift; sourceTree = "<group>"; };
 		8676A17124029589005EAA1E /* LevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		869CF6F02406EA20000804FD /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -397,7 +395,6 @@
 			isa = PBXGroup;
 			children = (
 				86F2577923FC65B400C25BBE /* Level.swift */,
-				8676A16F24027110005EAA1E /* LevelDelegate.swift */,
 				860BCE812400AF460007AE58 /* Savable.swift */,
 				86F2577F23FC65F600C25BBE /* Wall.swift */,
 				86F2578323FC661400C25BBE /* Exit.swift */,
@@ -773,7 +770,6 @@
 				8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */,
 				8676A17224029589005EAA1E /* LevelScene.swift in Sources */,
 				864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */,
-				8676A17024027110005EAA1E /* LevelDelegate.swift in Sources */,
 				86F257C823FC6AFF00C25BBE /* BKPhysicsBodyWithVolume.swift in Sources */,
 				86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */,
 				869CF6FD240795A5000804FD /* DidAttachPhysicsComponent.swift in Sources */,

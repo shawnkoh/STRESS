@@ -87,7 +87,7 @@ class CannonControlSystem: GKSystem {
             let dx = StressSettings.defaultBallSpeed * -sin(cannonRotatableComponent.angle)
             let dy = StressSettings.defaultBallSpeed * cos(cannonRotatableComponent.angle)
             projectilePhysics.velocity = CGVector(dx: dx, dy: dy)
-            entity.scene?.addEntity(projectile)
+            scene.addEntity(projectile)
         }
     }
 }

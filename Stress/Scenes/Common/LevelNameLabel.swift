@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol LevelNameLabelDelegate: AnyObject {
-    func didEditName(newName: String)
-}
-
 class LevelNameLabel: UILabel {
-    weak var delegate: LevelNameLabelDelegate?
-
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("Not supported")
@@ -41,7 +35,6 @@ class LevelNameLabel: UILabel {
                            initialValue: text ?? "",
                            confirmHandler: { input in
                             self.text = input
-                            self.delegate?.didEditName(newName: input)
                            }
         )
     }

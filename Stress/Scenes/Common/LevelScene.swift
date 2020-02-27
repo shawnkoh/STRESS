@@ -15,13 +15,3 @@ class LevelScene: GKScene {
         addSystem(DestroySystem(scene: self))
     }
 }
-
-extension LevelScene: LevelDelegate {
-    func didAddPeg(_ peg: Peg) {
-        addEntity(peg)
-    }
-
-    func didRemovePeg(_ peg: Peg) {
-        removeEntity(peg)
-    }
-}

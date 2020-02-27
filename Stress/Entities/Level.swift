@@ -17,7 +17,6 @@ class Level: Identifiable {
     var name: String
     var size: CGSize
     var pegs: Set<Peg>
-    weak var delegate: LevelDelegate?
 
     // TODO: Level might be more fitting as a struct
 
@@ -34,7 +33,6 @@ class Level: Identifiable {
     @discardableResult
     func addPeg(_ peg: Peg) -> Bool {
         pegs.insert(peg)
-        delegate?.didAddPeg(peg)
         return true
     }
 
@@ -46,9 +44,6 @@ class Level: Identifiable {
     @discardableResult
     func removePeg(_ peg: Peg) -> Peg? {
         let result = pegs.remove(peg)
-        if let removedPeg = result {
-            delegate?.didRemovePeg(removedPeg)
-        }
         return result
     }
 }
