@@ -11,7 +11,6 @@ import Foundation
 class PegComponent: GKComponent {
     var type: PegType
     var shape: PegShape
-    var isHit: Bool = false
 
     init(type: PegType, shape: PegShape) {
         self.type = type

@@ -42,8 +42,8 @@ class CollisionSystem: GKSystem {
             fatalError("Unable to access required components")
         }
         view.image = Settings.Peg.image(type: pegComponent.type, shape: pegComponent.shape, didHit: true)
-        pegComponent.isHit = true
         peg.component(ofType: ScoreComponent.self)?.shouldCount = true
+        peg.addComponent(DidHitComponent())
     }
 
     private func resolveCollision(ball: Ball, exit: Exit) {
@@ -59,7 +59,7 @@ class CollisionSystem: GKSystem {
 
     private func destroyHitPegs() {
         scene.entities(ofType: Peg.self)
-            .filter { $0.component(ofType: PegComponent.self)?.isHit ?? false }
+            .filter { $0.component(ofType: DidHitComponent.self) != nil }
             .forEach { $0.addComponent(WillDestroyComponent()) }
     }
 }

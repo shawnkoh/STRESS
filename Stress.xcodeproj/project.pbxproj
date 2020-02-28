@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00701ED4C93262A21C262A17 /* Pods_StressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D53713700922875B319A62 /* Pods_StressTests.framework */; };
 		72B0AC9FEA3DE3DBB61678D6 /* Pods_Stress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553A297C9D06C9EDBE8827C /* Pods_Stress.framework */; };
+		860A92F62409929C0046311B /* PowerupSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860A92F52409929C0046311B /* PowerupSystem.swift */; };
 		860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE7723FF0DE70007AE58 /* Spacer.swift */; };
 		860BCE7A23FF16530007AE58 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE7923FF16530007AE58 /* Tool.swift */; };
 		860BCE7C23FFB56C0007AE58 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE7B23FFB56C0007AE58 /* Control.swift */; };
@@ -133,6 +134,7 @@
 		2A84566B8B0F5A36088A741E /* Pods-Stress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stress.release.xcconfig"; path = "Target Support Files/Pods-Stress/Pods-Stress.release.xcconfig"; sourceTree = "<group>"; };
 		64D53713700922875B319A62 /* Pods_StressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5606BA52120E958544F222 /* Pods-StressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StressTests.release.xcconfig"; path = "Target Support Files/Pods-StressTests/Pods-StressTests.release.xcconfig"; sourceTree = "<group>"; };
+		860A92F52409929C0046311B /* PowerupSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupSystem.swift; sourceTree = "<group>"; };
 		860BCE7723FF0DE70007AE58 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
 		860BCE7923FF16530007AE58 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		860BCE7B23FFB56C0007AE58 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
 				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
 				86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */,
+				860A92F52409929C0046311B /* PowerupSystem.swift */,
 				869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */,
 				86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */,
 				86FAF5AD2405954900EDD629 /* DestroySystem.swift */,
@@ -767,6 +770,7 @@
 				8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */,
 				869DEAC72403CFCF00D79C46 /* GKSystem.swift in Sources */,
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
+				860A92F62409929C0046311B /* PowerupSystem.swift in Sources */,
 				86F257C523FC6AFF00C25BBE /* BKLine.swift in Sources */,
 				860BCE7A23FF16530007AE58 /* Tool.swift in Sources */,
 				86F763C02406A86700F49B44 /* WinState.swift in Sources */,
