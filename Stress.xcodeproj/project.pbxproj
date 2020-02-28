@@ -518,14 +518,6 @@
 		86F763C72406AF5800F49B44 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				86F763C82406AFAC00F49B44 /* SceneState */,
-			);
-			path = States;
-			sourceTree = "<group>";
-		};
-		86F763C82406AFAC00F49B44 /* SceneState */ = {
-			isa = PBXGroup;
-			children = (
 				864DA1D423FDA794005805FF /* GameStateMachine.swift */,
 				86EFDE60240816B3001E4174 /* GameState.swift */,
 				8650447923FD7793003F105D /* TitleScreenState.swift */,
@@ -536,7 +528,7 @@
 				86F763BB2406A26D00F49B44 /* LoseState.swift */,
 				8650447D23FD7849003F105D /* DesigningState.swift */,
 			);
-			path = SceneState;
+			path = States;
 			sourceTree = "<group>";
 		};
 		86FB25DA2401552B00914142 /* Common */ = {
