@@ -55,8 +55,8 @@ class CollisionSystem: GKSystem {
     }
 
     private func resolveCollision(ball: Ball, bucket: Bucket) {
-        ball.addComponent(DidHitComponent())
         ball.addComponent(WillDestroyComponent())
+        bucket.addComponent(DidHitComponent())
     }
 }
 

@@ -72,7 +72,7 @@ class BucketSystem: GKSystem {
         rightWall.to = transformComponent.position +
             CGVector(dx: bucketSize.width / 2 - 20, dy: -bucketSize.height / 2 + 12)
 
-//        drawDebugLines()
+        drawDebugLines()
     }
 
     private var leftLine = CAShapeLayer()
