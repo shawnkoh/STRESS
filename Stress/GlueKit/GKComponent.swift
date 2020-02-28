@@ -11,10 +11,7 @@ import Foundation
 /// The abstract superclass for creating objects that add specific gameplay functionality to an entity.
 class GKComponent: Identifiable {
     let id = UUID().uuidString
-    weak var entity: GKEntity?
-
     func didAddToEntity(_ entity: GKEntity) {}
-    func willRemoveFromEntity(_ entity: GKEntity) {}
 }
 
 extension GKComponent: Equatable {

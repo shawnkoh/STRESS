@@ -11,10 +11,12 @@ import Foundation
 class GKSystem {
     unowned let scene: GKScene
     let componentClasses: [GKComponent.Type]
+    let componentTypes: Set<String>
 
     init(scene: GKScene, componentClasses: [GKComponent.Type]) {
         self.scene = scene
         self.componentClasses = componentClasses
+        self.componentTypes = Set(componentClasses.map { NSStringFromClass($0) })
     }
 
     var entities: [GKEntity] {
@@ -24,13 +26,7 @@ class GKSystem {
     }
 
     private func containsComponents(_ entity: GKEntity) -> Bool {
-        let entityComponentTypes = entity.components.map { type(of: $0) }
-        return componentClasses.allSatisfy({ componentClass in
-            let contains = entityComponentTypes.firstIndex { entityComponentType in
-                componentClass == entityComponentType
-            }
-            return contains != nil
-        })
+        Set(entity.components.keys).isSuperset(of: componentTypes)
     }
 
     // MARK: Methods meant to be overriden

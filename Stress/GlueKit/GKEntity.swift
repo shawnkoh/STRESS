@@ -12,35 +12,34 @@ import Foundation
 class GKEntity: Identifiable {
     let id = UUID().uuidString
     /// The entity’s list of components.
-    var components: [GKComponent]
-
-    init() {
-        self.components = []
-    }
+    var components: [String: GKComponent] = [:]
 
     /// Adds a component to the entity.
     func addComponent(_ component: GKComponent) {
-        component.entity = self
-        components.append(component)
+        let type = componentType(of: component)
+        guard components[type] == nil else {
+            return
+        }
+        components[type] = component
         component.didAddToEntity(self)
     }
 
     func removeComponent<ComponentType>(ofType componentClass: ComponentType.Type) where ComponentType: GKComponent {
-        if let component = component(ofType: componentClass) {
-            if let index = components.firstIndex(of: component) {
-                component.willRemoveFromEntity(self)
-                components.remove(at: index)
-            }
-        }
+        let type = componentType(ofType: componentClass)
+        components[type] = nil
     }
 
-    func component<ComponentType>(ofType: ComponentType.Type) -> ComponentType? where ComponentType: GKComponent {
-        for component in components {
-            if let component = component as? ComponentType {
-                return component
-            }
-        }
-        return nil
+    func component<ComponentType>(ofType type: ComponentType.Type) -> ComponentType? where ComponentType: GKComponent {
+        let type = componentType(ofType: type)
+        return components[type] as? ComponentType
+    }
+
+    private func componentType(ofType type: GKComponent.Type) -> String {
+        NSStringFromClass(type)
+    }
+
+    private func componentType(of component: GKComponent) -> String {
+        componentType(ofType: type(of: component))
     }
 }
 
