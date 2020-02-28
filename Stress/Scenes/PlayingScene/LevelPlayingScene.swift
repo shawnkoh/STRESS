@@ -18,19 +18,7 @@ class LevelPlayingScene: GKScene {
         self.parent = parent
         self.level = level
         super.init()
-        addSystem(VisualSystem(scene: self))
-        addSystem(PhysicsSystem(scene: self))
-        addSystem(BucketSystem(scene: self))
-        addSystem(cannonControlSystem)
-        addSystem(TransformSystem(scene: self))
-        addSystem(CollisionSystem(scene: self))
-        addSystem(scoreSystem)
-        addSystem(BucketHitSystem(scene: self))
-        addSystem(CleanupVisualSystem(scene: self))
-        addSystem(CleanupPhysicsSystem(scene: self))
-        addSystem(DestroySystem(scene: self))
-        addSystem(LoseSystem(scene: self))
-        addSystem(WinSystem(scene: self))
+        setupSystems()
     }
 
     override func didMove(to view: GKView) {
@@ -66,5 +54,21 @@ class LevelPlayingScene: GKScene {
         addEntity(leftWall)
         addEntity(rightWall)
         addEntity(exit)
+    }
+
+    private func setupSystems() {
+        addSystem(VisualSystem(scene: self))
+        addSystem(PhysicsSystem(scene: self))
+        addSystem(BucketSystem(scene: self))
+        addSystem(cannonControlSystem)
+        addSystem(TransformSystem(scene: self))
+        addSystem(CollisionSystem(scene: self))
+        addSystem(scoreSystem)
+        addSystem(BucketHitSystem(scene: self))
+        addSystem(CleanupVisualSystem(scene: self))
+        addSystem(CleanupPhysicsSystem(scene: self))
+        addSystem(DestroySystem(scene: self))
+        addSystem(LoseSystem(scene: self))
+        addSystem(WinSystem(scene: self))
     }
 }
