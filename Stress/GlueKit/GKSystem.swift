@@ -26,7 +26,7 @@ class GKSystem {
     }
 
     private func containsComponents(_ entity: GKEntity) -> Bool {
-        Set(entity.components.keys).isSuperset(of: componentTypes)
+        componentTypes.isSubset(of: entity.components.keys)
     }
 
     // MARK: Methods meant to be overriden
