@@ -19,11 +19,16 @@ class CollisionSystem: GKSystem {
         case let ball as Ball:
             switch entityB {
             case let peg as Peg:
-                resolveCollision(ball: ball, peg: peg)
+                if peg.component(ofType: PowerupComponent.self) != nil {
+                    ball.addComponent(SpaceBlastComponent())
+                }
+                peg.addComponent(DidHitComponent())
             case let exit as Exit:
-                resolveCollision(ball: ball, exit: exit)
+                ball.addComponent(WillDestroyComponent())
+                exit.addComponent(DidHitComponent())
             case let bucket as Bucket:
-                resolveCollision(ball: ball, bucket: bucket)
+                ball.addComponent(WillDestroyComponent())
+                bucket.addComponent(DidHitComponent())
             default:
                 ()
             }
@@ -33,35 +38,6 @@ class CollisionSystem: GKSystem {
     }
 
     private func resolveCollisionEnd(entityA: GKEntity, entityB: GKEntity) {}
-
-    private func resolveCollision(ball: Ball, peg: Peg) {
-        guard
-            let pegComponent = peg.component(ofType: PegComponent.self),
-            let view = peg.component(ofType: VisualComponent.self)?.view as? UIImageView
-        else {
-            fatalError("Unable to access required components")
-        }
-        view.image = Settings.Peg.image(type: pegComponent.type, shape: pegComponent.shape, didHit: true)
-        peg.component(ofType: ScoreComponent.self)?.shouldCount = true
-        peg.addComponent(DidHitComponent())
-    }
-
-    private func resolveCollision(ball: Ball, exit: Exit) {
-        ball.addComponent(WillDestroyComponent())
-        destroyHitPegs()
-    }
-
-    private func resolveCollision(ball: Ball, bucket: Bucket) {
-        ball.addComponent(WillDestroyComponent())
-        bucket.addComponent(DidHitComponent())
-        destroyHitPegs()
-    }
-
-    private func destroyHitPegs() {
-        scene.entities(ofType: Peg.self)
-            .filter { $0.component(ofType: DidHitComponent.self) != nil }
-            .forEach { $0.addComponent(WillDestroyComponent()) }
-    }
 }
 
 extension CollisionSystem: BKPhysicsContactDelegate {

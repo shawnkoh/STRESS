@@ -59,15 +59,25 @@ class LevelPlayingScene: GKScene {
     private func setupSystems() {
         addSystem(VisualSystem(scene: self))
         addSystem(PhysicsSystem(scene: self))
+
         addSystem(BucketSystem(scene: self))
         addSystem(cannonControlSystem)
         addSystem(TransformSystem(scene: self))
+
         addSystem(CollisionSystem(scene: self))
-        addSystem(scoreSystem)
+        addSystem(DrawPowerupSystem(scene: self))
+        addSystem(PowerupSystem(scene: self))
+
+        addSystem(PegHitSystem(scene: self))
         addSystem(BucketHitSystem(scene: self))
+        addSystem(ExitHitSystem(scene: self))
+
+        addSystem(scoreSystem)
+
         addSystem(CleanupVisualSystem(scene: self))
         addSystem(CleanupPhysicsSystem(scene: self))
         addSystem(DestroySystem(scene: self))
+
         addSystem(LoseSystem(scene: self))
         addSystem(WinSystem(scene: self))
     }

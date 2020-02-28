@@ -28,5 +28,8 @@ class BucketHitSystem: GKSystem {
             ammoComponent.ammo += 1
             $0.removeComponent(ofType: DidHitComponent.self)
         }
+        scene.entities(ofType: Peg.self)
+            .filter { $0.component(ofType: DidHitComponent.self) != nil }
+            .forEach { $0.addComponent(WillDestroyComponent()) }
     }
 }

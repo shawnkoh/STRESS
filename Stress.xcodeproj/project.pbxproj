@@ -36,6 +36,10 @@
 		865B2D8F2406236900512296 /* ObjectiveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D8E2406236900512296 /* ObjectiveComponent.swift */; };
 		865B2D912406237E00512296 /* WinSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D902406237E00512296 /* WinSystem.swift */; };
 		865B2D9524068E1C00512296 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D9424068E1C00512296 /* PausedState.swift */; };
+		86757F1F2409938A00B868B9 /* PegHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F1E2409938A00B868B9 /* PegHitSystem.swift */; };
+		86757F21240996CF00B868B9 /* ExitHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F20240996CF00B868B9 /* ExitHitSystem.swift */; };
+		86757F232409A17100B868B9 /* DrawPowerupSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F222409A17100B868B9 /* DrawPowerupSystem.swift */; };
+		86757F252409A1CA00B868B9 /* DidDrawPowerupComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F242409A1CA00B868B9 /* DidDrawPowerupComponent.swift */; };
 		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
 		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
 		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
@@ -161,6 +165,10 @@
 		865B2D8E2406236900512296 /* ObjectiveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveComponent.swift; sourceTree = "<group>"; };
 		865B2D902406237E00512296 /* WinSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinSystem.swift; sourceTree = "<group>"; };
 		865B2D9424068E1C00512296 /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
+		86757F1E2409938A00B868B9 /* PegHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegHitSystem.swift; sourceTree = "<group>"; };
+		86757F20240996CF00B868B9 /* ExitHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitHitSystem.swift; sourceTree = "<group>"; };
+		86757F222409A17100B868B9 /* DrawPowerupSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawPowerupSystem.swift; sourceTree = "<group>"; };
+		86757F242409A1CA00B868B9 /* DidDrawPowerupComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidDrawPowerupComponent.swift; sourceTree = "<group>"; };
 		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
 		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 				869CF6FC240795A5000804FD /* DidAttachPhysicsComponent.swift */,
 				86197AF92408F8CD00F3C7EA /* DidHitComponent.swift */,
 				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
+				86757F242409A1CA00B868B9 /* DidDrawPowerupComponent.swift */,
 			);
 			path = "System State";
 			sourceTree = "<group>";
@@ -345,9 +354,12 @@
 				869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */,
 				869DEAC82403E72F00D79C46 /* TransformSystem.swift */,
 				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
-				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
-				86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */,
+				86757F222409A17100B868B9 /* DrawPowerupSystem.swift */,
 				860A92F52409929C0046311B /* PowerupSystem.swift */,
+				86757F1E2409938A00B868B9 /* PegHitSystem.swift */,
+				86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */,
+				86757F20240996CF00B868B9 /* ExitHitSystem.swift */,
+				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
 				869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */,
 				86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */,
 				86FAF5AD2405954900EDD629 /* DestroySystem.swift */,
@@ -755,7 +767,9 @@
 			files = (
 				869CF6F9240793AB000804FD /* CleanupVisualSystem.swift in Sources */,
 				86FCB9C82408617B0006C26F /* BucketComponent.swift in Sources */,
+				86757F21240996CF00B868B9 /* ExitHitSystem.swift in Sources */,
 				869CF6F32406EDFD000804FD /* GamePausedView.swift in Sources */,
+				86757F1F2409938A00B868B9 /* PegHitSystem.swift in Sources */,
 				86FAF5AE2405954900EDD629 /* DestroySystem.swift in Sources */,
 				865B2D822405959C00512296 /* WillDestroyComponent.swift in Sources */,
 				86F257D623FCDEBA00C25BBE /* PegData.swift in Sources */,
@@ -765,6 +779,7 @@
 				869CF6FB24079546000804FD /* PhysicsSystem.swift in Sources */,
 				8653E0C52400F0FA00DAEF2D /* SelectingScene.swift in Sources */,
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
+				86757F252409A1CA00B868B9 /* DidDrawPowerupComponent.swift in Sources */,
 				8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */,
 				86F2577C23FC65C100C25BBE /* Peg.swift in Sources */,
 				8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */,
@@ -800,6 +815,7 @@
 				8684177924096061001CCBAC /* SpookyBallComponent.swift in Sources */,
 				8650447123FD647E003F105D /* Dialogs.swift in Sources */,
 				8650447E23FD7849003F105D /* DesigningState.swift in Sources */,
+				86757F232409A17100B868B9 /* DrawPowerupSystem.swift in Sources */,
 				86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */,
 				86F763BC2406A26D00F49B44 /* LoseState.swift in Sources */,
 				86197AFA2408F8CD00F3C7EA /* DidHitComponent.swift in Sources */,

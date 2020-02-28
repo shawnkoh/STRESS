@@ -10,7 +10,6 @@ import Foundation
 
 class ScoreComponent: GKComponent {
     let score: Int
-    var shouldCount: Bool = false
 
     init(score: Int) {
         self.score = score

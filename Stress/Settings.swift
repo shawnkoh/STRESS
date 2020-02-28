@@ -90,4 +90,8 @@ enum Settings {
         static let radius: CGFloat = 12
         static let speed = CGFloat(8)
     }
+
+    enum Powerup {
+        static let spaceBlastRadius = Peg.radius * 3
+    }
 }
