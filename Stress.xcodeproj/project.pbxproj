@@ -269,6 +269,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		86197B032409565100F3C7EA /* System State */ = {
+			isa = PBXGroup;
+			children = (
+				869CF6F624078E7C000804FD /* DidAttachVisualComponent.swift */,
+				869CF6FC240795A5000804FD /* DidAttachPhysicsComponent.swift */,
+				86197AF92408F8CD00F3C7EA /* DidHitComponent.swift */,
+				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
+			);
+			path = "System State";
+			sourceTree = "<group>";
+		};
 		8650447823FD7756003F105D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,9 +331,9 @@
 		869DEAC52403CFC000D79C46 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				86FCB9C9240861860006C26F /* BucketSystem.swift */,
 				869CF6F424078E35000804FD /* VisualSystem.swift */,
 				869CF6FA24079546000804FD /* PhysicsSystem.swift */,
+				86FCB9C9240861860006C26F /* BucketSystem.swift */,
 				869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */,
 				869DEAC82403E72F00D79C46 /* TransformSystem.swift */,
 				86BF17B424051DDB00BAE651 /* CollisionSystem.swift */,
@@ -420,22 +431,19 @@
 		86F2577423FC654400C25BBE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				86197B032409565100F3C7EA /* System State */,
 				86E5207423FD368900D588A6 /* TransformComponent.swift */,
 				86F2578523FC663D00C25BBE /* VisualComponent.swift */,
-				869CF6F624078E7C000804FD /* DidAttachVisualComponent.swift */,
 				86F2578723FC664900C25BBE /* PhysicsComponent.swift */,
-				869CF6FC240795A5000804FD /* DidAttachPhysicsComponent.swift */,
 				86F2578923FC665000C25BBE /* FiringComponent.swift */,
 				86FB25DD24015BC200914142 /* InteractableComponent.swift */,
 				869DEAC32403C0C900D79C46 /* RotatableComponent.swift */,
 				86BF17B62405607500BAE651 /* CollisionComponent.swift */,
 				865B2D83240597EC00512296 /* ScoreComponent.swift */,
-				865B2D812405959C00512296 /* WillDestroyComponent.swift */,
 				865B2D852405A3F200512296 /* PegComponent.swift */,
 				865B2D8E2406236900512296 /* ObjectiveComponent.swift */,
 				86EFDE6224082379001E4174 /* AmmoComponent.swift */,
 				86FCB9C72408617B0006C26F /* BucketComponent.swift */,
-				86197AF92408F8CD00F3C7EA /* DidHitComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

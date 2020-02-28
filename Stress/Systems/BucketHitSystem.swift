@@ -14,5 +14,17 @@ class BucketHitSystem: GKSystem {
     }
 
     override func update(deltaTime: TimeInterval) {
+        guard entities.isEmpty else {
+            return
+        }
+
+        guard
+            let cannon = entities.first(where: { $0 is Cannon }) as? Cannon,
+            let ammoComponent = cannon.component(ofType: AmmoComponent.self)
+        else {
+            return
+        }
+        print("ding!")
+        ammoComponent.ammo += 1
     }
 }

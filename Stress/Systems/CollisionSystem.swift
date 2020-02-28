@@ -22,6 +22,8 @@ class CollisionSystem: GKSystem {
                 resolveCollision(ball: ball, peg: peg)
             case let exit as Exit:
                 resolveCollision(ball: ball, exit: exit)
+            case let bucket as Bucket:
+                resolveCollision(ball: ball, bucket: bucket)
             default:
                 ()
             }
