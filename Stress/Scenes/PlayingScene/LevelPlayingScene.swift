@@ -21,6 +21,7 @@ class LevelPlayingScene: GKScene {
         addSystem(VisualSystem(scene: self))
         addSystem(PhysicsSystem(scene: self))
         addSystem(cannonControlSystem)
+        addSystem(BucketSystem(scene: self))
         addSystem(TransformSystem(scene: self))
         addSystem(CollisionSystem(scene: self))
         addSystem(scoreSystem)
@@ -43,7 +44,23 @@ class LevelPlayingScene: GKScene {
         let leftWall = Wall(from: topLeft, to: bottomLeft)
         let rightWall = Wall(from: topRight, to: bottomRight)
         let exit = Exit(from: bottomLeft, to: bottomRight)
+        let bucket = Bucket()
+        let bucketLeftWall = Wall(from: .zero, to: .zero)
+        let bucketRightWall = Wall(from: .zero, to: .zero)
+        bucketLeftWall.addComponent({
+            let component = BucketComponent()
+            component.isMovingRight = false
+            return component
+        }())
+        bucketRightWall.addComponent({
+            let component = BucketComponent()
+            component.isMovingRight = true
+            return component
+        }())
         addEntity(cannon)
+        addEntity(bucket)
+        addEntity(bucketLeftWall)
+        addEntity(bucketRightWall)
         addEntity(topWall)
         addEntity(leftWall)
         addEntity(rightWall)

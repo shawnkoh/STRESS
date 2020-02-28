@@ -56,9 +56,38 @@ extension BKLineProtocol {
         return CGPoint(x: x, y: y)
     }
 
+    func intersects(with circle: BKPhysicsCircle) -> Bool {
+        var ax = from.x
+        var ay = from.y
+        var bx = to.x
+        var by = to.y
+        let cx = circle.center.x
+        let cy = circle.center.y
+        let r = circle.radius
+        ax -= cx
+        ay -= cy
+        bx -= cx
+        by -= cy
+        let a = (bx - ax) * (bx - ax) + (by - ay) * (by - ay)
+        let b = 2 * (ax * (bx - ax) + ay * (by - ay))
+        let c = ax * ax + ay * ay - r * r
+        let disc = b * b - 4 * a * c
+        if disc <= 0 {
+            return false
+        }
+        let sqrtdisc = disc.squareRoot()
+        let t1 = (-b + sqrtdisc) / (2 * a)
+        let t2 = (-b - sqrtdisc) / (2 * a)
+        if (0 < t1 && t1 < 1) || (0 < t2 && t2 < 1) {
+            return true
+        }
+        return false
+    }
+
     /// Calculates the shortest distance from a line to a point.
     func shortestDistance(to point: CGPoint) -> CGFloat {
         // https://math.stackexchange.com/questions/275529/check-if-line-intersects-with-circles-perimeter
+        // WARNING: This method disregards the start and end points of the line.
         let x0 = point.x
         let y0 = point.y
         let x1 = from.x

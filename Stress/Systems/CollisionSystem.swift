@@ -51,6 +51,11 @@ class CollisionSystem: GKSystem {
             .filter { $0.component(ofType: PegComponent.self)?.isHit ?? false }
             .forEach { $0.addComponent(WillDestroyComponent()) }
     }
+
+    private func resolveCollision(ball: Ball, bucket: Bucket) {
+        ball.addComponent(DidHitComponent())
+        ball.addComponent(WillDestroyComponent())
+    }
 }
 
 extension CollisionSystem: BKPhysicsContactDelegate {

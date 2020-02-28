@@ -85,8 +85,8 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         fatalError("Unsupported BKPhysicsBody subclass")
     }
 
-    private func intersects(withEdge body: BKPhysicsEdge) -> Bool {
-        body.shortestDistance(to: center) < radius
+    private func intersects(withEdge edge: BKPhysicsEdge) -> Bool {
+        edge.intersects(with: self)
     }
 
     private func intersects(withVolume body: BKPhysicsBodyWithVolume) -> Bool {
