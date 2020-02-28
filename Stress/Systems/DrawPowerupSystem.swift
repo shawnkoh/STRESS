@@ -24,15 +24,19 @@ class DrawPowerupSystem: GKSystem {
                     let diameter = radius * 2
 
                     let circle = UIView(frame: .zero)
-                    circle.frame.size = .init(width: diameter, height: diameter)
+                    ballView.addSubview(circle)
                     circle.layer.cornerRadius = radius
                     circle.clipsToBounds = true
                     circle.backgroundColor = .green
                     circle.alpha = 0.3
-                    circle.center = .init(x: 0, y: 0)
-//                    print(circle.center)
+                    circle.translatesAutoresizingMaskIntoConstraints = false
+                    NSLayoutConstraint.activate([
+                        circle.centerXAnchor.constraint(equalTo: ballView.centerXAnchor),
+                        circle.centerYAnchor.constraint(equalTo: ballView.centerYAnchor),
+                        circle.widthAnchor.constraint(equalToConstant: diameter),
+                        circle.heightAnchor.constraint(equalToConstant: diameter)
+                    ])
 
-                    ballView.addSubview(circle)
                     ball.addComponent(DidDrawPowerupComponent())
                 }
     }

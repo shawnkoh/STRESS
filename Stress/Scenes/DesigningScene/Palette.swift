@@ -15,6 +15,11 @@ class Palette: UIView {
     let loadControl = Control(type: ControlType.load)
     let saveControl = Control(type: ControlType.save)
     let playControl = Control(type: ControlType.play)
+//    let backAction: () -> Void
+//    let resetAction: () -> Void
+//    let loadAction: () -> Void
+//    let saveAction: () -> Void
+//    let playAction: () -> Void
 
     private weak var currentTool: Tool?
 
