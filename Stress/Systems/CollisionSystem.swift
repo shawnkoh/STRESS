@@ -49,14 +49,19 @@ class CollisionSystem: GKSystem {
 
     private func resolveCollision(ball: Ball, exit: Exit) {
         ball.addComponent(WillDestroyComponent())
-        scene.entities(ofType: Peg.self)
-            .filter { $0.component(ofType: PegComponent.self)?.isHit ?? false }
-            .forEach { $0.addComponent(WillDestroyComponent()) }
+        destroyHitPegs()
     }
 
     private func resolveCollision(ball: Ball, bucket: Bucket) {
         ball.addComponent(WillDestroyComponent())
         bucket.addComponent(DidHitComponent())
+        destroyHitPegs()
+    }
+
+    private func destroyHitPegs() {
+        scene.entities(ofType: Peg.self)
+            .filter { $0.component(ofType: PegComponent.self)?.isHit ?? false }
+            .forEach { $0.addComponent(WillDestroyComponent()) }
     }
 }
 

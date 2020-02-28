@@ -22,10 +22,11 @@ class BucketHitSystem: GKSystem {
             let cannon = scene.entities.first(where: { $0 is Cannon }) as? Cannon,
             let ammoComponent = cannon.component(ofType: AmmoComponent.self)
         else {
-            return
+            fatalError("Unable to access Cannon")
         }
-        print("ding!")
-        ammoComponent.ammo += 1
-        entities.first?.removeComponent(ofType: DidHitComponent.self)
+        entities.forEach {
+            ammoComponent.ammo += 1
+            $0.removeComponent(ofType: DidHitComponent.self)
+        }
     }
 }
