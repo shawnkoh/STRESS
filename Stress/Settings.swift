@@ -37,31 +37,41 @@ enum Settings {
         }
         static let fadeDuration: TimeInterval = 0.8
 
-        static let circleObjectiveImage = UIImage(named: "peg-orange")!
-        static let circleObjectiveHitImage = UIImage(named: "peg-orange-glow")!
-        static let circleImage = UIImage(named: "peg-blue")!
-        static let circleHitImage = UIImage(named: "peg-blue-glow")!
+        static func score(for type: PegType) -> Int {
+            switch type {
+            case .blue:
+                return 10
+            case .green:
+                return 10
+            case .orange:
+                return 100
+            }
+        }
 
-        static let triangleObjectiveImage = UIImage(named: "peg-orange-triangle")!
-        static let triangleObjectiveHitImage = UIImage(named: "peg-orange-glow-triangle")!
-        static let triangleImage = UIImage(named: "peg-blue-triangle")!
-        static let triangleHitImage = UIImage(named: "peg-blue-glow-triangle")!
+        static func image(type: PegType, shape: PegShape, didHit: Bool = false) -> UIImage {
+            var path = "peg"
 
-        static func image(for shape: PegShape, isObjective: Bool = false, didHit: Bool = false) -> UIImage {
+            switch type {
+            case .blue:
+                path += "-blue"
+            case .green:
+                path += "-green"
+            case .orange:
+                path += "-orange"
+            }
+
+            if didHit {
+                path += "-glow"
+            }
+
             switch shape {
             case .circle:
-                if isObjective {
-                    return didHit ? circleObjectiveHitImage : circleObjectiveImage
-                } else {
-                    return didHit ? circleHitImage : circleImage
-                }
+                ()
             case .triangle:
-                if isObjective {
-                    return didHit ? triangleObjectiveHitImage : triangleObjectiveImage
-                } else {
-                    return didHit ? triangleHitImage : triangleImage
-                }
+                path += "-triangle"
             }
+
+            return UIImage(named: path)!
         }
     }
 

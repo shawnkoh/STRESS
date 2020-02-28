@@ -13,19 +13,27 @@ import RealmSwift
  `Peg` is an entity that represents a peg in Stress.
 */
 class Peg: GKEntity {
-    init(center: CGPoint, shape: PegShape, isObjective: Bool, radius: CGFloat = Settings.Peg.radius) {
+    init(center: CGPoint, type: PegType, shape: PegShape, radius: CGFloat = Settings.Peg.radius) {
         super.init()
 
-        addComponent(PegComponent(shape: shape))
-        if isObjective {
+        addComponent(PegComponent(type: type, shape: shape))
+
+        switch type {
+        case .orange:
             addComponent(ObjectiveComponent())
+        case .green:
+            ()
+        case .blue:
+            ()
         }
-        addComponent(ScoreComponent(score: 100))
+
+        let score = Settings.Peg.score(for: type)
+        addComponent(ScoreComponent(score: score))
 
         let transformComponent = TransformComponent(position: center)
         addComponent(transformComponent)
 
-        let view = PegView(shape: shape, isObjective: isObjective)
+        let view = PegView(type: type, shape: shape)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
 

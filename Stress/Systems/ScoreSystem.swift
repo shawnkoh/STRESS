@@ -16,12 +16,16 @@ class ScoreSystem: GKSystem {
     }
 
     override func update(deltaTime: TimeInterval) {
+        var sum = 0
+        var count = 0
         entities
             .compactMap { $0.component(ofType: ScoreComponent.self) }
             .filter { $0.shouldCount }
             .forEach {
-                score += $0.score
+                sum += $0.score
+                count += 1
                 $0.shouldCount = false
             }
+        score += sum * count
     }
 }

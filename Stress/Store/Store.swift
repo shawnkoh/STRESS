@@ -59,14 +59,17 @@ class Store {
     /// - Parameter pegData: The `PegData` to construct from.
     /// - Returns: The constructed `Peg`.
     static func constructPeg(from pegData: PegData) -> Peg {
-        guard let shape = PegShape(rawValue: pegData.shape) else {
+        guard
+            let type = PegType(rawValue: pegData.type),
+            let shape = PegShape(rawValue: pegData.shape)
+        else {
             // TODO: DONT USE FATAL ERROR
-            fatalError("An invalid PegShape was provided.")
+            fatalError("An invalid PegData was provided.")
         }
 
         let peg = Peg(center: CGPoint(x: pegData.centerX, y: pegData.centerY),
+                      type: type,
                       shape: shape,
-                      isObjective: pegData.isObjective,
                       radius: CGFloat(pegData.radius))
         return peg
     }

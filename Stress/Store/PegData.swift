@@ -23,8 +23,8 @@ class PegData: Object {
     @objc dynamic var centerX = Double()
     @objc dynamic var centerY = Double()
     @objc dynamic var radius = Double()
+    @objc dynamic var type: Int = 0
     @objc dynamic var shape: Int = 0
-    @objc dynamic var isObjective: Bool = false
 
     /// Constructs an empty `PegData`.
     required init() {
@@ -37,7 +37,7 @@ class PegData: Object {
     ///     - centerY: The y position of the peg's center.
     ///     - radius: The radius of the peg.
     ///     - type: An integer representing the peg's `PegShape`.
-    convenience init(id: String, centerX: Double, centerY: Double, radius: Double, shape: Int, isObjective: Bool) {
+    convenience init(id: String, centerX: Double, centerY: Double, radius: Double, type: Int, shape: Int) {
         guard PegShape(rawValue: shape) != nil else {
             fatalError("An incorrect PegType was provided.")
         }
@@ -46,27 +46,26 @@ class PegData: Object {
         self.centerX = centerX
         self.centerY = centerY
         self.radius = radius
+        self.type = type
         self.shape = shape
-        self.isObjective = isObjective
     }
 
     /// Constructs a new `PegData`.
     /// - Parameter peg: A peg entity
     convenience init(peg: Peg) {
         guard
-            let shape = peg.component(ofType: PegComponent.self)?.shape,
+            let pegComponent = peg.component(ofType: PegComponent.self),
             let transformComponent = peg.component(ofType: TransformComponent.self),
             let view = peg.component(ofType: VisualComponent.self)?.view
         else {
             fatalError("The Peg does not have the required components")
         }
-        let isObjective = peg.component(ofType: ObjectiveComponent.self) != nil
 
         self.init(id: peg.id,
                   centerX: Double(transformComponent.position.x),
                   centerY: Double(transformComponent.position.y),
                   radius: Double(view.bounds.size.width / 2),
-                  shape: shape.rawValue,
-                  isObjective: isObjective)
+                  type: pegComponent.type.rawValue,
+                  shape: pegComponent.shape.rawValue)
     }
 }

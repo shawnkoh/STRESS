@@ -36,14 +36,13 @@ class CollisionSystem: GKSystem {
 
     private func resolveCollision(ball: Ball, peg: Peg) {
         guard
-            let shape = peg.component(ofType: PegComponent.self)?.shape,
+            let pegComponent = peg.component(ofType: PegComponent.self),
             let view = peg.component(ofType: VisualComponent.self)?.view as? UIImageView
         else {
             fatalError("Unable to access required components")
         }
-        let isObjective = peg.component(ofType: ObjectiveComponent.self) != nil
-        view.image = Settings.Peg.image(for: shape, isObjective: isObjective, didHit: true)
-        peg.component(ofType: PegComponent.self)?.isHit = true
+        view.image = Settings.Peg.image(type: pegComponent.type, shape: pegComponent.shape, didHit: true)
+        pegComponent.isHit = true
         peg.component(ofType: ScoreComponent.self)?.shouldCount = true
     }
 

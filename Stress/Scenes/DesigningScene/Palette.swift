@@ -32,10 +32,12 @@ class Palette: UIView {
         let root = createRoot()
 
         let toolStack = createToolStack(root: root)
-        let tools = [Tool(type: .create(shape: .circle, isObjective: true)),
-                     Tool(type: .create(shape: .circle, isObjective: false)),
-                     Tool(type: .create(shape: .triangle, isObjective: true)),
-                     Tool(type: .create(shape: .triangle, isObjective: false)),
+        let tools = [Tool(type: .create(type: .orange, shape: .circle)),
+                     Tool(type: .create(type: .orange, shape: .triangle)),
+                     Tool(type: .create(type: .blue, shape: .circle)),
+                     Tool(type: .create(type: .blue, shape: .triangle)),
+                     Tool(type: .create(type: .green, shape: .circle)),
+                     Tool(type: .create(type: .green, shape: .triangle)),
                      Tool(type: .delete)]
         tools.forEach { tool in
             toolStack.addArrangedSubview(tool)

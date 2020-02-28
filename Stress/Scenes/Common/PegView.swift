@@ -14,9 +14,9 @@ class PegView: UIImageView {
         fatalError("init(coder:) is not supported")
     }
 
-    init(shape: PegShape, isObjective: Bool) {
+    init(type: PegType, shape: PegShape) {
         super.init(frame: .zero)
-        image = Settings.Peg.image(for: shape, isObjective: isObjective)
+        image = Settings.Peg.image(type: type, shape: shape)
         let diameter = Settings.Peg.radius * 2
         frame.size = CGSize(width: diameter, height: diameter)
     }
