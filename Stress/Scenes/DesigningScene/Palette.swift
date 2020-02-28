@@ -9,17 +9,12 @@
 import UIKit
 
 class Palette: UIView {
-    var currentToolType: ToolType?
-    let backControl = Control(type: ControlType.back)
-    let resetControl = Control(type: ControlType.reset)
-    let loadControl = Control(type: ControlType.load)
-    let saveControl = Control(type: ControlType.save)
-    let playControl = Control(type: ControlType.play)
-//    let backAction: () -> Void
-//    let resetAction: () -> Void
-//    let loadAction: () -> Void
-//    let saveAction: () -> Void
-//    let playAction: () -> Void
+    let backAction: () -> Void
+    let resetAction: () -> Void
+    let loadAction: () -> Void
+    let saveAction: () -> Void
+    let playAction: () -> Void
+    let selectToolAction: (ToolType?) -> Void
 
     private weak var currentTool: Tool?
 
@@ -28,7 +23,20 @@ class Palette: UIView {
         fatalError("init(coder:) is not supported")
     }
 
-    init() {
+    init(
+        backAction: @escaping () -> Void,
+        resetAction: @escaping () -> Void,
+        loadAction: @escaping () -> Void,
+        saveAction: @escaping () -> Void,
+        playAction: @escaping () -> Void,
+        selectToolAction: @escaping (ToolType?) -> Void
+    ) {
+        self.backAction = backAction
+        self.resetAction = resetAction
+        self.loadAction = loadAction
+        self.saveAction = saveAction
+        self.playAction = playAction
+        self.selectToolAction = selectToolAction
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
@@ -53,6 +61,11 @@ class Palette: UIView {
         toolStack.addArrangedSubview(spacer)
 
         let controlStack = createControlStack(root: root)
+        let backControl = Control(type: ControlType.back)
+        let resetControl = Control(type: ControlType.reset)
+        let loadControl = Control(type: ControlType.load)
+        let saveControl = Control(type: ControlType.save)
+        let playControl = Control(type: ControlType.play)
         controlStack.addArrangedSubview(backControl)
         controlStack.addArrangedSubview(resetControl)
 //        controlStack.addArrangedSubview(Spacer(axis: .horizontal))
@@ -62,6 +75,12 @@ class Palette: UIView {
         controlStack.addArrangedSubview(playControl)
 //        controlStack.setCustomSpacing(16, after: resetControl)
 //        controlStack.setCustomSpacing(16, after: saveControl)
+
+        backControl.addTarget(self, action: #selector(back), for: .touchUpInside)
+        resetControl.addTarget(self, action: #selector(reset), for: .touchUpInside)
+        loadControl.addTarget(self, action: #selector(load), for: .touchUpInside)
+        saveControl.addTarget(self, action: #selector(save), for: .touchUpInside)
+        playControl.addTarget(self, action: #selector(play), for: .touchUpInside)
     }
 
     override func didMoveToSuperview() {
@@ -123,18 +142,37 @@ class Palette: UIView {
         return controlStack
     }
 
-    @objc func selectTool(_ sender: UIGestureRecognizer) {
+    @objc private func selectTool(_ sender: UIGestureRecognizer) {
         guard let tool = sender.view as? Tool else {
             fatalError("Sender's view is not a Tool")
         }
         currentTool?.isSelected = false
         if currentTool == sender.view {
             currentTool = nil
-            currentToolType = nil
         } else {
             tool.isSelected = true
             currentTool = tool
-            currentToolType = tool.type
         }
+        selectToolAction(currentTool?.type)
+    }
+
+    @objc private func back() {
+        backAction()
+    }
+
+    @objc private func reset() {
+        resetAction()
+    }
+
+    @objc private func load() {
+        loadAction()
+    }
+
+    @objc private func save() {
+        saveAction()
+    }
+
+    @objc private func play() {
+        playAction()
     }
 }

@@ -16,26 +16,27 @@ class DesigningScene: GKScene {
     var stage: Stage
     var levelScene = LevelScene()
     let nameLabel = LevelNameLabel()
-    let palette = Palette()
+
     let backAction: () -> Void
+    lazy var palette = Palette(backAction: backAction,
+                               resetAction: loadLevelData,
+                               loadAction: {},
+                               saveAction: saveLevel,
+                               playAction: {},
+                               selectToolAction: selectTool)
+
+    private var currentToolType: ToolType?
 
     init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
         self.store = store
         self.levelData = levelData
         self.backAction = backAction
         self.stage = Stage(size: CGSize(width: levelData.width, height: levelData.height))
-
         super.init()
 
         let stageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapStage(_:)))
         stage.addGestureRecognizer(stageGestureRecognizer)
         stage.presentScene(levelScene)
-
-        palette.backControl.addTarget(self, action: #selector(tapBack), for: .touchDown)
-        palette.resetControl.addTarget(self, action: #selector(tapReset), for: .touchDown)
-        palette.loadControl.addTarget(self, action: #selector(tapLoad), for: .touchDown)
-        palette.saveControl.addTarget(self, action: #selector(tapSave), for: .touchDown)
-        palette.playControl.addTarget(self, action: #selector(tapPlay), for: .touchDown)
     }
 
     override func didMove(to view: GKView) {
@@ -54,7 +55,7 @@ class DesigningScene: GKScene {
     }
 
     @objc func tapStage(_ sender: UITapGestureRecognizer) {
-        guard let type = palette.currentToolType else {
+        guard let type = currentToolType else {
             return
         }
         let location = sender.location(in: stage)
@@ -63,18 +64,11 @@ class DesigningScene: GKScene {
         }
     }
 
-    @objc func tapBack() {
-        backAction()
+    private func selectTool(tool: ToolType?) {
+        currentToolType = tool
     }
 
-    @objc func tapReset() {
-        loadLevelData()
-    }
-
-    @objc func tapLoad() {
-    }
-
-    @objc func tapSave() {
+    private func saveLevel() {
         guard let levelName = nameLabel.text else {
             fatalError("Name label does not have a string")
         }
@@ -86,9 +80,6 @@ class DesigningScene: GKScene {
             // TODO: dont use fatal error
             fatalError(error.localizedDescription)
         }
-    }
-
-    @objc func tapPlay() {
     }
 
     // MARK: Private methods
@@ -118,7 +109,7 @@ class DesigningScene: GKScene {
 
         let tapGesture = UITapGestureRecognizer()
         let tapAction: (UIGestureRecognizer) -> Void = { sender in
-            if case .delete = self.palette.currentToolType {
+            if case .delete = self.currentToolType {
                 peg.addComponent(WillDestroyComponent())
             }
         }
