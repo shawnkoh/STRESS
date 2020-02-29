@@ -23,10 +23,10 @@ class SpookyBallSystem: GKSystem {
         entities(entityType: Ball.self,
                  requiredComponents: requiredComponents,
                  excludedComponents: [DidRespawnSpookyBallComponent.self]).forEach { ball in
-            guard let transform = ball.component(ofType: TransformComponent.self) else {
+            guard let physics = ball.component(ofType: PhysicsComponent.self)?.physicsBody as? BKPhysicsCircle else {
                 fatalError("Unable to access ball's transform component")
             }
-            transform.position.y = 0
+            physics.center.y = 0
 
             ball.addComponent(DidRespawnSpookyBallComponent())
             ball.removeComponent(ofType: WillDestroyComponent.self)
