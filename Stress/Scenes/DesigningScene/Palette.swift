@@ -9,14 +9,12 @@
 import UIKit
 
 class Palette: UIView {
-    let backAction: () -> Void
-    let resetAction: () -> Void
-    let loadAction: () -> Void
-    let saveAction: () -> Void
-    let playAction: () -> Void
+    let decrementRadiusAction: () -> Void
+    let incrementRadiusAction: () -> Void
     let selectToolAction: (ToolType?) -> Void
 
     private weak var currentTool: Tool?
+    let pegRadiusLabel = UILabel(frame: .zero)
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -29,13 +27,12 @@ class Palette: UIView {
         loadAction: @escaping () -> Void,
         saveAction: @escaping () -> Void,
         playAction: @escaping () -> Void,
+        decrementRadiusAction: @escaping () -> Void,
+        incrementRadiusAction: @escaping () -> Void,
         selectToolAction: @escaping (ToolType?) -> Void
     ) {
-        self.backAction = backAction
-        self.resetAction = resetAction
-        self.loadAction = loadAction
-        self.saveAction = saveAction
-        self.playAction = playAction
+        self.decrementRadiusAction = decrementRadiusAction
+        self.incrementRadiusAction = incrementRadiusAction
         self.selectToolAction = selectToolAction
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -44,43 +41,28 @@ class Palette: UIView {
 
         let root = createRoot()
 
-        let toolStack = createToolStack(root: root)
-        let tools = [Tool(type: .create(type: .orange, shape: .circle)),
-                     Tool(type: .create(type: .orange, shape: .triangle)),
-                     Tool(type: .create(type: .blue, shape: .circle)),
-                     Tool(type: .create(type: .blue, shape: .triangle)),
-                     Tool(type: .create(type: .green, shape: .circle)),
-                     Tool(type: .create(type: .green, shape: .triangle)),
-                     Tool(type: .delete)]
-        tools.forEach { tool in
-            toolStack.addArrangedSubview(tool)
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(selectTool(_:)))
-            tool.addGestureRecognizer(gesture)
-        }
-        let spacer = Spacer(axis: .horizontal)
-        toolStack.addArrangedSubview(spacer)
+        let toolStack = createToolStack()
+        root.addArrangedSubview(toolStack)
 
-        let controlStack = createControlStack(root: root)
-        let backControl = Control(type: ControlType.back)
-        let resetControl = Control(type: ControlType.reset)
-        let loadControl = Control(type: ControlType.load)
-        let saveControl = Control(type: ControlType.save)
-        let playControl = Control(type: ControlType.play)
-        controlStack.addArrangedSubview(backControl)
-        controlStack.addArrangedSubview(resetControl)
-//        controlStack.addArrangedSubview(Spacer(axis: .horizontal))
-        controlStack.addArrangedSubview(loadControl)
-        controlStack.addArrangedSubview(saveControl)
-//        controlStack.addArrangedSubview(Spacer(axis: .horizontal))
-        controlStack.addArrangedSubview(playControl)
-//        controlStack.setCustomSpacing(16, after: resetControl)
-//        controlStack.setCustomSpacing(16, after: saveControl)
+        let controlStack = createHStack()
+        root.addArrangedSubview(controlStack)
+        let stateStack = createHStack()
+        controlStack.addArrangedSubview(stateStack)
+        let sizeStack = createSizeStack()
+        controlStack.addArrangedSubview(sizeStack)
 
-        backControl.addTarget(self, action: #selector(back), for: .touchUpInside)
-        resetControl.addTarget(self, action: #selector(reset), for: .touchUpInside)
-        loadControl.addTarget(self, action: #selector(load), for: .touchUpInside)
-        saveControl.addTarget(self, action: #selector(save), for: .touchUpInside)
-        playControl.addTarget(self, action: #selector(play), for: .touchUpInside)
+        let backControl = Control(type: ControlType.back, action: backAction)
+        let resetControl = Control(type: ControlType.reset, action: resetAction)
+        let loadControl = Control(type: ControlType.load, action: loadAction)
+        let saveControl = Control(type: ControlType.save, action: saveAction)
+        let playControl = Control(type: ControlType.play, action: playAction)
+        [backControl, resetControl, loadControl, saveControl, playControl]
+            .forEach { stateStack.addArrangedSubview($0) }
+
+        NSLayoutConstraint.activate([
+            controlStack.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+            controlStack.trailingAnchor.constraint(equalTo: root.trailingAnchor)
+        ])
     }
 
     override func didMoveToSuperview() {
@@ -110,36 +92,53 @@ class Palette: UIView {
         return root
     }
 
-    private func createToolStack(root: UIStackView) -> UIStackView {
-        let toolStack = UIStackView()
-        root.addArrangedSubview(toolStack)
-        toolStack.axis = .horizontal
-        toolStack.distribution = .fill
-        toolStack.alignment = .center
-        toolStack.spacing = 8
-        toolStack.translatesAutoresizingMaskIntoConstraints = false
+    private func createToolStack() -> UIStackView {
+        let toolStack = createHStack()
         NSLayoutConstraint.activate([
-            toolStack.leadingAnchor.constraint(equalTo: root.leadingAnchor),
-            toolStack.trailingAnchor.constraint(equalTo: root.trailingAnchor),
             toolStack.heightAnchor.constraint(equalToConstant: 76)
         ])
+        let tools = [Tool(type: .create(type: .orange, shape: .circle)),
+                     Tool(type: .create(type: .orange, shape: .triangle)),
+                     Tool(type: .create(type: .blue, shape: .circle)),
+                     Tool(type: .create(type: .blue, shape: .triangle)),
+                     Tool(type: .create(type: .green, shape: .circle)),
+                     Tool(type: .create(type: .green, shape: .triangle)),
+                     Tool(type: .delete)]
+        tools.forEach { tool in
+            toolStack.addArrangedSubview(tool)
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(selectTool(_:)))
+            tool.addGestureRecognizer(gesture)
+        }
         return toolStack
     }
 
-    private func createControlStack(root: UIStackView) -> UIStackView {
-        let controlStack = UIStackView()
-        root.addArrangedSubview(controlStack)
-        controlStack.axis = .horizontal
-        controlStack.distribution = .fill
-        controlStack.alignment = .center
-        controlStack.spacing = 8
-        controlStack.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            controlStack.leadingAnchor.constraint(equalTo: root.leadingAnchor),
-            controlStack.trailingAnchor.constraint(equalTo: root.trailingAnchor),
-            controlStack.heightAnchor.constraint(equalToConstant: 76)
-        ])
-        return controlStack
+    private func createHStack() -> UIStackView {
+        let HStack = UIStackView()
+        HStack.axis = .horizontal
+        HStack.distribution = .fillEqually
+        HStack.alignment = .center
+        HStack.spacing = 8
+        HStack.translatesAutoresizingMaskIntoConstraints = false
+        return HStack
+    }
+
+    private func createSizeStack() -> UIStackView {
+        let sizeStack = createHStack()
+
+        let minusButton = UIButton(type: .roundedRect)
+        minusButton.setTitle("-", for: .normal)
+        minusButton.addTarget(self, action: #selector(decrementRadius), for: .touchDown)
+        sizeStack.addArrangedSubview(minusButton)
+
+        pegRadiusLabel.text = String(Int(Settings.Peg.radius))
+        sizeStack.addArrangedSubview(pegRadiusLabel)
+
+        let plusButton = UIButton(type: .roundedRect)
+        plusButton.setTitle("+", for: .normal)
+        plusButton.addTarget(self, action: #selector(incrementRadius), for: .touchDown)
+        sizeStack.addArrangedSubview(plusButton)
+
+        return sizeStack
     }
 
     @objc private func selectTool(_ sender: UIGestureRecognizer) {
@@ -156,23 +155,11 @@ class Palette: UIView {
         selectToolAction(currentTool?.type)
     }
 
-    @objc private func back() {
-        backAction()
+    @objc private func decrementRadius() {
+        decrementRadiusAction()
     }
 
-    @objc private func reset() {
-        resetAction()
-    }
-
-    @objc private func load() {
-        loadAction()
-    }
-
-    @objc private func save() {
-        saveAction()
-    }
-
-    @objc private func play() {
-        playAction()
+    @objc private func incrementRadius() {
+        incrementRadiusAction()
     }
 }

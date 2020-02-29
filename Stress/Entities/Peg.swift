@@ -33,7 +33,7 @@ class Peg: GKEntity {
         let transformComponent = TransformComponent(position: center)
         addComponent(transformComponent)
 
-        let view = PegView(type: type, shape: shape)
+        let view = PegView(type: type, shape: shape, radius: radius)
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
 

@@ -20,12 +20,19 @@ class DesigningScene: GKScene {
     let backAction: () -> Void
     lazy var palette = Palette(backAction: backAction,
                                resetAction: loadLevelData,
-                               loadAction: {},
+                               loadAction: loadLevel,
                                saveAction: saveLevel,
-                               playAction: {},
+                               playAction: playLevel,
+                               decrementRadiusAction: { self.pegRadius -= 1 },
+                               incrementRadiusAction: { self.pegRadius += 1 },
                                selectToolAction: selectTool)
 
     private var currentToolType: ToolType?
+    private var pegRadius = Settings.Peg.radius {
+        didSet {
+            palette.pegRadiusLabel.text = String(Int(pegRadius))
+        }
+    }
 
     init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
         self.store = store
@@ -130,11 +137,17 @@ class DesigningScene: GKScene {
         }
     }
 
-    private func hasNoOverlappingPegs(at location: CGPoint, ignore peg: Peg) -> Bool {
+    private func loadLevel() {
+    }
+
+    private func playLevel() {
+    }
+
+    private func hasNoOverlappingPegs(at location: CGPoint, radius: CGFloat, ignore peg: Peg) -> Bool {
         levelScene.entities(ofType: Peg.self)
             .filter { $0 != peg }
             .compactMap { $0.component(ofType: VisualComponent.self)?.view }
-            .allSatisfy { location.distance(to: $0.center) >= $0.bounds.width }
+            .allSatisfy { location.distance(to: $0.center) >= $0.frame.width / 2 + radius }
     }
 
     private func canPlace(peg: Peg, at location: CGPoint) -> Bool {
@@ -148,11 +161,11 @@ class DesigningScene: GKScene {
             location.y <= self.stage.frame.height - radius else {
             return false
         }
-        return self.hasNoOverlappingPegs(at: location, ignore: peg)
+        return self.hasNoOverlappingPegs(at: location, radius: radius, ignore: peg)
     }
 
     private func createPeg(at location: CGPoint, type: PegType, shape: PegShape) {
-        let peg = Peg(center: location, type: type, shape: shape)
+        let peg = Peg(center: location, type: type, shape: shape, radius: pegRadius)
         guard canPlace(peg: peg, at: location) else {
             return
         }
