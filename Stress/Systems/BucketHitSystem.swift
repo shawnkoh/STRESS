@@ -26,6 +26,7 @@ class BucketHitSystem: GKSystem {
         }
         entities.forEach {
             ammoComponent.ammo += 1
+            (scene as? LevelPlayingScene)?.parent.ammoLabel.text = "Shots left: \(ammoComponent.ammo)"
             $0.removeComponent(ofType: DidHitComponent.self)
         }
         scene.entities(ofType: Peg.self)

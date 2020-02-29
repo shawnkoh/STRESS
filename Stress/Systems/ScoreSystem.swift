@@ -27,5 +27,6 @@ class ScoreSystem: GKSystem {
                 count += 1
             }
         score += sum * count
+        (scene as? LevelPlayingScene)?.parent.scoreLabel.text = String(score)
     }
 }

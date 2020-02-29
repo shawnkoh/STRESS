@@ -6,6 +6,4 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-import Foundation
-
 class SpaceBlastComponent: GKComponent {}

@@ -24,6 +24,7 @@ class CannonControlSystem: GKSystem {
     init(scene: GKScene) {
         super.init(scene: scene,
                    componentClasses: [TransformComponent.self,
+                                      VisualComponent.self,
                                       RotatableComponent.self,
                                       FiringComponent.self,
                                       AmmoComponent.self])
@@ -94,6 +95,7 @@ class CannonControlSystem: GKSystem {
                                               position: cannonTransformComponent.position,
                                               velocity: projectileVelocity)
             scene.addEntity(projectile)
+            (scene as? LevelPlayingScene)?.parent.ammoLabel.text = "Shots left: \(cannonAmmoComponent.ammo)"
         }
     }
 

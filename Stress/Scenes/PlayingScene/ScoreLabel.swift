@@ -11,10 +11,11 @@ import UIKit
 class ScoreLabel: UILabel {
     init() {
         super.init(frame: .zero)
+        textColor = .blue
+        font = font.withSize(48)
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: 32),
-            heightAnchor.constraint(equalToConstant: 32)
+//            heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 

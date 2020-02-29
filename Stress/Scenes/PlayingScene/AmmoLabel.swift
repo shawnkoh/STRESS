@@ -11,12 +11,10 @@ import UIKit
 class AmmoLabel: UILabel {
     init() {
         super.init(frame: .zero)
+        textColor = .gray
+        font = font.withSize(24)
         translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: 32),
-            heightAnchor.constraint(equalToConstant: 32)
-        ])
-        text = "Shots left:"
+        text = "Shots left: \(Settings.Cannon.ammo)"
     }
 
     @available(*, unavailable)
