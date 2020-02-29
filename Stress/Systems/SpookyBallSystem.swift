@@ -26,13 +26,10 @@ class SpookyBallSystem: GKSystem {
             guard let transform = ball.component(ofType: TransformComponent.self) else {
                 fatalError("Unable to access ball's transform component")
             }
-            print(transform.position)
             transform.position.y = 0
-            print("moved position", transform.position)
 
             ball.addComponent(DidRespawnSpookyBallComponent())
             ball.removeComponent(ofType: WillDestroyComponent.self)
-            print(ball.components.keys)
         }
     }
 }

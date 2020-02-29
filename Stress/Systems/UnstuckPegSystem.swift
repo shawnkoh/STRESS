@@ -10,20 +10,17 @@ import Foundation
 
 class UnstuckPegSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, requiredComponents: [PhysicsComponent.self])
+        super.init(scene: scene, requiredComponents: [PegComponent.self, DidHitComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
-        let balls = entities.compactMap { ($0 as? Ball)?.component(ofType: PhysicsComponent.self)?.physicsBody }
+        let balls = scene.entities.compactMap { ($0 as? Ball)?.component(ofType: PhysicsComponent.self)?.physicsBody }
         guard !balls.isEmpty && balls.allSatisfy({ $0.isResting }) else {
             return
         }
 
         balls.forEach { $0.isResting = false }
 
-        entities
-            .compactMap { $0 as? Peg }
-            .filter { $0.component(ofType: DidHitComponent.self) != nil }
-            .forEach { $0.addComponent(WillDestroyComponent()) }
+        entities.forEach { $0.addComponent(WillDestroyComponent()) }
     }
 }

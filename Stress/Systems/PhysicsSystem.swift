@@ -10,23 +10,24 @@ import Foundation
 
 class PhysicsSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, requiredComponents: [PhysicsComponent.self])
+        super.init(scene: scene,
+                   requiredComponents: [PhysicsComponent.self],
+                   excludedComponents: [DidAttachPhysicsComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
-        entities.filter { $0.component(ofType: DidAttachPhysicsComponent.self ) == nil }
-                .forEach { entity in
-                    guard let physicsBody = entity.component(ofType: PhysicsComponent.self)?.physicsBody else {
-                        fatalError("Could not access visual component")
-                    }
+        entities.forEach { entity in
+            guard let physicsBody = entity.component(ofType: PhysicsComponent.self)?.physicsBody else {
+                fatalError("Could not access visual component")
+            }
 
-                    scene.physicsWorld.addBody(physicsBody)
+            scene.physicsWorld.addBody(physicsBody)
 
-                    if let transformComponent = entity.component(ofType: TransformComponent.self) {
-                        physicsBody.delegate = transformComponent
-                    }
+            if let transformComponent = entity.component(ofType: TransformComponent.self) {
+                physicsBody.delegate = transformComponent
+            }
 
-                    entity.addComponent(DidAttachPhysicsComponent())
-                }
+            entity.addComponent(DidAttachPhysicsComponent())
+        }
     }
 }

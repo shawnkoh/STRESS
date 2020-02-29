@@ -61,9 +61,7 @@ class GKScene: Identifiable {
 
     /// A convenience variable to retrieve all entities of type `EntityType`.
     func entities<EntityType: GKEntity>(ofType: EntityType.Type) -> [EntityType] {
-        entities.compactMap {
-            $0 as? EntityType
-        }
+        entities.compactMap { $0 as? EntityType }
     }
 
     /// Tells your app to perform any app-specific logic to update your scene.

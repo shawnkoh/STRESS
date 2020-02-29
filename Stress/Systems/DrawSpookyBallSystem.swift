@@ -11,19 +11,20 @@ import UIKit
 
 class DrawSpookyBallSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, requiredComponents: [CollisionComponent.self, SpookyBallComponent.self])
+        super.init(scene: scene,
+                   requiredComponents: [CollisionComponent.self, SpookyBallComponent.self],
+                   excludedComponents: [DidDrawSpookyBallComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
-        entities.filter { $0.component(ofType: DidDrawSpookyBallComponent.self) == nil }
-                .forEach { ball in
-                    guard let view = ball.component(ofType: VisualComponent.self)?.view as? UIImageView else {
-                        fatalError("Unable to access ball's components")
-                    }
+        entities.forEach { ball in
+            guard let view = ball.component(ofType: VisualComponent.self)?.view as? UIImageView else {
+                fatalError("Unable to access ball's components")
+            }
 
-                    view.image = Settings.Ball.spookyImage
+            view.image = Settings.Ball.spookyImage
 
-                    ball.addComponent(DidDrawSpookyBallComponent())
-                }
+            ball.addComponent(DidDrawSpookyBallComponent())
+        }
     }
 }

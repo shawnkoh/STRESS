@@ -14,8 +14,8 @@ class ExitHitSystem: GKSystem {
     }
 
     override func update(deltaTime: TimeInterval) {
-        let exits = scene.entities(ofType: Exit.self)
-        guard exits.contains(where: { $0.component(ofType: DidHitComponent.self) != nil }) else {
+        let exits = entities(entityType: Exit.self, requiredComponents: [DidHitComponent.self], excludedComponents: [])
+        guard !exits.isEmpty else {
             return
         }
 
