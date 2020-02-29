@@ -66,7 +66,10 @@ class CannonControlSystem: GKSystem {
     }
 
     @objc func shoot(_ sender: UITapGestureRecognizer) {
-        guard sender.state == .ended else {
+        guard
+            sender.state == .ended,
+            !scene.entities.contains(where: { $0 is Ball })
+        else {
             return
         }
         entities.forEach { entity in
