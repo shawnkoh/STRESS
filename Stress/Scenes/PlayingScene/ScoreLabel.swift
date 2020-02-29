@@ -12,7 +12,7 @@ class ScoreLabel: UILabel {
     init() {
         super.init(frame: .zero)
         textColor = .blue
-        font = font.withSize(48)
+        font = font.withSize(64)
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
 //            heightAnchor.constraint(equalToConstant: 32)

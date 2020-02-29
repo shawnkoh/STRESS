@@ -29,6 +29,7 @@ class PlayingState: GKState, GameState {
             gameStateMachine.presenter.presentScene(playingScene)
             playingScene.stage.presentScene(playingScene.levelScene)
             playingScene.level.pegs.forEach { playingScene.levelScene.addEntity($0) }
+            playingScene.ammoLabel.text = "Shots left: \(Settings.Cannon.ammo)"
             self.playingScene = playingScene
         }
     }

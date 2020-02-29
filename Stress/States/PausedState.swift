@@ -13,7 +13,6 @@ class PausedState: GKState, GameState {
     weak var playingScene: PlayingScene?
     lazy var gamePausedView: GamePausedView = {
         let resumeLevel = {
-            self.playingScene?.isPaused = false
             self.gameStateMachine.enter(PlayingState.self)
             return
         }
@@ -40,6 +39,7 @@ class PausedState: GKState, GameState {
 
     func didEnter(from previousState: GKState?) {
         playingScene?.isPaused = true
+        playingScene?.levelScene.isPaused = true
         playingScene?.stage.addSubview(gamePausedView)
     }
 
@@ -47,7 +47,10 @@ class PausedState: GKState, GameState {
     }
 
     func willExit(to nextState: GKState) {
-        playingScene?.isPaused = false
-        gamePausedView.removeFromSuperview()
+        if nextState is PlayingState {
+            playingScene?.isPaused = false
+            playingScene?.levelScene.isPaused = false
+            gamePausedView.removeFromSuperview()
+        }
     }
 }
