@@ -16,33 +16,33 @@ class PlayingScene: GKScene {
     lazy var stage = Stage(size: level.size)
     lazy var levelScene = LevelPlayingScene(parent: self, level: level)
     let background = Background()
-    let menuButton = UIImageView(image: UIImage(systemName: "pause.circle"))
+    let ammoLabel = AmmoLabel()
+    let scoreLabel = ScoreLabel()
 
     init(stateMachine: GameStateMachine, levelData: LevelData) {
         self.stateMachine = stateMachine
         self.levelData = levelData
         super.init()
-        menuButton.bounds.size = CGSize(width: 48, height: 48)
-        menuButton.isUserInteractionEnabled = true
-        let menuGesture = UITapGestureRecognizer(target: self, action: #selector(tapMenu(_:)))
-        menuButton.addGestureRecognizer(menuGesture)
-        background.addSubview(menuButton)
     }
 
     override func didMove(to view: GKView) {
         super.didMove(to: view)
-        let size = level.size
+        let menuButton = MenuButton(action: { self.stateMachine.enter(PausedState.self) })
         view.addSubview(background)
-        view.addSubview(stage)
+        view.addSubview(ammoLabel)
+        view.addSubview(scoreLabel)
         view.addSubview(menuButton)
+        view.addSubview(stage)
+
         NSLayoutConstraint.activate([
+            ammoLabel.leadingAnchor.constraint(equalTo: stage.leadingAnchor),
+            ammoLabel.bottomAnchor.constraint(equalTo: stage.topAnchor),
+            scoreLabel.centerXAnchor.constraint(equalTo: stage.centerXAnchor),
+            scoreLabel.bottomAnchor.constraint(equalTo: stage.topAnchor),
+            menuButton.trailingAnchor.constraint(equalTo: stage.trailingAnchor),
+            menuButton.bottomAnchor.constraint(equalTo: stage.topAnchor),
             stage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        menuButton.center = CGPoint(x: size.width - 100, y: 80)
-    }
-
-    @objc func tapMenu(_ sender: UITapGestureRecognizer) {
-        stateMachine.enter(PausedState.self)
     }
 
     func restartLevel() {

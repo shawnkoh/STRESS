@@ -61,6 +61,9 @@
 		869DEAC72403CFCF00D79C46 /* GKSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC62403CFCF00D79C46 /* GKSystem.swift */; };
 		869DEAC92403E72F00D79C46 /* TransformSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC82403E72F00D79C46 /* TransformSystem.swift */; };
 		86BA4543240A8D9500D08227 /* UnstuckPegSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4542240A8D9500D08227 /* UnstuckPegSystem.swift */; };
+		86BA4545240AB6CC00D08227 /* AmmoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4544240AB6CC00D08227 /* AmmoLabel.swift */; };
+		86BA4547240AB88400D08227 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4546240AB88400D08227 /* ScoreLabel.swift */; };
+		86BA4549240AB96900D08227 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4548240AB96900D08227 /* MenuButton.swift */; };
 		86BF17B524051DDB00BAE651 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B424051DDB00BAE651 /* CollisionSystem.swift */; };
 		86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B62405607500BAE651 /* CollisionComponent.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
@@ -191,6 +194,9 @@
 		869DEAC62403CFCF00D79C46 /* GKSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKSystem.swift; sourceTree = "<group>"; };
 		869DEAC82403E72F00D79C46 /* TransformSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSystem.swift; sourceTree = "<group>"; };
 		86BA4542240A8D9500D08227 /* UnstuckPegSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnstuckPegSystem.swift; sourceTree = "<group>"; };
+		86BA4544240AB6CC00D08227 /* AmmoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoLabel.swift; sourceTree = "<group>"; };
+		86BA4546240AB88400D08227 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
+		86BA4548240AB96900D08227 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		86BF17B424051DDB00BAE651 /* CollisionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
 		86BF17B62405607500BAE651 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
@@ -343,6 +349,9 @@
 			children = (
 				86F2577723FC659E00C25BBE /* PlayingScene.swift */,
 				865B2D8C2405ACBB00512296 /* LevelPlayingScene.swift */,
+				86BA4544240AB6CC00D08227 /* AmmoLabel.swift */,
+				86BA4546240AB88400D08227 /* ScoreLabel.swift */,
+				86BA4548240AB96900D08227 /* MenuButton.swift */,
 			);
 			path = PlayingScene;
 			sourceTree = "<group>";
@@ -804,6 +813,7 @@
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,
 				86F257C123FC6AFF00C25BBE /* BKPhysicsCircle.swift in Sources */,
+				86BA4545240AB6CC00D08227 /* AmmoLabel.swift in Sources */,
 				8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */,
 				8676A17224029589005EAA1E /* LevelScene.swift in Sources */,
 				864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */,
@@ -820,6 +830,7 @@
 				8650447E23FD7849003F105D /* DesigningState.swift in Sources */,
 				86757F232409A17100B868B9 /* DrawPowerupSystem.swift in Sources */,
 				86F2578623FC663D00C25BBE /* VisualComponent.swift in Sources */,
+				86BA4547240AB88400D08227 /* ScoreLabel.swift in Sources */,
 				86F763BC2406A26D00F49B44 /* LoseState.swift in Sources */,
 				86197AFA2408F8CD00F3C7EA /* DidHitComponent.swift in Sources */,
 				86F257CD23FC6B1100C25BBE /* PegView.swift in Sources */,
@@ -837,6 +848,7 @@
 				864DA1D523FDA794005805FF /* GameStateMachine.swift in Sources */,
 				86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */,
 				8684177724096052001CCBAC /* SpaceBlastComponent.swift in Sources */,
+				86BA4549240AB96900D08227 /* MenuButton.swift in Sources */,
 				86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */,
 				8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */,
 				86F257C623FC6AFF00C25BBE /* BKPhysicsBodyDelegate.swift in Sources */,

@@ -16,6 +16,6 @@ class GameStateMachine: GKStateMachine {
         self.stress = stress
         self.presenter = presenter
         super.init(states: states)
-        states.forEach { $0.stateMachine = self}
+        states.forEach { $0.stateMachine = self }
     }
 }
