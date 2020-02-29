@@ -60,6 +60,7 @@
 		869DEAC42403C0C900D79C46 /* RotatableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC32403C0C900D79C46 /* RotatableComponent.swift */; };
 		869DEAC72403CFCF00D79C46 /* GKSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC62403CFCF00D79C46 /* GKSystem.swift */; };
 		869DEAC92403E72F00D79C46 /* TransformSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC82403E72F00D79C46 /* TransformSystem.swift */; };
+		86BA4543240A8D9500D08227 /* UnstuckPegSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4542240A8D9500D08227 /* UnstuckPegSystem.swift */; };
 		86BF17B524051DDB00BAE651 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B424051DDB00BAE651 /* CollisionSystem.swift */; };
 		86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B62405607500BAE651 /* CollisionComponent.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
@@ -189,6 +190,7 @@
 		869DEAC32403C0C900D79C46 /* RotatableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableComponent.swift; sourceTree = "<group>"; };
 		869DEAC62403CFCF00D79C46 /* GKSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKSystem.swift; sourceTree = "<group>"; };
 		869DEAC82403E72F00D79C46 /* TransformSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSystem.swift; sourceTree = "<group>"; };
+		86BA4542240A8D9500D08227 /* UnstuckPegSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnstuckPegSystem.swift; sourceTree = "<group>"; };
 		86BF17B424051DDB00BAE651 /* CollisionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
 		86BF17B62405607500BAE651 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				86757F1E2409938A00B868B9 /* PegHitSystem.swift */,
 				86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */,
 				86757F20240996CF00B868B9 /* ExitHitSystem.swift */,
+				86BA4542240A8D9500D08227 /* UnstuckPegSystem.swift */,
 				86FAF5AB240594E600EDD629 /* ScoreSystem.swift */,
 				869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */,
 				86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */,
@@ -868,6 +871,7 @@
 				86F578B2240852F400E54C46 /* Bucket.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */,
+				86BA4543240A8D9500D08227 /* UnstuckPegSystem.swift in Sources */,
 				86F2577E23FC65CF00C25BBE /* Ball.swift in Sources */,
 				86F2575223FC609A00C25BBE /* SceneDelegate.swift in Sources */,
 				86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */,

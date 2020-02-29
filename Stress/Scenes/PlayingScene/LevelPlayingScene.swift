@@ -71,6 +71,7 @@ class LevelPlayingScene: GKScene {
         addSystem(PegHitSystem(scene: self))
         addSystem(BucketHitSystem(scene: self))
         addSystem(ExitHitSystem(scene: self))
+        addSystem(UnstuckPegSystem(scene: self))
 
         addSystem(scoreSystem)
 
