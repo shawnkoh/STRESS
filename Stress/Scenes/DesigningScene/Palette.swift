@@ -103,6 +103,8 @@ class Palette: UIView {
                      Tool(type: .create(type: .blue, shape: .triangle)),
                      Tool(type: .create(type: .green, shape: .circle)),
                      Tool(type: .create(type: .green, shape: .triangle)),
+                     Tool(type: .create(type: .red, shape: .circle)),
+                     Tool(type: .create(type: .red, shape: .triangle)),
                      Tool(type: .delete)]
         tools.forEach { tool in
             toolStack.addArrangedSubview(tool)

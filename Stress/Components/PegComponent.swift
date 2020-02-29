@@ -23,10 +23,12 @@ The `PegType` enumeration represents the various types of pegs in Stress.
 */
 enum PegType: Int {
     case blue
-    /// A `green` peg provides a powerup when it is hit.
-    case green
     /// An `orange` peg has to be eliminated in order to complete the level.
     case orange
+    /// A `green` peg provides a `Space Blast` powerup when it is hit.
+    case green
+    /// A red peg provides a `Spooky Ball` powerup when it is hit.
+    case red
 }
 
 /**

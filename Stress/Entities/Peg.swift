@@ -22,7 +22,9 @@ class Peg: GKEntity {
         case .orange:
             addComponent(ObjectiveComponent())
         case .green:
-            addComponent(PowerupComponent())
+            addComponent(SpaceBlastComponent())
+        case .red:
+            addComponent(SpookyBallComponent())
         case .blue:
             ()
         }

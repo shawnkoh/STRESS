@@ -23,11 +23,11 @@ class CannonControlSystem: GKSystem {
 
     init(scene: GKScene) {
         super.init(scene: scene,
-                   componentClasses: [TransformComponent.self,
-                                      VisualComponent.self,
-                                      RotatableComponent.self,
-                                      FiringComponent.self,
-                                      AmmoComponent.self])
+                   requiredComponents: [TransformComponent.self,
+                                        VisualComponent.self,
+                                        RotatableComponent.self,
+                                        FiringComponent.self,
+                                        AmmoComponent.self])
     }
 
     private var initialTapLocation: CGPoint = .zero

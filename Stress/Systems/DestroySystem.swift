@@ -10,7 +10,7 @@ import Foundation
 
 class DestroySystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [WillDestroyComponent.self])
+        super.init(scene: scene, requiredComponents: [WillDestroyComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

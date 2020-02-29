@@ -10,7 +10,7 @@ import UIKit
 
 class BucketSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [BucketComponent.self])
+        super.init(scene: scene, requiredComponents: [BucketComponent.self])
     }
 
     private var walls: [Wall] {

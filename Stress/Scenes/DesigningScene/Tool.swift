@@ -44,6 +44,12 @@ class Tool: UIButton {
         case .create(type: .green, shape: .triangle):
             setImage(Settings.Peg.image(type: .green, shape: .triangle), for: .normal)
             setImage(Settings.Peg.image(type: .green, shape: .triangle, didHit: true), for: .selected)
+        case .create(type: .red, shape: .circle):
+            setImage(Settings.Peg.image(type: .red, shape: .circle), for: .normal)
+            setImage(Settings.Peg.image(type: .red, shape: .circle, didHit: true), for: .selected)
+        case .create(type: .red, shape: .triangle):
+            setImage(Settings.Peg.image(type: .red, shape: .triangle), for: .normal)
+            setImage(Settings.Peg.image(type: .red, shape: .triangle, didHit: true), for: .selected)
         case .delete:
             // TODO: Using the symbol sucks cos we can't adjust the size dynamically this way.
             setImage(UIImage(systemName: "xmark.circle",

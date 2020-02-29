@@ -10,7 +10,7 @@ import Foundation
 
 class ExitHitSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [PegComponent.self, DidHitComponent.self])
+        super.init(scene: scene, requiredComponents: [PegComponent.self, DidHitComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

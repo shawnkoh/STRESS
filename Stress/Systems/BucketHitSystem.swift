@@ -10,7 +10,7 @@ import Foundation
 
 class BucketHitSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [BucketComponent.self, DidHitComponent.self])
+        super.init(scene: scene, requiredComponents: [BucketComponent.self, DidHitComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
@@ -24,10 +24,10 @@ class BucketHitSystem: GKSystem {
         else {
             fatalError("Unable to access Cannon")
         }
-        entities.forEach {
+        entities.forEach { bucket in
             ammoComponent.ammo += 1
             (scene as? LevelPlayingScene)?.parent.ammoLabel.text = "Shots left: \(ammoComponent.ammo)"
-            $0.removeComponent(ofType: DidHitComponent.self)
+            bucket.removeComponent(ofType: DidHitComponent.self)
         }
         scene.entities(ofType: Peg.self)
             .filter { $0.component(ofType: DidHitComponent.self) != nil }

@@ -10,7 +10,7 @@ import UIKit
 
 class CollisionSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [CollisionComponent.self])
+        super.init(scene: scene, requiredComponents: [CollisionComponent.self])
         scene.physicsWorld.contactDelegate = self
     }
 
@@ -19,16 +19,22 @@ class CollisionSystem: GKSystem {
         case let ball as Ball:
             switch entityB {
             case let peg as Peg:
-                if peg.component(ofType: PowerupComponent.self) != nil {
+                if peg.component(ofType: SpaceBlastComponent.self) != nil {
                     ball.addComponent(SpaceBlastComponent())
                 }
+                if peg.component(ofType: SpookyBallComponent.self) != nil {
+                    ball.addComponent(SpookyBallComponent())
+                }
                 peg.addComponent(DidHitComponent())
+
             case let exit as Exit:
                 ball.addComponent(WillDestroyComponent())
                 exit.addComponent(DidHitComponent())
+
             case let bucket as Bucket:
                 ball.addComponent(WillDestroyComponent())
                 bucket.addComponent(DidHitComponent())
+
             default:
                 ()
             }

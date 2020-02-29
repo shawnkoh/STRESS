@@ -1,5 +1,5 @@
 //
-//  DrawPowerupSystem.swift
+//  DrawSpaceBlastSystem.swift
 //  Stress
 //
 //  Created by Shawn Koh on 29/2/20.
@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class DrawPowerupSystem: GKSystem {
+class DrawSpaceBlastSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [SpaceBlastComponent.self])
+        super.init(scene: scene, requiredComponents: [CollisionComponent.self, SpaceBlastComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
-        entities.filter { $0.component(ofType: DidDrawPowerupComponent.self) == nil }
+        entities.filter { $0.component(ofType: DidDrawSpaceBlastComponent.self) == nil }
                 .forEach { ball in
                     guard let ballView = ball.component(ofType: VisualComponent.self)?.view else {
                         fatalError("Unable to access ball's components")
@@ -37,7 +37,7 @@ class DrawPowerupSystem: GKSystem {
                         circle.heightAnchor.constraint(equalToConstant: diameter)
                     ])
 
-                    ball.addComponent(DidDrawPowerupComponent())
+                    ball.addComponent(DidDrawSpaceBlastComponent())
                 }
     }
 }

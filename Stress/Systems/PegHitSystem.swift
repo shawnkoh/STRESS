@@ -11,7 +11,7 @@ import UIKit
 
 class PegHitSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [PegComponent.self, VisualComponent.self, DidHitComponent.self])
+        super.init(scene: scene, requiredComponents: [PegComponent.self, VisualComponent.self, DidHitComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

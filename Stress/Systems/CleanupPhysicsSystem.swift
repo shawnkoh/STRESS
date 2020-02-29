@@ -10,9 +10,10 @@ import Foundation
 
 class CleanupPhysicsSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [PhysicsComponent.self,
-                                                    DidAttachPhysicsComponent.self,
-                                                    WillDestroyComponent.self])
+        super.init(scene: scene,
+                   requiredComponents: [PhysicsComponent.self,
+                                        DidAttachPhysicsComponent.self,
+                                        WillDestroyComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

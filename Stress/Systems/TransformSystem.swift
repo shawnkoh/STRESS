@@ -11,7 +11,7 @@ import CoreGraphics
 
 class TransformSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [TransformComponent.self])
+        super.init(scene: scene, requiredComponents: [TransformComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

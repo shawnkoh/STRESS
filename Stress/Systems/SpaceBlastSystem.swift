@@ -1,5 +1,5 @@
 //
-//  PowerupSystem.swift
+//  SpaceBlastSystem.swift
 //  Stress
 //
 //  Created by Shawn Koh on 29/2/20.
@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-/// This system serves as the actor for the powerups.
-class PowerupSystem: GKSystem {
+/// This system serves as the actor for the `SpaceBlast` powerup.
+class SpaceBlastSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [SpaceBlastComponent.self])
+        super.init(scene: scene, requiredComponents: [CollisionComponent.self, SpaceBlastComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

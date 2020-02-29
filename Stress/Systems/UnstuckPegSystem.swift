@@ -10,7 +10,7 @@ import Foundation
 
 class UnstuckPegSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [PhysicsComponent.self])
+        super.init(scene: scene, requiredComponents: [PhysicsComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

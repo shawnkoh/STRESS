@@ -10,9 +10,10 @@ import Foundation
 
 class CleanupVisualSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [VisualComponent.self,
-                                                    DidAttachVisualComponent.self,
-                                                    WillDestroyComponent.self])
+        super.init(scene: scene,
+                   requiredComponents: [VisualComponent.self,
+                                        DidAttachVisualComponent.self,
+                                        WillDestroyComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

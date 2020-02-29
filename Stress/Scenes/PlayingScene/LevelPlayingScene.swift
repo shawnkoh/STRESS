@@ -65,13 +65,15 @@ class LevelPlayingScene: GKScene {
         addSystem(TransformSystem(scene: self))
 
         addSystem(CollisionSystem(scene: self))
-        addSystem(DrawPowerupSystem(scene: self))
-        addSystem(PowerupSystem(scene: self))
+        addSystem(DrawSpaceBlastSystem(scene: self))
+        addSystem(DrawSpookyBallSystem(scene: self))
+        addSystem(SpaceBlastSystem(scene: self))
 
         addSystem(PegHitSystem(scene: self))
+        addSystem(UnstuckPegSystem(scene: self))
         addSystem(BucketHitSystem(scene: self))
         addSystem(ExitHitSystem(scene: self))
-        addSystem(UnstuckPegSystem(scene: self))
+        addSystem(SpookyBallSystem(scene: self))
 
         addSystem(scoreSystem)
 

@@ -10,13 +10,17 @@ import Foundation
 
 class GKSystem {
     unowned let scene: GKScene
-    let componentClasses: [GKComponent.Type]
-    let componentTypes: Set<String>
+    let requiredComponents: [GKComponent.Type]
+    let excludedComponents: [GKComponent.Type]
+    let requiredTypes: Set<String>
+    let excludedTypes: Set<String>
 
-    init(scene: GKScene, componentClasses: [GKComponent.Type]) {
+    init(scene: GKScene, requiredComponents: [GKComponent.Type] = [], excludedComponents: [GKComponent.Type] = []) {
         self.scene = scene
-        self.componentClasses = componentClasses
-        self.componentTypes = Set(componentClasses.map { NSStringFromClass($0) })
+        self.requiredComponents = requiredComponents
+        self.excludedComponents = excludedComponents
+        self.requiredTypes = Set(requiredComponents.map { NSStringFromClass($0) })
+        self.excludedTypes = Set(excludedComponents.map { NSStringFromClass($0) })
     }
 
     var entities: [GKEntity] {
@@ -25,8 +29,18 @@ class GKSystem {
         }
     }
 
+    func entities<T>(entityType: T.Type,
+                     requiredComponents: [GKComponent.Type],
+                     excludedComponents: [GKComponent.Type]) -> [T] where T: GKEntity {
+        scene.entities(ofType: T.self)
+            .filter {
+                let types = Set($0.components.keys)
+                return types.isDisjoint(with: excludedTypes) && requiredTypes.isSubset(of: types)
+            }
+    }
+
     private func containsComponents(_ entity: GKEntity) -> Bool {
-        componentTypes.isSubset(of: entity.components.keys)
+        requiredTypes.isSubset(of: entity.components.keys)
     }
 
     // MARK: Methods meant to be overriden

@@ -41,10 +41,10 @@ enum Settings {
             switch type {
             case .blue:
                 return 10
-            case .green:
-                return 10
             case .orange:
                 return 100
+            default:
+                return 0
             }
         }
 
@@ -56,6 +56,8 @@ enum Settings {
                 path += "-blue"
             case .green:
                 path += "-green"
+            case .red:
+                path += "-red"
             case .orange:
                 path += "-orange"
             }
@@ -87,6 +89,7 @@ enum Settings {
 
     enum Ball {
         static let image = UIImage(named: "ball")!
+        static let spookyImage = UIImage(named: "ball-spooky")!
         static let radius: CGFloat = 12
         static let speed = CGFloat(8)
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class WinSystem: GKSystem {
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [ObjectiveComponent.self])
+        super.init(scene: scene, requiredComponents: [ObjectiveComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {

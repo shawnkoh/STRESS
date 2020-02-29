@@ -12,9 +12,10 @@ class ScoreSystem: GKSystem {
     private(set) var score: Int = 0
 
     init(scene: GKScene) {
-        super.init(scene: scene, componentClasses: [ScoreComponent.self,
-                                                    DidHitComponent.self,
-                                                    WillDestroyComponent.self])
+        super.init(scene: scene,
+                   requiredComponents: [ScoreComponent.self,
+                                        DidHitComponent.self,
+                                        WillDestroyComponent.self])
     }
 
     override func update(deltaTime: TimeInterval) {
