@@ -19,7 +19,7 @@ class LongPressComponent: GKComponent {
 
     override func didAddToEntity(_ entity: GKEntity) {
         guard let view = entity.component(ofType: VisualComponent.self)?.view else {
-            fatalError("InteractableComponent requires an entity with a VisualComponent")
+            fatalError("LongPressComponent requires an entity with a VisualComponent")
         }
 
         view.isUserInteractionEnabled = true

@@ -19,7 +19,7 @@ class TapComponent: GKComponent {
 
     override func didAddToEntity(_ entity: GKEntity) {
         guard let view = entity.component(ofType: VisualComponent.self)?.view else {
-            fatalError("InteractableComponent requires an entity with a VisualComponent")
+            fatalError("TapComponent requires an entity with a VisualComponent")
         }
 
         view.isUserInteractionEnabled = true
