@@ -42,7 +42,7 @@
 		8670F7BF240AD675007EC376 /* DidRespawnSpookyBallComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7BE240AD675007EC376 /* DidRespawnSpookyBallComponent.swift */; };
 		8670F7C3240B1B0F007EC376 /* ParticleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7C2240B1B0F007EC376 /* ParticleComponent.swift */; };
 		8670F7C5240B1BD2007EC376 /* ParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7C4240B1BD2007EC376 /* ParticleSystem.swift */; };
-		8670F7C7240B21D7007EC376 /* IsEmitingParticlesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7C6240B21D7007EC376 /* IsEmitingParticlesComponent.swift */; };
+		8670F7C7240B21D7007EC376 /* IsEmittingParticlesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7C6240B21D7007EC376 /* IsEmittingParticlesComponent.swift */; };
 		8670F7C9240B2760007EC376 /* DidAttachParticleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7C8240B2760007EC376 /* DidAttachParticleComponent.swift */; };
 		8670F7CB240B9B68007EC376 /* AttachParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670F7CA240B9B68007EC376 /* AttachParticleSystem.swift */; };
 		86757F1F2409938A00B868B9 /* PegHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F1E2409938A00B868B9 /* PegHitSystem.swift */; };
@@ -190,7 +190,7 @@
 		8670F7BE240AD675007EC376 /* DidRespawnSpookyBallComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidRespawnSpookyBallComponent.swift; sourceTree = "<group>"; };
 		8670F7C2240B1B0F007EC376 /* ParticleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleComponent.swift; sourceTree = "<group>"; };
 		8670F7C4240B1BD2007EC376 /* ParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystem.swift; sourceTree = "<group>"; };
-		8670F7C6240B21D7007EC376 /* IsEmitingParticlesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEmitingParticlesComponent.swift; sourceTree = "<group>"; };
+		8670F7C6240B21D7007EC376 /* IsEmittingParticlesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEmittingParticlesComponent.swift; sourceTree = "<group>"; };
 		8670F7C8240B2760007EC376 /* DidAttachParticleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidAttachParticleComponent.swift; sourceTree = "<group>"; };
 		8670F7CA240B9B68007EC376 /* AttachParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachParticleSystem.swift; sourceTree = "<group>"; };
 		86757F1E2409938A00B868B9 /* PegHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegHitSystem.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 			children = (
 				8670F7C2240B1B0F007EC376 /* ParticleComponent.swift */,
 				8670F7C8240B2760007EC376 /* DidAttachParticleComponent.swift */,
-				8670F7C6240B21D7007EC376 /* IsEmitingParticlesComponent.swift */,
+				8670F7C6240B21D7007EC376 /* IsEmittingParticlesComponent.swift */,
 			);
 			path = Particle;
 			sourceTree = "<group>";
@@ -953,7 +953,7 @@
 				8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */,
 				86F2578A23FC665000C25BBE /* FiringComponent.swift in Sources */,
 				865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */,
-				8670F7C7240B21D7007EC376 /* IsEmitingParticlesComponent.swift in Sources */,
+				8670F7C7240B21D7007EC376 /* IsEmittingParticlesComponent.swift in Sources */,
 				86F257CF23FCDE3B00C25BBE /* DesigningScene.swift in Sources */,
 				8676A16E2402395B005EAA1E /* Cell.swift in Sources */,
 				864DA1D523FDA794005805FF /* GameStateMachine.swift in Sources */,

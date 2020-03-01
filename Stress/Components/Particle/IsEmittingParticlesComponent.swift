@@ -1,5 +1,5 @@
 //
-//  IsEmitingParticlesComponent.swift
+//  IsEmittingParticlesComponent.swift
 //  Stress
 //
 //  Created by Shawn Koh on 1/3/20.
