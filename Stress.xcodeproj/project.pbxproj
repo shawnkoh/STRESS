@@ -136,7 +136,6 @@
 		86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAF5AB240594E600EDD629 /* ScoreSystem.swift */; };
 		86FAF5AE2405954900EDD629 /* DestroySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAF5AD2405954900EDD629 /* DestroySystem.swift */; };
 		86FB25DC240155B300914142 /* LevelNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DB240155B300914142 /* LevelNameLabel.swift */; };
-		86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB25DD24015BC200914142 /* InteractableComponent.swift */; };
 		86FB29ED240798BD006805C7 /* CleanupPhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */; };
 		86FCB9C82408617B0006C26F /* BucketComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FCB9C72408617B0006C26F /* BucketComponent.swift */; };
 		86FCB9CA240861860006C26F /* BucketSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FCB9C9240861860006C26F /* BucketSystem.swift */; };
@@ -289,7 +288,6 @@
 		86FAF5AB240594E600EDD629 /* ScoreSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystem.swift; sourceTree = "<group>"; };
 		86FAF5AD2405954900EDD629 /* DestroySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroySystem.swift; sourceTree = "<group>"; };
 		86FB25DB240155B300914142 /* LevelNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNameLabel.swift; sourceTree = "<group>"; };
-		86FB25DD24015BC200914142 /* InteractableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractableComponent.swift; sourceTree = "<group>"; };
 		86FB29EC240798BD006805C7 /* CleanupPhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupPhysicsSystem.swift; sourceTree = "<group>"; };
 		86FCB9C72408617B0006C26F /* BucketComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketComponent.swift; sourceTree = "<group>"; };
 		86FCB9C9240861860006C26F /* BucketSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketSystem.swift; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				86E5207423FD368900D588A6 /* TransformComponent.swift */,
-				86FB25DD24015BC200914142 /* InteractableComponent.swift */,
 				86BF17B62405607500BAE651 /* CollisionComponent.swift */,
 				86FCB9C72408617B0006C26F /* BucketComponent.swift */,
 				865B2D83240597EC00512296 /* ScoreComponent.swift */,
@@ -996,7 +993,6 @@
 				86F2579723FC6A6B00C25BBE /* Settings.swift in Sources */,
 				86F257D423FCDEB500C25BBE /* Store.swift in Sources */,
 				86E84572240C37F8009331A3 /* CirclePegData.swift in Sources */,
-				86FB25DE24015BC200914142 /* InteractableComponent.swift in Sources */,
 				86F578B2240852F400E54C46 /* Bucket.swift in Sources */,
 				86F2579523FC6A2B00C25BBE /* CGFloat+Extensions.swift in Sources */,
 				86FAF5AC240594E600EDD629 /* ScoreSystem.swift in Sources */,
