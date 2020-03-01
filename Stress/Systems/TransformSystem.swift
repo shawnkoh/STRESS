@@ -32,6 +32,8 @@ class TransformSystem: GKSystem {
                 switch physicsBody {
                 case let circle as BKPhysicsCircle:
                     circle.center = transformComponent.position
+                case let triangle as BKPhysicsTriangle:
+                    triangle.moveCentroidTo(point: transformComponent.position)
                 default:
                     ()
                 }

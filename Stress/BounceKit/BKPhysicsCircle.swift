@@ -168,6 +168,8 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         switch body {
         case let edge as BKPhysicsEdge:
             return computeContact(withEdge: edge)
+        case let triangle as BKPhysicsTriangle:
+            return computeContact(withTriangle: triangle)
         case let circle as BKPhysicsCircle:
             return computeContact(withCircle: circle)
         default:
@@ -187,6 +189,18 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         }
     }
 
+    private func computeContact(withTriangle triangle: BKPhysicsTriangle) -> BKPhysicsContact? {
+        let unitVector = velocity / velocity.length
+        let line = BKLine(from: center, to: center + unitVector)
+        let nearestEdge = triangle.nearestLine(to: self.center)
+
+        if let intersectionPoint = line.intersectionPoint(to: nearestEdge) {
+            return BKPhysicsContact(bodyA: self, bodyB: triangle, contactPoint: intersectionPoint)
+        } else {
+            return nil
+        }
+    }
+
     private func computeContact(withCircle circle: BKPhysicsCircle) -> BKPhysicsContact? {
         // TODO: Not accurate because the midpoint is not necessarily their contact point
         BKPhysicsContact(bodyA: self,
@@ -198,16 +212,18 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         switch body {
         case let edge as BKPhysicsEdge:
             return computeCollisionVector(withEdge: edge)
+        case let triangle as BKPhysicsTriangle:
+            return computeCollisionVector(withTriangle: triangle)
         default:
             fatalError("Unsupported BKPhysicsBody subclass")
         }
     }
 
-    private func computeCollisionVector(withEdge edge: BKPhysicsEdge) -> CGVector {
+    private func computeCollisionVector(withLine line: BKLineProtocol) -> CGVector {
         // https://math.stackexchange.com/questions/13261/how-to-get-a-reflection-vector
-        let edgeVector = CGVector(dx: edge.to.x - edge.from.x, dy: edge.to.y - edge.from.y)
-        let normal1 = edgeVector.normalVectors.0
-        let normal2 = edgeVector.normalVectors.1
+        let lineVector = CGVector(dx: line.to.x - line.from.x, dy: line.to.y - line.from.y)
+        let normal1 = lineVector.normalVectors.0
+        let normal2 = lineVector.normalVectors.1
         let inverseD = velocity * -1
         let angle1 = acos(inverseD.dot(normal1) / (inverseD.length * normal1.length)) * 180 / CGFloat.pi
         let angle2 = acos(inverseD.dot(normal2) / (inverseD.length * normal2.length)) * 180 / CGFloat.pi
@@ -215,6 +231,15 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         let normal = angle1 < angle2 ? normal1 : normal2
         let r = CGVector.computeReflectionVector(d: velocity, n: normal / normal.length)
         return r * restitution
+    }
+
+    private func computeCollisionVector(withEdge edge: BKPhysicsEdge) -> CGVector {
+        computeCollisionVector(withLine: edge)
+    }
+
+    private func computeCollisionVector(withTriangle triangle: BKPhysicsTriangle) -> CGVector {
+        let edge = triangle.nearestLine(to: center)
+        return computeCollisionVector(withLine: edge)
     }
 
     func computeCollisionVectors(with body: BKPhysicsBodyWithVolume) -> (CGVector, CGVector) {

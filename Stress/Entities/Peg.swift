@@ -39,9 +39,19 @@ class Peg: GKEntity {
         let visualComponent = VisualComponent(view: view)
         addComponent(visualComponent)
 
-        let physicsBody = BKPhysicsCircle(center: center, radius: radius, isDynamic: false, isResting: false)
-        let physicsComponent = PhysicsComponent(physicsBody: physicsBody)
-        addComponent(physicsComponent)
+        switch shape {
+        case .circle:
+            let circle = BKPhysicsCircle(center: center, radius: radius, isDynamic: false, isResting: false)
+            let physicsComponent = PhysicsComponent(physicsBody: circle)
+            addComponent(physicsComponent)
+        case .triangle:
+            let diameter = radius * 2
+            let triangle = BKPhysicsTriangle(vertexA: .init(x: radius, y: 0),
+                                             vertexB: .init(x: diameter, y: 0),
+                                             vertexC: .init(x: 0, y: diameter))
+            let physicsComponent = PhysicsComponent(physicsBody: triangle)
+            addComponent(physicsComponent)
+        }
     }
 }
 

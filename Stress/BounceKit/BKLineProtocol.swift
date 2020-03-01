@@ -102,3 +102,36 @@ extension BKLineProtocol {
         return (a * x0 + b * y0 + c).abs() / (a * a + b * b).squareRoot()
     }
 }
+
+struct LineEquation {
+    let A: CGFloat
+    let B: CGFloat
+    let C: CGFloat
+
+    init(A: CGFloat, B: CGFloat, C: CGFloat) {
+        self.A = A
+        self.B = B
+        self.C = C
+    }
+
+    init(from: CGPoint, to: CGPoint) {
+        A = to.y - from.y
+        B = from.x - to.x
+        C = A * from.x + B * from.y
+    }
+
+    func intersectionPoint(with other: LineEquation) -> CGPoint? {
+        let determinant = A * other.B - other.A * B
+        if determinant == 0 {
+            return nil
+        }
+        return CGPoint(x: (other.B * C - B * other.C) / determinant,
+                       y: (A * other.C - other.A * C) / determinant)
+    }
+
+    /// Calculates the shortest distance from the line to a point.
+    func shortestDistance(to point: CGPoint) -> CGFloat {
+        // https://math.stackexchange.com/questions/275529/check-if-line-intersects-with-circles-perimeter
+        (A * point.x + B * point.y + C).abs() / (A * A + B * B).squareRoot()
+    }
+}
