@@ -18,4 +18,10 @@ class BKPhysicsTriangle: BKPhysicsBody {
         self.vertexB = vertexB
         self.vertexC = vertexC
     }
+
+    var lines: [BKLine] {
+        [BKLine(from: vertexA, to: vertexB),
+         BKLine(from: vertexB, to: vertexC),
+         BKLine(from: vertexC, to: vertexA)]
+    }
 }

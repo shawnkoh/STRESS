@@ -74,31 +74,29 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     }
 
     func intersects(with body: BKPhysicsBody) -> Bool {
-        if let edge = body as? BKPhysicsEdge {
+        switch body {
+        case let edge as BKPhysicsEdge:
             return intersects(withEdge: edge)
+        case let triangle as BKPhysicsTriangle:
+            return intersects(withTriangle: triangle)
+        case let circle as BKPhysicsCircle:
+            return intersects(withCircle: circle)
+        default:
+            // TODO: Fallback to a polygon algo
+            fatalError("Unsupported BKPhysicsBody subclass")
         }
-
-        if let volumeBody = body as? BKPhysicsBodyWithVolume {
-            return intersects(withVolume: volumeBody)
-        }
-
-        fatalError("Unsupported BKPhysicsBody subclass")
     }
 
     private func intersects(withEdge edge: BKPhysicsEdge) -> Bool {
         edge.intersects(with: self)
     }
 
-    private func intersects(withVolume body: BKPhysicsBodyWithVolume) -> Bool {
-        if let body = body as? BKPhysicsCircle {
-            return intersects(withCircle: body)
-        }
-        // TODO: Fallback to polygon intersection
-        fatalError("Unsupported BKPhysicsBodyWithVolume subclass")
+    private func intersects(withTriangle triangle: BKPhysicsTriangle) -> Bool {
+        triangle.lines.contains { $0.intersects(with: self) }
     }
 
-    private func intersects(withCircle body: BKPhysicsCircle) -> Bool {
-        center.distance(to: body.center) < radius + body.radius
+    private func intersects(withCircle circle: BKPhysicsCircle) -> Bool {
+        center.distance(to: circle.center) < radius + circle.radius
     }
 
     // MARK: Compute position when contacting
@@ -113,16 +111,17 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
             return nil
         }
 
-        if let body = body as? BKPhysicsEdge {
-            return computePositionWhenContacting(withEdge: body)
+        switch body {
+        case let edge as BKPhysicsEdge:
+            return computePositionWhenContacting(withEdge: edge)
+        case let triangle as BKPhysicsTriangle:
+            return computePositionWhenContacting(withTriangle: triangle)
+        case let circle as BKPhysicsCircle:
+            return computePositionWhenContacting(withCircle: circle)
+        default:
+            // TODO: Fallback to a polygon algo
+            fatalError("Unsupported type")
         }
-
-        if let volumeBody = body as? BKPhysicsBodyWithVolume {
-            return computePositionWhenContacting(withVolume: volumeBody)
-        }
-
-        // TODO: Fallback to a polygon algo
-        fatalError("Unsupported type")
     }
 
     private func computePositionWhenContacting(withEdge edge: BKPhysicsEdge) -> CGPoint {
@@ -135,20 +134,27 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
         return positionWhenContacting
     }
 
-    private func computePositionWhenContacting(withVolume body: BKPhysicsBodyWithVolume) -> CGPoint {
-        if let body = body as? BKPhysicsCircle {
-            return computePositionWhenContacting(withCircle: body)
+    private func computePositionWhenContacting(withTriangle triangle: BKPhysicsTriangle) -> CGPoint? {
+        // TODO: Optimise this by calculating the precise location instead of a while loop
+        let unitVector = velocity / velocity.length
+        for line in triangle.lines {
+            var positionWhenContacting = center
+            guard line.intersects(with: self) else {
+                continue
+            }
+            while line.shortestDistance(to: positionWhenContacting) < radius {
+                positionWhenContacting -= unitVector
+            }
+            return positionWhenContacting
         }
-
-        // TODO: Fallback to a polygon algo
-        fatalError("Unsupported type")
+        return nil
     }
 
-    private func computePositionWhenContacting(withCircle body: BKPhysicsCircle) -> CGPoint {
+    private func computePositionWhenContacting(withCircle circle: BKPhysicsCircle) -> CGPoint {
         // TODO: Find a better way to calculate the point of intersection. This is neither correct nor efficient
         let unitVector = velocity / velocity.length
         var intersectionPosition = center
-        while intersectionPosition.distance(to: body.center) < radius + body.radius {
+        while intersectionPosition.distance(to: circle.center) < radius + circle.radius {
             intersectionPosition -= unitVector
         }
         return intersectionPosition
@@ -159,16 +165,15 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
      If the bodies will not intersect, returns nil.
      */
     func computeContact(with body: BKPhysicsBody) -> BKPhysicsContact? {
-        if let edge = body as? BKPhysicsEdge {
+        switch body {
+        case let edge as BKPhysicsEdge:
             return computeContact(withEdge: edge)
-        }
-
-        if let circle = body as? BKPhysicsCircle {
+        case let circle as BKPhysicsCircle:
             return computeContact(withCircle: circle)
+        default:
+            // TODO: Fallback to polygon
+            fatalError("Unsupported BKPhysicsBody subclass")
         }
-
-        // TODO: Fallback to polygon
-        fatalError("Unsupported BKPhysicsBody subclass")
     }
 
     private func computeContact(withEdge edge: BKPhysicsEdge) -> BKPhysicsContact? {
@@ -190,11 +195,12 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     }
 
     func computeCollisionVector(with body: BKPhysicsBody) -> CGVector {
-        if let edge = body as? BKPhysicsEdge {
+        switch body {
+        case let edge as BKPhysicsEdge:
             return computeCollisionVector(withEdge: edge)
+        default:
+            fatalError("Unsupported BKPhysicsBody subclass")
         }
-
-        fatalError("Unsupported BKPhysicsBody subclass")
     }
 
     private func computeCollisionVector(withEdge edge: BKPhysicsEdge) -> CGVector {
@@ -212,18 +218,27 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     }
 
     func computeCollisionVectors(with body: BKPhysicsBodyWithVolume) -> (CGVector, CGVector) {
-        let m1 = mass
-        let m2 = body.mass
-        let v1 = velocity
-        let v2 = body.velocity
+        switch body {
+        case let circle as BKPhysicsCircle:
+            return computeCollisionVectors(withCircle: circle)
+        default:
+            fatalError("Unsupported BKPhysicsBodyWithVolume subclass")
+        }
+    }
 
-        if body.isResting || !body.isDynamic {
+    private func computeCollisionVectors(withCircle circle: BKPhysicsCircle) -> (CGVector, CGVector) {
+        let m1 = mass
+        let m2 = circle.mass
+        let v1 = velocity
+        let v2 = circle.velocity
+
+        if circle.isResting || !circle.isDynamic {
             // Ideal solution: https://en.wikipedia.org/wiki/Elastic_collision#Two-dimensional
             // Problem is that I'm not sure what the angle of deflection in ^ is supposed to be
 
             // So instead, use this
             // https://math.stackexchange.com/questions/13261/how-to-get-a-reflection-vector
-            let v2ToV1 = CGVector(dx: center.x - body.center.x, dy: center.y - body.center.y)
+            let v2ToV1 = CGVector(dx: center.x - circle.center.x, dy: center.y - circle.center.y)
             let r = CGVector.computeReflectionVector(d: v1, n: v2ToV1 / v2ToV1.length)
             let dampenedR = r * restitution
             return (dampenedR, .zero)
@@ -231,7 +246,7 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
 
         // https://en.wikipedia.org/wiki/Elastic_collision#Two-dimensional_collision_with_two_moving_objects
         let x1 = CGVector(dx: center.x, dy: center.y)
-        let x2 = CGVector(dx: body.center.x, dy: body.center.y)
+        let x2 = CGVector(dx: circle.center.x, dy: circle.center.y)
 
         let vel1 = v1 -
             ((2 * m2) / (m1 + m2)) *
