@@ -23,31 +23,32 @@ class TitleScreen: GKScene {
 
         title.text = "STRESS"
         title.textAlignment = .center
-        title.font = title.font.withSize(80)
+        title.font = title.font.withSize(64)
         title.backgroundColor = .white
         title.translatesAutoresizingMaskIntoConstraints = false
 
         playButton.setTitle("PLAY", for: .normal)
-        playButton.setTitleColor(.black, for: .normal)
-        playButton.titleLabel?.font = playButton.titleLabel?.font.withSize(50)
-        playButton.backgroundColor = .white
+        playButton.setTitleColor(.white, for: .normal)
+        playButton.titleLabel?.font = playButton.titleLabel?.font.withSize(32)
+        playButton.backgroundColor = .red
+        playButton.layer.cornerRadius = 32
         playButton.translatesAutoresizingMaskIntoConstraints = false
 
         designButton.backgroundColor = .white
         designButton.setTitle("CREATE LEVEL", for: .normal)
         designButton.setTitleColor(.black, for: .normal)
-        designButton.titleLabel?.font = designButton.titleLabel?.font.withSize(50)
+        designButton.titleLabel?.font = designButton.titleLabel?.font.withSize(32)
         designButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            title.widthAnchor.constraint(equalToConstant: 400),
+            title.widthAnchor.constraint(equalToConstant: 300),
             title.heightAnchor.constraint(equalToConstant: 100),
 
-            playButton.widthAnchor.constraint(equalToConstant: 400),
-            playButton.heightAnchor.constraint(equalToConstant: 100),
+            playButton.widthAnchor.constraint(equalToConstant: 300),
+            playButton.heightAnchor.constraint(equalToConstant: 60),
 
-            designButton.widthAnchor.constraint(equalToConstant: 400),
-            designButton.heightAnchor.constraint(equalToConstant: 100)
+            designButton.widthAnchor.constraint(equalToConstant: 300),
+            designButton.heightAnchor.constraint(equalToConstant: 60)
         ])
 
         playButton.addTarget(self, action: #selector(play), for: .touchUpInside)
