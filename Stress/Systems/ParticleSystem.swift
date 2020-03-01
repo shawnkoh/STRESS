@@ -26,12 +26,12 @@ class ParticleSystem: GKSystem {
             else {
                 fatalError("Unable to access components")
             }
-            particleComponent.emitterLayer.lifetime = Float(particleComponent.duration)
+            particleComponent.emitterLayer.birthRate = 1
             particleComponent.emitterLayer.emitterPosition = position
             isEmittingParticlesComponent.duration += deltaTime
 
             if isEmittingParticlesComponent.duration > particleComponent.duration {
-                particleComponent.emitterLayer.lifetime = 0
+                particleComponent.emitterLayer.birthRate = 0
                 $0.removeComponent(ofType: IsEmittingParticlesComponent.self)
             }
         }

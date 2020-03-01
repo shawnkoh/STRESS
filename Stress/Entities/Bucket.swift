@@ -30,10 +30,10 @@ class Bucket: GKEntity {
         let emitterLayer = CAEmitterLayer()
         emitterLayer.renderMode = .additive
         let cell = CAEmitterCell()
-        cell.birthRate = 1_200
+        cell.birthRate = 500
         cell.lifetime = 1.3
-        cell.lifetimeRange = 0.3
-        cell.velocity = 150
+        cell.lifetimeRange = 0.2
+        cell.velocity = 130
         cell.velocityRange = 50
         cell.emissionRange = .pi * 2
         cell.scale = 0.7
@@ -41,7 +41,7 @@ class Bucket: GKEntity {
         cell.contents = UIImage(named: "particle")!.cgImage
         emitterLayer.emitterCells = [cell]
 
-        let particleComponent = ParticleComponent(emitterLayer: emitterLayer, duration: 0.3)
+        let particleComponent = ParticleComponent(emitterLayer: emitterLayer, duration: 0.15)
         addComponent(particleComponent)
     }
 }

@@ -21,7 +21,7 @@ class AttachParticleSystem: GKSystem {
                 fatalError("Unable to access components")
             }
             scene.view?.layer.addSublayer(emitterLayer)
-            emitterLayer.lifetime = 0
+            emitterLayer.birthRate = 0
             $0.addComponent(DidAttachParticleComponent())
         }
     }
