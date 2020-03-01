@@ -27,13 +27,21 @@ class Bucket: GKEntity {
 
         addComponent(BucketComponent())
 
-//        BKPhysicsEdge(from: <#T##CGPoint#>, to: <#T##CGPoint#>)
-//        let leftEdge = BKPhysicsEdge(center: .zero, radius: 64, mass: 1.125, velocity: .zero)
-//        let leftEdgePhysicsComponent = PhysicsComponent(physicsBody: leftEdge)
-//        addComponent(leftEdgePhysicsComponent)
-//
-//        let rightEdge = BKPhysicsCircle(center: .zero, radius: 64, mass: 1.125, velocity: .zero)
-//        let rightEdgePhysicsComponent = PhysicsComponent(physicsBody: rightEdge)
-//        addComponent(rightEdgePhysicsComponent)
+        let emitterLayer = CAEmitterLayer()
+        emitterLayer.renderMode = .additive
+        let cell = CAEmitterCell()
+        cell.birthRate = 800
+        cell.lifetime = 1.3
+        cell.lifetimeRange = 0.3
+        cell.velocity = 150
+        cell.velocityRange = 50
+        cell.emissionRange = .pi * 2
+        cell.scale = 0.7
+        cell.color = UIColor(red: 0.8, green: 0.4, blue: 0.2, alpha: 0.3).cgColor
+        cell.contents = UIImage(named: "particle")!.cgImage
+        emitterLayer.emitterCells = [cell]
+
+        let particleComponent = ParticleComponent(emitterLayer: emitterLayer, duration: 0.3)
+        addComponent(particleComponent)
     }
 }

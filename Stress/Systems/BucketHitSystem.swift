@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class BucketHitSystem: GKSystem {
     init(scene: GKScene) {
@@ -28,6 +29,7 @@ class BucketHitSystem: GKSystem {
             ammoComponent.ammo += 1
             (scene as? LevelPlayingScene)?.parent.ammoLabel.text = "Shots left: \(ammoComponent.ammo)"
             bucket.removeComponent(ofType: DidHitComponent.self)
+            bucket.addComponent(IsEmittingParticlesComponent())
         }
         scene.entities(ofType: Peg.self)
             .filter { $0.component(ofType: DidHitComponent.self) != nil }
