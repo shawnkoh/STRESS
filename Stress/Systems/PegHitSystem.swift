@@ -23,7 +23,14 @@ class PegHitSystem: GKSystem {
                 fatalError("Unable to access components")
             }
 
-            view.image = Settings.Peg.image(type: pegComponent.type, shape: pegComponent.shape, didHit: true)
+            switch peg {
+            case _ as CirclePeg:
+                view.image = Settings.Peg.image(type: pegComponent.type, shape: .circle, didHit: true)
+            case _ as TrianglePeg:
+                view.image = Settings.Peg.image(type: pegComponent.type, shape: .triangle, didHit: true)
+            default:
+                fatalError("Unsupported Peg type")
+            }
         }
     }
 }

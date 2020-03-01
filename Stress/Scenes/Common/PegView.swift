@@ -14,11 +14,10 @@ class PegView: UIImageView {
         fatalError("init(coder:) is not supported")
     }
 
-    init(type: PegType, shape: PegShape, radius: CGFloat) {
+    init(type: PegType, shape: PegShape, size: CGSize) {
         super.init(frame: .zero)
         image = Settings.Peg.image(type: type, shape: shape)
-        let diameter = radius * 2
-        frame.size = CGSize(width: diameter, height: diameter)
+        frame.size = size
     }
 
     override func removeFromSuperview() {

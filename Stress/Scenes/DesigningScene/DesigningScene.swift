@@ -166,12 +166,25 @@ class DesigningScene: GKScene {
     }
 
     private func createPeg(at location: CGPoint, type: PegType, shape: PegShape, angle: CGFloat?) {
-        let peg = Peg(center: location, type: type, shape: shape, radius: pegRadius, angle: angle)
-        guard canPlace(peg: peg, at: location) else {
+        var peg: Peg?
+        switch shape {
+        case .circle:
+            peg = CirclePeg(center: location, type: type, radius: pegRadius)
+        case .triangle:
+            // centroid = location
+            let vertexA = CGPoint(x: location.x, y: location.y - pegRadius)
+            let vertexB = CGPoint(x: location.x - pegRadius, y: location.y + pegRadius)
+            let vertexC = CGPoint(x: location.x + pegRadius, y: location.y + pegRadius)
+            peg = TrianglePeg(vertexA: vertexA,
+                              vertexB: vertexB,
+                              vertexC: vertexC,
+                              type: type)
+        }
+        guard canPlace(peg: peg!, at: location) else {
             return
         }
-        addInteractableComponents(to: peg)
+        addInteractableComponents(to: peg!)
 
-        levelScene.addEntity(peg)
+        levelScene.addEntity(peg!)
     }
 }

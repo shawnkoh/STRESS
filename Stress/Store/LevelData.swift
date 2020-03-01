@@ -25,32 +25,46 @@ class LevelData: Object {
     @objc dynamic var name: String = Settings.Level.name
     @objc dynamic var width = Double(Settings.Level.size.width)
     @objc dynamic var height = Double(Settings.Level.size.height)
-    let pegs: List<PegData>
+    let circlePegs: List<CirclePegData>
+    let trianglePegs: List<TrianglePegData>
 
     required init() {
-        self.pegs = List()
+        self.circlePegs = List()
+        self.trianglePegs = List()
         super.init()
     }
 
-    init(id: String, name: String, width: Double, height: Double, pegs: List<PegData>) {
+    init(id: String,
+         name: String,
+         width: Double,
+         height: Double,
+         circlePegs: List<CirclePegData>,
+         trianglePegs: List<TrianglePegData>) {
         self.id = id
         self.name = name
         self.width = width
         self.height = height
-        self.pegs = pegs
+        self.circlePegs = circlePegs
+        self.trianglePegs = trianglePegs
         super.init()
     }
 
     /// Constructs a new `LevelData`.
     /// - Parameter level: A `Level` abstract data structure.
     convenience init(level: Level) {
-        let pegDatas = level.pegs.map { PegData(peg: $0) }
-        let pegs = List<PegData>()
-        pegs.append(objectsIn: pegDatas)
+        let circlePegDatas = level.pegs.compactMap { $0 as? CirclePeg }
+            .map { CirclePegData(peg: $0) }
+        let trianglePegDatas = level.pegs.compactMap { $0 as? TrianglePeg }
+            .map { TrianglePegData(peg: $0) }
+        let circlePegs = List<CirclePegData>()
+        let trianglePegs = List<TrianglePegData>()
+        circlePegs.append(objectsIn: circlePegDatas)
+        trianglePegs.append(objectsIn: trianglePegDatas)
         self.init(id: level.id,
                   name: level.name,
                   width: Double(level.size.width),
                   height: Double(level.size.height),
-                  pegs: pegs)
+                  circlePegs: circlePegs,
+                  trianglePegs: trianglePegs)
     }
 }

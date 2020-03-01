@@ -1,8 +1,8 @@
 //
-//  PegData.swift
+//  CirclePegData.swift
 //  Stress
 //
-//  Created by Shawn Koh on 19/2/20.
+//  Created by Shawn Koh on 2/3/20.
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import RealmSwift
  `PegData` represents a Realm model object for the abstract data structure `Peg`.
  It is intended to be used for persisting `Peg`s.
  */
-class PegData: Object {
+class CirclePegData: Object {
     override class func primaryKey() -> String? {
         "id"
     }
@@ -24,8 +24,6 @@ class PegData: Object {
     @objc dynamic var centerY = Double()
     @objc dynamic var radius = Double()
     @objc dynamic var type: Int = 0
-    @objc dynamic var shape: Int = 0
-    let angle = RealmOptional<Double>()
 
     /// Constructs an empty `PegData`.
     required init() {
@@ -37,30 +35,19 @@ class PegData: Object {
     ///     - centerX: The x position of the peg's center.
     ///     - centerY: The y position of the peg's center.
     ///     - radius: The radius of the peg.
-    ///     - type: An integer representing the peg's `PegShape`.
-    convenience init(id: String,
-                     centerX: Double,
-                     centerY: Double,
-                     radius: Double,
-                     type: Int,
-                     shape: Int,
-                     angle: Double?) {
-        guard PegShape(rawValue: shape) != nil else {
-            fatalError("An incorrect PegType was provided.")
-        }
+    ///     - type: An integer representing the peg's `PegType`.
+    convenience init(id: String, centerX: Double, centerY: Double, radius: Double, type: Int) {
         self.init()
         self.id = id
         self.centerX = centerX
         self.centerY = centerY
         self.radius = radius
         self.type = type
-        self.shape = shape
-        self.angle.value = angle
     }
 
     /// Constructs a new `PegData`.
     /// - Parameter peg: A peg entity
-    convenience init(peg: Peg) {
+    convenience init(peg: CirclePeg) {
         guard
             let pegComponent = peg.component(ofType: PegComponent.self),
             let transformComponent = peg.component(ofType: TransformComponent.self),
@@ -69,17 +56,10 @@ class PegData: Object {
             fatalError("The Peg does not have the required components")
         }
 
-        var angle: Double?
-        if let float = peg.component(ofType: RotatableComponent.self)?.angle {
-            angle = Double(float)
-        }
-
         self.init(id: peg.id,
                   centerX: Double(transformComponent.position.x),
                   centerY: Double(transformComponent.position.y),
                   radius: Double(view.bounds.size.width / 2),
-                  type: pegComponent.type.rawValue,
-                  shape: pegComponent.shape.rawValue,
-                  angle: angle)
+                  type: pegComponent.type.rawValue)
     }
 }

@@ -10,11 +10,9 @@ import Foundation
 
 class PegComponent: GKComponent {
     var type: PegType
-    var shape: PegShape
 
-    init(type: PegType, shape: PegShape) {
+    init(type: PegType) {
         self.type = type
-        self.shape = shape
     }
 }
 
