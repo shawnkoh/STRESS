@@ -74,6 +74,7 @@
 		86BA4555240AD15F00D08227 /* SpookyBallSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA4554240AD15F00D08227 /* SpookyBallSystem.swift */; };
 		86BF17B524051DDB00BAE651 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B424051DDB00BAE651 /* CollisionSystem.swift */; };
 		86BF17B72405607500BAE651 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF17B62405607500BAE651 /* CollisionComponent.swift */; };
+		86E136A6240BA310003EFA64 /* BKPhysicsTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E136A5240BA310003EFA64 /* BKPhysicsTriangle.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86EFDE61240816B3001E4174 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFDE60240816B3001E4174 /* GameState.swift */; };
 		86EFDE6324082379001E4174 /* AmmoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFDE6224082379001E4174 /* AmmoComponent.swift */; };
@@ -215,6 +216,7 @@
 		86BA4554240AD15F00D08227 /* SpookyBallSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpookyBallSystem.swift; sourceTree = "<group>"; };
 		86BF17B424051DDB00BAE651 /* CollisionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
 		86BF17B62405607500BAE651 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
+		86E136A5240BA310003EFA64 /* BKPhysicsTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKPhysicsTriangle.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86EFDE60240816B3001E4174 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		86EFDE6224082379001E4174 /* AmmoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoComponent.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				86F257BF23FC6AFF00C25BBE /* BKPhysicsEdge.swift */,
 				86F257B723FC6AFF00C25BBE /* BKPhysicsWorld.swift */,
 				86F257B823FC6AFF00C25BBE /* BKSettings.swift */,
+				86E136A5240BA310003EFA64 /* BKPhysicsTriangle.swift */,
 			);
 			path = BounceKit;
 			sourceTree = "<group>";
@@ -889,6 +892,7 @@
 				86F2579323FC6A2300C25BBE /* CGPoint+Extensions.swift in Sources */,
 				86F257B523FC6ADF00C25BBE /* GKComponent.swift in Sources */,
 				86F257C123FC6AFF00C25BBE /* BKPhysicsCircle.swift in Sources */,
+				86E136A6240BA310003EFA64 /* BKPhysicsTriangle.swift in Sources */,
 				86BA4551240AD0A000D08227 /* DidDrawSpaceBlastComponent.swift in Sources */,
 				86BA4545240AB6CC00D08227 /* AmmoLabel.swift in Sources */,
 				8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */,

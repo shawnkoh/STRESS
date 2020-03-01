@@ -42,16 +42,16 @@ class BucketSystem: GKSystem {
 
         if bucketComponent.isMovingRight {
             if transformComponent.position.x <= maxX {
-                transformComponent.position.x += 5
+                transformComponent.position.x += 1
             } else {
-                transformComponent.position.y -= 5
+                transformComponent.position.x -= 1
                 bucketComponent.isMovingRight = false
             }
         } else {
             if transformComponent.position.x >= minX {
-                transformComponent.position.x -= 5
+                transformComponent.position.x -= 1
             } else {
-                transformComponent.position.x += 5
+                transformComponent.position.x += 1
                 bucketComponent.isMovingRight = true
             }
         }
