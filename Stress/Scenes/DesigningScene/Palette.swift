@@ -10,10 +10,10 @@ import UIKit
 
 class Palette: UIView {
     let selectToolAction: (ToolType?) -> Void
-    let pegRadiusStepper = UIStepper(frame: .zero)
+    let radiusStepper = UIStepper(frame: .zero)
 
     private weak var currentTool: Tool?
-    private let pegRadiusLabel = UILabel(frame: .zero)
+    private let radiusLabel = UILabel(frame: .zero)
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -122,12 +122,12 @@ class Palette: UIView {
     private func createSizeStack() -> UIStackView {
         let sizeStack = createHStack()
 
-        pegRadiusLabel.text = "Size: \(Int(Settings.Peg.radius))"
-        sizeStack.addArrangedSubview(pegRadiusLabel)
+        radiusLabel.text = "Size: \(Int(Settings.Peg.radius))"
+        sizeStack.addArrangedSubview(radiusLabel)
 
-        pegRadiusStepper.value = Double(Settings.Peg.radius)
-        pegRadiusStepper.addTarget(self, action: #selector(stepRadius), for: .touchUpInside)
-        sizeStack.addArrangedSubview(pegRadiusStepper)
+        radiusStepper.value = Double(Settings.Peg.radius)
+        radiusStepper.addTarget(self, action: #selector(stepRadius), for: .touchUpInside)
+        sizeStack.addArrangedSubview(radiusStepper)
 
         return sizeStack
     }
@@ -147,6 +147,6 @@ class Palette: UIView {
     }
 
     @objc private func stepRadius() {
-        pegRadiusLabel.text = "Size: \(Int(pegRadiusStepper.value))"
+        radiusLabel.text = "Size: \(Int(radiusStepper.value))"
     }
 }

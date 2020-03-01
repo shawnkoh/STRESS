@@ -27,7 +27,7 @@ class DesigningScene: GKScene {
 
     private var currentToolType: ToolType?
     private var pegRadius: CGFloat {
-        CGFloat(palette.pegRadiusStepper.value)
+        CGFloat(palette.radiusStepper.value)
     }
 
     init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
