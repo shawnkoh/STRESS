@@ -67,10 +67,16 @@ class Store {
             fatalError("An invalid PegData was provided.")
         }
 
+        var angle: CGFloat?
+        if let double = pegData.angle.value {
+            angle = CGFloat(double)
+        }
+
         let peg = Peg(center: CGPoint(x: pegData.centerX, y: pegData.centerY),
                       type: type,
                       shape: shape,
-                      radius: CGFloat(pegData.radius))
+                      radius: CGFloat(pegData.radius),
+                      angle: angle)
         return peg
     }
 

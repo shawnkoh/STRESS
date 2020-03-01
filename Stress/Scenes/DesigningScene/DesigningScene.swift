@@ -29,6 +29,9 @@ class DesigningScene: GKScene {
     private var pegRadius: CGFloat {
         CGFloat(palette.radiusStepper.value)
     }
+    private var pegAngle: CGFloat {
+        CGFloat(palette.angleStepper.value)
+    }
 
     init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
         self.store = store
@@ -63,7 +66,7 @@ class DesigningScene: GKScene {
         }
         let location = sender.location(in: stage)
         if case .create(let type, let shape) = type {
-            createPeg(at: location, type: type, shape: shape)
+            createPeg(at: location, type: type, shape: shape, angle: shape == .triangle ? pegAngle : nil)
         }
     }
 
@@ -162,12 +165,13 @@ class DesigningScene: GKScene {
         return self.hasNoOverlappingPegs(at: location, radius: radius, ignore: peg)
     }
 
-    private func createPeg(at location: CGPoint, type: PegType, shape: PegShape) {
-        let peg = Peg(center: location, type: type, shape: shape, radius: pegRadius)
+    private func createPeg(at location: CGPoint, type: PegType, shape: PegShape, angle: CGFloat?) {
+        let peg = Peg(center: location, type: type, shape: shape, radius: pegRadius, angle: angle)
         guard canPlace(peg: peg, at: location) else {
             return
         }
         addInteractableComponents(to: peg)
+
         levelScene.addEntity(peg)
     }
 }
