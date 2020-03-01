@@ -9,12 +9,11 @@
 import UIKit
 
 class Palette: UIView {
-    let decrementRadiusAction: () -> Void
-    let incrementRadiusAction: () -> Void
     let selectToolAction: (ToolType?) -> Void
+    let pegRadiusStepper = UIStepper(frame: .zero)
 
     private weak var currentTool: Tool?
-    let pegRadiusLabel = UILabel(frame: .zero)
+    private let pegRadiusLabel = UILabel(frame: .zero)
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -27,12 +26,8 @@ class Palette: UIView {
         loadAction: @escaping () -> Void,
         saveAction: @escaping () -> Void,
         playAction: @escaping () -> Void,
-        decrementRadiusAction: @escaping () -> Void,
-        incrementRadiusAction: @escaping () -> Void,
         selectToolAction: @escaping (ToolType?) -> Void
     ) {
-        self.decrementRadiusAction = decrementRadiusAction
-        self.incrementRadiusAction = incrementRadiusAction
         self.selectToolAction = selectToolAction
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -127,18 +122,12 @@ class Palette: UIView {
     private func createSizeStack() -> UIStackView {
         let sizeStack = createHStack()
 
-        let minusButton = UIButton(type: .roundedRect)
-        minusButton.setTitle("-", for: .normal)
-        minusButton.addTarget(self, action: #selector(decrementRadius), for: .touchDown)
-        sizeStack.addArrangedSubview(minusButton)
-
-        pegRadiusLabel.text = String(Int(Settings.Peg.radius))
+        pegRadiusLabel.text = "Size: \(Int(Settings.Peg.radius))"
         sizeStack.addArrangedSubview(pegRadiusLabel)
 
-        let plusButton = UIButton(type: .roundedRect)
-        plusButton.setTitle("+", for: .normal)
-        plusButton.addTarget(self, action: #selector(incrementRadius), for: .touchDown)
-        sizeStack.addArrangedSubview(plusButton)
+        pegRadiusStepper.value = Double(Settings.Peg.radius)
+        pegRadiusStepper.addTarget(self, action: #selector(stepRadius), for: .touchUpInside)
+        sizeStack.addArrangedSubview(pegRadiusStepper)
 
         return sizeStack
     }
@@ -157,11 +146,7 @@ class Palette: UIView {
         selectToolAction(currentTool?.type)
     }
 
-    @objc private func decrementRadius() {
-        decrementRadiusAction()
-    }
-
-    @objc private func incrementRadius() {
-        incrementRadiusAction()
+    @objc private func stepRadius() {
+        pegRadiusLabel.text = "Size: \(Int(pegRadiusStepper.value))"
     }
 }

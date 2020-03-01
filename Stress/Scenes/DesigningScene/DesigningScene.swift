@@ -23,15 +23,11 @@ class DesigningScene: GKScene {
                                loadAction: loadLevel,
                                saveAction: saveLevel,
                                playAction: playLevel,
-                               decrementRadiusAction: { self.pegRadius -= 1 },
-                               incrementRadiusAction: { self.pegRadius += 1 },
                                selectToolAction: selectTool)
 
     private var currentToolType: ToolType?
-    private var pegRadius = Settings.Peg.radius {
-        didSet {
-            palette.pegRadiusLabel.text = String(Int(pegRadius))
-        }
+    private var pegRadius: CGFloat {
+        CGFloat(palette.pegRadiusStepper.value)
     }
 
     init(store: Store, levelData: LevelData, backAction: @escaping () -> Void) {
@@ -138,9 +134,11 @@ class DesigningScene: GKScene {
     }
 
     private func loadLevel() {
+        // TODO:
     }
 
     private func playLevel() {
+        // TODO:
     }
 
     private func hasNoOverlappingPegs(at location: CGPoint, radius: CGFloat, ignore peg: Peg) -> Bool {
