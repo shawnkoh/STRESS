@@ -90,8 +90,7 @@ class DesigningScene: GKScene {
 
     // MARK: Private methods
 
-    private func addInteractableComponents(to peg: Peg) {
-        let panGesture = UIPanGestureRecognizer()
+    private func addGestureComponents(to peg: Peg) {
         let panAction: (UIGestureRecognizer) -> Void = { sender in
             guard let transformComponent = peg.component(ofType: TransformComponent.self) else {
                 fatalError("Unable to access transform component")
@@ -101,25 +100,23 @@ class DesigningScene: GKScene {
                 transformComponent.position = location
             }
         }
-        let panComponent = InteractableComponent(gestureRecognizer: panGesture, action: panAction)
+        let panComponent = PanComponent(action: panAction)
         peg.addComponent(panComponent)
 
-        let longPressGesture = UILongPressGestureRecognizer()
         let longPressAction: (UIGestureRecognizer) -> Void = { sender in
             if sender.state == .ended {
                 peg.addComponent(WillDestroyComponent())
             }
         }
-        let longPressComponent = InteractableComponent(gestureRecognizer: longPressGesture, action: longPressAction)
+        let longPressComponent = LongPressComponent(action: longPressAction)
         peg.addComponent(longPressComponent)
 
-        let tapGesture = UITapGestureRecognizer()
         let tapAction: (UIGestureRecognizer) -> Void = { sender in
             if case .delete = self.currentToolType {
                 peg.addComponent(WillDestroyComponent())
             }
         }
-        let tapComponent = InteractableComponent(gestureRecognizer: tapGesture, action: tapAction)
+        let tapComponent = TapComponent(action: tapAction)
         peg.addComponent(tapComponent)
     }
 
@@ -131,7 +128,7 @@ class DesigningScene: GKScene {
         }
         let level = Store.constructLevel(from: levelData)
         level.pegs.forEach { peg in
-            addInteractableComponents(to: peg)
+            addGestureComponents(to: peg)
             levelScene.addEntity(peg)
         }
     }
@@ -183,7 +180,7 @@ class DesigningScene: GKScene {
         guard canPlace(peg: peg!, at: location) else {
             return
         }
-        addInteractableComponents(to: peg!)
+        addGestureComponents(to: peg!)
 
         levelScene.addEntity(peg!)
     }

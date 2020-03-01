@@ -17,6 +17,9 @@
 		860BCE822400AF460007AE58 /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860BCE812400AF460007AE58 /* Savable.swift */; };
 		86197AFA2408F8CD00F3C7EA /* DidHitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86197AF92408F8CD00F3C7EA /* DidHitComponent.swift */; };
 		86197AFC2408F8FD00F3C7EA /* BucketHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */; };
+		863C0C7B240C648A0095ADC0 /* TapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863C0C7A240C648A0095ADC0 /* TapComponent.swift */; };
+		863C0C7D240C64DF0095ADC0 /* LongPressComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863C0C7C240C64DF0095ADC0 /* LongPressComponent.swift */; };
+		863C0C7F240C65330095ADC0 /* PanComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863C0C7E240C65330095ADC0 /* PanComponent.swift */; };
 		864DA1D523FDA794005805FF /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D423FDA794005805FF /* GameStateMachine.swift */; };
 		864DA1D723FDCFA7005805FF /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DA1D623FDCFA7005805FF /* TitleScreen.swift */; };
 		8650447123FD647E003F105D /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447023FD647E003F105D /* Dialogs.swift */; };
@@ -163,6 +166,9 @@
 		860BCE812400AF460007AE58 /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
 		86197AF92408F8CD00F3C7EA /* DidHitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidHitComponent.swift; sourceTree = "<group>"; };
 		86197AFB2408F8FD00F3C7EA /* BucketHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketHitSystem.swift; sourceTree = "<group>"; };
+		863C0C7A240C648A0095ADC0 /* TapComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapComponent.swift; sourceTree = "<group>"; };
+		863C0C7C240C64DF0095ADC0 /* LongPressComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressComponent.swift; sourceTree = "<group>"; };
+		863C0C7E240C65330095ADC0 /* PanComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanComponent.swift; sourceTree = "<group>"; };
 		864DA1D423FDA794005805FF /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		864DA1D623FDCFA7005805FF /* TitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreen.swift; sourceTree = "<group>"; };
 		8650447023FD647E003F105D /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
@@ -327,6 +333,16 @@
 				869DEAC32403C0C900D79C46 /* RotatableComponent.swift */,
 			);
 			path = Cannon;
+			sourceTree = "<group>";
+		};
+		863C0C79240C64720095ADC0 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				863C0C7A240C648A0095ADC0 /* TapComponent.swift */,
+				863C0C7C240C64DF0095ADC0 /* LongPressComponent.swift */,
+				863C0C7E240C65330095ADC0 /* PanComponent.swift */,
+			);
+			path = Gesture;
 			sourceTree = "<group>";
 		};
 		8650447823FD7756003F105D /* Core */ = {
@@ -557,6 +573,7 @@
 		86F2577423FC654400C25BBE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				863C0C79240C64720095ADC0 /* Gesture */,
 				8670F7D0240B9E5E007EC376 /* Common */,
 				8670F7D1240B9E9C007EC376 /* Peg */,
 				8670F7CF240B9E48007EC376 /* Powerup */,
@@ -879,10 +896,12 @@
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
 				8670F7CB240B9B68007EC376 /* AttachParticleSystem.swift in Sources */,
 				86757F252409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift in Sources */,
+				863C0C7F240C65330095ADC0 /* PanComponent.swift in Sources */,
 				8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */,
 				8670F7C5240B1BD2007EC376 /* ParticleSystem.swift in Sources */,
 				86F2577C23FC65C100C25BBE /* Peg.swift in Sources */,
 				8650447A23FD7793003F105D /* TitleScreenState.swift in Sources */,
+				863C0C7D240C64DF0095ADC0 /* LongPressComponent.swift in Sources */,
 				869DEAC72403CFCF00D79C46 /* GKSystem.swift in Sources */,
 				86BA454D240ACF1D00D08227 /* SpookyBallComponent.swift in Sources */,
 				86F2575423FC609A00C25BBE /* ViewController.swift in Sources */,
@@ -966,6 +985,7 @@
 				86FCB9CA240861860006C26F /* BucketSystem.swift in Sources */,
 				86F763C42406ACCC00F49B44 /* GameWinView.swift in Sources */,
 				86BA4555240AD15F00D08227 /* SpookyBallSystem.swift in Sources */,
+				863C0C7B240C648A0095ADC0 /* TapComponent.swift in Sources */,
 				86F257B123FC6ADF00C25BBE /* GKEntity.swift in Sources */,
 				860BCE7E24004CFD0007AE58 /* Stage.swift in Sources */,
 				86F2578023FC65F600C25BBE /* Wall.swift in Sources */,
