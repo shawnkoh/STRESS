@@ -9,7 +9,7 @@
 class LevelScene: GKScene {
     override init() {
         super.init()
-        addSystem(VisualSystem(scene: self))
+        addSystem(AttachVisualSystem(scene: self))
         addSystem(TransformSystem(scene: self))
         addSystem(CleanupVisualSystem(scene: self))
         addSystem(DestroySystem(scene: self))

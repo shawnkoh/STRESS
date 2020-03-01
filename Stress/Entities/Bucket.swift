@@ -30,7 +30,7 @@ class Bucket: GKEntity {
         let emitterLayer = CAEmitterLayer()
         emitterLayer.renderMode = .additive
         let cell = CAEmitterCell()
-        cell.birthRate = 800
+        cell.birthRate = 1_200
         cell.lifetime = 1.3
         cell.lifetimeRange = 0.3
         cell.velocity = 150
