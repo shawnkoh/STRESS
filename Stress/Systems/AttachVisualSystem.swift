@@ -1,5 +1,5 @@
 //
-//  VisualSystem.swift
+//  AttachVisualSystem.swift
 //  Stress
 //
 //  Created by Shawn Koh on 27/2/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class VisualSystem: GKSystem {
+class AttachVisualSystem: GKSystem {
     init(scene: GKScene) {
         super.init(scene: scene,
                    requiredComponents: [VisualComponent.self],

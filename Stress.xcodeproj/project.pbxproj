@@ -54,10 +54,10 @@
 		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
 		869CF6F12406EA20000804FD /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F02406EA20000804FD /* Button.swift */; };
 		869CF6F32406EDFD000804FD /* GamePausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F22406EDFD000804FD /* GamePausedView.swift */; };
-		869CF6F524078E35000804FD /* VisualSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F424078E35000804FD /* VisualSystem.swift */; };
+		869CF6F524078E35000804FD /* AttachVisualSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F424078E35000804FD /* AttachVisualSystem.swift */; };
 		869CF6F724078E7C000804FD /* DidAttachVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F624078E7C000804FD /* DidAttachVisualComponent.swift */; };
 		869CF6F9240793AB000804FD /* CleanupVisualSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */; };
-		869CF6FB24079546000804FD /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6FA24079546000804FD /* PhysicsSystem.swift */; };
+		869CF6FB24079546000804FD /* AttachPhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6FA24079546000804FD /* AttachPhysicsSystem.swift */; };
 		869CF6FD240795A5000804FD /* DidAttachPhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6FC240795A5000804FD /* DidAttachPhysicsComponent.swift */; };
 		869DEAC22403C0B300D79C46 /* CannonControlSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */; };
 		869DEAC42403C0C900D79C46 /* RotatableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869DEAC32403C0C900D79C46 /* RotatableComponent.swift */; };
@@ -195,10 +195,10 @@
 		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		869CF6F02406EA20000804FD /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		869CF6F22406EDFD000804FD /* GamePausedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePausedView.swift; sourceTree = "<group>"; };
-		869CF6F424078E35000804FD /* VisualSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSystem.swift; sourceTree = "<group>"; };
+		869CF6F424078E35000804FD /* AttachVisualSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachVisualSystem.swift; sourceTree = "<group>"; };
 		869CF6F624078E7C000804FD /* DidAttachVisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidAttachVisualComponent.swift; sourceTree = "<group>"; };
 		869CF6F8240793AB000804FD /* CleanupVisualSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupVisualSystem.swift; sourceTree = "<group>"; };
-		869CF6FA24079546000804FD /* PhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
+		869CF6FA24079546000804FD /* AttachPhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhysicsSystem.swift; sourceTree = "<group>"; };
 		869CF6FC240795A5000804FD /* DidAttachPhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidAttachPhysicsComponent.swift; sourceTree = "<group>"; };
 		869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonControlSystem.swift; sourceTree = "<group>"; };
 		869DEAC32403C0C900D79C46 /* RotatableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableComponent.swift; sourceTree = "<group>"; };
@@ -436,8 +436,8 @@
 		869DEAC52403CFC000D79C46 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				869CF6F424078E35000804FD /* VisualSystem.swift */,
-				869CF6FA24079546000804FD /* PhysicsSystem.swift */,
+				869CF6F424078E35000804FD /* AttachVisualSystem.swift */,
+				869CF6FA24079546000804FD /* AttachPhysicsSystem.swift */,
 				8670F7CA240B9B68007EC376 /* AttachParticleSystem.swift */,
 				86FCB9C9240861860006C26F /* BucketSystem.swift */,
 				869DEAC12403C0B300D79C46 /* CannonControlSystem.swift */,
@@ -545,8 +545,8 @@
 		86F2577423FC654400C25BBE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8670F7D1240B9E9C007EC376 /* Peg */,
 				8670F7D0240B9E5E007EC376 /* Common */,
+				8670F7D1240B9E9C007EC376 /* Peg */,
 				8670F7CF240B9E48007EC376 /* Powerup */,
 				8670F7CC240B9DCB007EC376 /* Visual */,
 				8670F7CD240B9E0D007EC376 /* Physics */,
@@ -860,7 +860,7 @@
 				869DEAC92403E72F00D79C46 /* TransformSystem.swift in Sources */,
 				869DEAC22403C0B300D79C46 /* CannonControlSystem.swift in Sources */,
 				8650447723FD728E003F105D /* GKState.swift in Sources */,
-				869CF6FB24079546000804FD /* PhysicsSystem.swift in Sources */,
+				869CF6FB24079546000804FD /* AttachPhysicsSystem.swift in Sources */,
 				8653E0C52400F0FA00DAEF2D /* SelectingScene.swift in Sources */,
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
 				8670F7CB240B9B68007EC376 /* AttachParticleSystem.swift in Sources */,
@@ -932,7 +932,7 @@
 				86F257C623FC6AFF00C25BBE /* BKPhysicsBodyDelegate.swift in Sources */,
 				86F763C62406ACD100F49B44 /* GameLoseView.swift in Sources */,
 				86F2577823FC659E00C25BBE /* PlayingScene.swift in Sources */,
-				869CF6F524078E35000804FD /* VisualSystem.swift in Sources */,
+				869CF6F524078E35000804FD /* AttachVisualSystem.swift in Sources */,
 				869702FD23FF01B700375308 /* Background.swift in Sources */,
 				86F2578223FC660C00C25BBE /* Cannon.swift in Sources */,
 				860BCE7823FF0DE70007AE58 /* Spacer.swift in Sources */,

@@ -57,8 +57,8 @@ class LevelPlayingScene: GKScene {
     }
 
     private func setupSystems() {
-        addSystem(VisualSystem(scene: self))
-        addSystem(PhysicsSystem(scene: self))
+        addSystem(AttachVisualSystem(scene: self))
+        addSystem(AttachPhysicsSystem(scene: self))
         addSystem(AttachParticleSystem(scene: self))
 
         addSystem(BucketSystem(scene: self))

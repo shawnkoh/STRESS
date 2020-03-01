@@ -1,5 +1,5 @@
 //
-//  PhysicsSystem.swift
+//  AttachPhysicsSystem.swift
 //  Stress
 //
 //  Created by Shawn Koh on 27/2/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PhysicsSystem: GKSystem {
+class AttachPhysicsSystem: GKSystem {
     init(scene: GKScene) {
         super.init(scene: scene,
                    requiredComponents: [PhysicsComponent.self],
