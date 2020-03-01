@@ -12,12 +12,17 @@ import CoreGraphics
 protocol BKLineProtocol {
     var from: CGPoint { get set }
     var to: CGPoint { get set }
+    var midpoint: CGPoint { get }
 
     func intersectionPoint(to line: BKLineProtocol) -> CGPoint?
     func shortestDistance(to point: CGPoint) -> CGFloat
 }
 
 extension BKLineProtocol {
+    var midpoint: CGPoint {
+        .init(x: (from.x + to.x) / 2, y: (from.y + to.y) / 2)
+    }
+
     /// Calculates the intersection point between two lines.
     func intersectionPoint(to line: BKLineProtocol) -> CGPoint? {
         // swiftlint:disable line_length

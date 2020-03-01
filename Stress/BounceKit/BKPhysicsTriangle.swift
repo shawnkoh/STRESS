@@ -19,7 +19,7 @@ class BKPhysicsTriangle: BKPhysicsBody {
         self.vertexC = vertexC
     }
 
-    var lines: [BKLine] {
+    var edges: [BKLine] {
         [BKLine(from: vertexA, to: vertexB),
          BKLine(from: vertexB, to: vertexC),
          BKLine(from: vertexC, to: vertexA)]
@@ -38,10 +38,10 @@ class BKPhysicsTriangle: BKPhysicsBody {
         vertexC += offset
     }
 
-    func nearestLine(to point: CGPoint) -> BKLine {
-        guard let line = lines.min(by: { $0.shortestDistance(to: point) < $1.shortestDistance(to: point) }) else {
+    func nearestEdge(to point: CGPoint) -> BKLine {
+        guard let edge = edges.min(by: { point.distance(to: $0.midpoint ) < point.distance(to: $1.midpoint) }) else {
             fatalError("Could not access lines")
         }
-        return line
+        return edge
     }
 }

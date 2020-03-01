@@ -92,7 +92,7 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     }
 
     private func intersects(withTriangle triangle: BKPhysicsTriangle) -> Bool {
-        triangle.lines.contains { $0.intersects(with: self) }
+        triangle.edges.contains { $0.intersects(with: self) }
     }
 
     private func intersects(withCircle circle: BKPhysicsCircle) -> Bool {
@@ -137,12 +137,12 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     private func computePositionWhenContacting(withTriangle triangle: BKPhysicsTriangle) -> CGPoint? {
         // TODO: Optimise this by calculating the precise location instead of a while loop
         let unitVector = velocity / velocity.length
-        for line in triangle.lines {
+        for edge in triangle.edges {
             var positionWhenContacting = center
-            guard line.intersects(with: self) else {
+            guard edge.intersects(with: self) else {
                 continue
             }
-            while line.shortestDistance(to: positionWhenContacting) < radius {
+            while edge.shortestDistance(to: positionWhenContacting) < radius {
                 positionWhenContacting -= unitVector
             }
             return positionWhenContacting
@@ -192,7 +192,7 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     private func computeContact(withTriangle triangle: BKPhysicsTriangle) -> BKPhysicsContact? {
         let unitVector = velocity / velocity.length
         let line = BKLine(from: center, to: center + unitVector)
-        let nearestEdge = triangle.nearestLine(to: self.center)
+        let nearestEdge = triangle.nearestEdge(to: self.center)
 
         if let intersectionPoint = line.intersectionPoint(to: nearestEdge) {
             return BKPhysicsContact(bodyA: self, bodyB: triangle, contactPoint: intersectionPoint)
@@ -238,7 +238,7 @@ class BKPhysicsCircle: BKPhysicsBody, BKPhysicsBodyWithVolume {
     }
 
     private func computeCollisionVector(withTriangle triangle: BKPhysicsTriangle) -> CGVector {
-        let edge = triangle.nearestLine(to: center)
+        let edge = triangle.nearestEdge(to: center)
         return computeCollisionVector(withLine: edge)
     }
 

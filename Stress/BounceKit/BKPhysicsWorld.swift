@@ -101,8 +101,7 @@ class BKPhysicsWorld {
                 continue
             }
             didCollide = true
-            body.center = contactPosition
-            // TODO: Calculate amount of time taken to hit the contact position to be more accurate
+
             if let neighbour = neighbour as? BKPhysicsBodyWithVolume {
                 let collisionVectors = body.computeCollisionVectors(with: neighbour)
                 body.velocity = collisionVectors.0
@@ -114,6 +113,10 @@ class BKPhysicsWorld {
             guard let physicsContact = body.computeContact(with: neighbour) else {
                 fatalError("Unable to initialise a PhysicsContact")
             }
+
+            body.center = contactPosition
+            // TODO: Calculate amount of time taken to hit the contact position to be more accurate
+
             contactDelegate?.didBegin(physicsContact)
             neighbour.isResting = false
         }
