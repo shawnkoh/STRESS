@@ -32,6 +32,7 @@ enum Settings {
 
     enum Peg {
         static let radius: CGFloat = 20
+        static let angle: CGFloat = 0
         static var size: CGSize {
             CGSize(width: radius * 2, height: radius * 2)
         }

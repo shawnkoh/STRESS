@@ -10,10 +10,13 @@ import UIKit
 
 class Palette: UIView {
     let selectToolAction: (ToolType?) -> Void
-    let radiusStepper = UIStepper(frame: .zero)
-
     private weak var currentTool: Tool?
+
+    let radiusStepper = UIStepper(frame: .zero)
     private let radiusLabel = UILabel(frame: .zero)
+
+    let angleStepper = UIStepper(frame: .zero)
+    private let angleLabel = UILabel(frame: .zero)
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -35,16 +38,17 @@ class Palette: UIView {
         heightAnchor.constraint(equalToConstant: 200).isActive = true
 
         let root = createRoot()
-
         let toolStack = createToolStack()
-        root.addArrangedSubview(toolStack)
-
         let controlStack = createHStack()
+        root.addArrangedSubview(toolStack)
         root.addArrangedSubview(controlStack)
+
         let stateStack = createHStack()
-        controlStack.addArrangedSubview(stateStack)
         let sizeStack = createSizeStack()
+        let angleStack = createAngleStack()
+        controlStack.addArrangedSubview(stateStack)
         controlStack.addArrangedSubview(sizeStack)
+        controlStack.addArrangedSubview(angleStack)
 
         let backControl = Control(type: ControlType.back, action: backAction)
         let resetControl = Control(type: ControlType.reset, action: resetAction)
@@ -121,6 +125,7 @@ class Palette: UIView {
 
     private func createSizeStack() -> UIStackView {
         let sizeStack = createHStack()
+        sizeStack.distribution = .fillProportionally
 
         radiusLabel.text = "Size: \(Int(Settings.Peg.radius))"
         sizeStack.addArrangedSubview(radiusLabel)
@@ -130,6 +135,20 @@ class Palette: UIView {
         sizeStack.addArrangedSubview(radiusStepper)
 
         return sizeStack
+    }
+
+    private func createAngleStack() -> UIStackView {
+        let angleStack = createHStack()
+        angleStack.distribution = .fillProportionally
+
+        angleLabel.text = "Angle: \(Int(Settings.Peg.angle))"
+        angleStack.addArrangedSubview(angleLabel)
+
+        angleStepper.value = Double(Settings.Peg.angle)
+        angleStepper.addTarget(self, action: #selector(stepAngle), for: .touchUpInside)
+        angleStack.addArrangedSubview(angleStepper)
+
+        return angleStack
     }
 
     @objc private func selectTool(_ sender: UIGestureRecognizer) {
@@ -148,5 +167,9 @@ class Palette: UIView {
 
     @objc private func stepRadius() {
         radiusLabel.text = "Size: \(Int(radiusStepper.value))"
+    }
+
+    @objc private func stepAngle() {
+        angleLabel.text = "Angle: \(Int(angleStepper.value))"
     }
 }
