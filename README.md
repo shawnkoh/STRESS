@@ -119,6 +119,8 @@ When the ball hits a green peg, you enable the `Space Blast` powerup. All the pe
 
 When the ball hits a red peg, you enable the `Spooky Ball` powerup. When the ball exits the stage, it reappears at the top of the gameplay area at the same x-axis position.
 
+The powerups can stack.
+
 ## Level Designer Additional Features
 
 ### Peg Rotation
