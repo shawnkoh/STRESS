@@ -10,20 +10,28 @@ import Foundation
 
 class DesigningState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
-    var levelData: LevelData?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type || stateClass is PlayingState.Type
     }
 
     func didEnter(from previousState: GKState?) {
-        if levelData == nil {
-            levelData = LevelData()
+        switch previousState {
+        case let selectingState as SelectingLevelState:
+            let designer = DesignerViewController(store: gameStateMachine.stress.store,
+                                                  stateMachine: gameStateMachine,
+                                                  levelData: selectingState.selectedLevelData ?? LevelData())
+            gameStateMachine.navigationController.pushViewController(designer, animated: true)
+
+        case _ as TitleScreenState:
+            let designer = DesignerViewController(store: gameStateMachine.stress.store,
+                                                  stateMachine: gameStateMachine,
+                                                  levelData: LevelData())
+            gameStateMachine.navigationController.pushViewController(designer, animated: true)
+
+        default:
+            fatalError("Unsupported previousState")
         }
-        let designer = DesignerViewController(store: gameStateMachine.stress.store,
-                                              stateMachine: gameStateMachine,
-                                              levelData: levelData!)
-        gameStateMachine.navigationController.pushViewController(designer, animated: true)
     }
 
     func update(deltaTime seconds: TimeInterval) {}

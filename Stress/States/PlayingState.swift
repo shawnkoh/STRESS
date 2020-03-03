@@ -10,7 +10,6 @@ import Foundation
 
 class PlayingState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
-    var levelData: LevelData?
     weak var playingScene: PlayingScene?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
@@ -21,11 +20,12 @@ class PlayingState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        guard let levelData = levelData else {
-            fatalError("Could not access required dependencies.")
-        }
-        if previousState is SelectingLevelState {
-            let viewController = PlayingViewController(stateMachine: gameStateMachine, levelData: levelData)
+        if let selectingLevelState = previousState as? SelectingLevelState {
+            guard let levelData = selectingLevelState.selectedLevelData else {
+                fatalError("No level data selected")
+            }
+            let viewController = PlayingViewController(stateMachine: gameStateMachine,
+                                                       levelData: levelData)
             gameStateMachine.navigationController.pushViewController(viewController, animated: true)
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class SelectingLevelState: GKState, GameState {
     weak var stateMachine: GKStateMachine?
-    weak var selectedLevelData: LevelData?
+    var selectedLevelData: LevelData?
 
     func isValidNextState(_ stateClass: GKState.Type) -> Bool {
         stateClass is TitleScreenState.Type ||
@@ -26,14 +26,6 @@ class SelectingLevelState: GKState, GameState {
     func update(deltaTime seconds: TimeInterval) {}
 
     func willExit(to nextState: GKState) {
-        switch nextState {
-        case let playingState as PlayingState:
-            playingState.levelData = selectedLevelData
-        case let designingState as DesigningState:
-            designingState.levelData = selectedLevelData
-        default:
-            ()
-        }
         gameStateMachine.navigationController.popViewController(animated: false)
     }
 }

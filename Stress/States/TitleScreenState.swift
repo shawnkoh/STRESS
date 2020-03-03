@@ -28,9 +28,5 @@ class TitleScreenState: GKState, GameState {
         // not sure
     }
 
-    func willExit(to nextState: GKState) {
-        if let designingState = nextState as? DesigningState {
-            designingState.levelData = nil
-        }
-    }
+    func willExit(to nextState: GKState) {}
 }
