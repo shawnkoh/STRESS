@@ -112,7 +112,12 @@ You win when all the objective pegs (orange color) in the game are cleared.
 You lose when you run out of shots before all the objectives are cleared.
 
 ### Bonus ammo
-When your ball lands in the 
+When the ball lands in the bucket, you gain an additional shot.
+
+### Powerups
+When the ball hits a green peg, you enable the `Space Blast` powerup. All the pegs within the radius of the green circle surrounding the ball will become lighted up.
+
+When the ball hits a red peg, you enable the `Spooky Ball` powerup. When the ball exits the stage, it reappears at the top of the gameplay area at the same x-axis position.
 
 ## Level Designer Additional Features
 
