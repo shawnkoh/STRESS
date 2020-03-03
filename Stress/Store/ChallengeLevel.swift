@@ -9,7 +9,7 @@
 import CoreGraphics
 import RealmSwift
 
-enum PreloadedLevels {
+enum ChallengeLevel {
     static let challenge: LevelData = {
         let circlePegs = List<CirclePegData>()
         circlePegs.append(objectsIn: challengeCircles)
