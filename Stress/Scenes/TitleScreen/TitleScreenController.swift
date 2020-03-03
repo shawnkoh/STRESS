@@ -34,7 +34,6 @@ class TitleScreenController: UIViewController {
         title.text = "STRESS"
         title.textAlignment = .center
         title.font = title.font.withSize(64)
-        title.backgroundColor = .white
         title.translatesAutoresizingMaskIntoConstraints = false
 
         playButton.setTitle("PLAY", for: .normal)
@@ -44,7 +43,6 @@ class TitleScreenController: UIViewController {
         playButton.layer.cornerRadius = 32
         playButton.translatesAutoresizingMaskIntoConstraints = false
 
-        designButton.backgroundColor = .white
         designButton.setTitle("CREATE LEVEL", for: .normal)
         designButton.setTitleColor(.black, for: .normal)
         designButton.titleLabel?.font = designButton.titleLabel?.font.withSize(32)
