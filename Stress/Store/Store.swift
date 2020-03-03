@@ -35,8 +35,6 @@ class Store {
     func saveLevel(_ level: Level) throws {
         try realm.write {
             let levelData = Store.constructLevelData(from: level)
-            levelData.circlePegs.forEach { print($0) }
-            levelData.trianglePegs.forEach { print($0) }
             realm.add(levelData, update: .modified)
         }
     }
