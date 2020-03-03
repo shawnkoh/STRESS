@@ -42,16 +42,16 @@ class BucketSystem: GKSystem {
 
         if bucketComponent.isMovingRight {
             if transformComponent.position.x <= maxX {
-                transformComponent.position.x += 1
+                transformComponent.position.x += 5
             } else {
-                transformComponent.position.x -= 1
+                transformComponent.position.x -= 5
                 bucketComponent.isMovingRight = false
             }
         } else {
             if transformComponent.position.x >= minX {
-                transformComponent.position.x -= 1
+                transformComponent.position.x -= 5
             } else {
-                transformComponent.position.x += 1
+                transformComponent.position.x += 5
                 bucketComponent.isMovingRight = true
             }
         }
@@ -72,7 +72,7 @@ class BucketSystem: GKSystem {
         rightWall.to = transformComponent.position +
             CGVector(dx: bucketSize.width / 2 - 20, dy: -bucketSize.height / 2 + 12)
 
-        drawDebugLines()
+//        drawDebugLines()
     }
 
     private var leftLine = CAShapeLayer()
