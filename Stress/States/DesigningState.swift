@@ -16,22 +16,18 @@ class DesigningState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
+        var levelData = LevelData()
         switch previousState {
         case let selectingState as SelectingLevelState:
-            let designer = DesignerViewController(store: gameStateMachine.stress.store,
-                                                  stateMachine: gameStateMachine,
-                                                  levelData: selectingState.selectedLevelData ?? LevelData())
-            gameStateMachine.navigationController.pushViewController(designer, animated: true)
-
-        case _ as TitleScreenState:
-            let designer = DesignerViewController(store: gameStateMachine.stress.store,
-                                                  stateMachine: gameStateMachine,
-                                                  levelData: LevelData())
-            gameStateMachine.navigationController.pushViewController(designer, animated: true)
-
+            levelData = selectingState.selectedLevelData ?? levelData
         default:
-            fatalError("Unsupported previousState")
+            ()
         }
+
+        let designer = DesignerViewController(store: gameStateMachine.stress.store,
+                                              stateMachine: gameStateMachine,
+                                              levelData: levelData)
+        gameStateMachine.navigationController.pushViewController(designer, animated: true)
     }
 
     func update(deltaTime seconds: TimeInterval) {}
