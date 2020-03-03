@@ -35,6 +35,8 @@ class Store {
     func saveLevel(_ level: Level) throws {
         try realm.write {
             let levelData = Store.constructLevelData(from: level)
+            levelData.circlePegs.forEach { print($0) }
+            levelData.trianglePegs.forEach { print($0) }
             realm.add(levelData, update: .modified)
         }
     }
@@ -98,12 +100,12 @@ class Store {
         // TODO: Might be problematic because we need to do this in a realm
         circlePegs.append(objectsIn: circlePegDatas)
         trianglePegs.append(objectsIn: trianglePegDatas)
-        let levelData = LevelData(id: level.id,
-                                  name: level.name,
+        let levelData = LevelData(name: level.name,
                                   width: Double(level.size.width),
                                   height: Double(level.size.height),
                                   circlePegs: circlePegs,
-                                  trianglePegs: trianglePegs)
+                                  trianglePegs: trianglePegs,
+                                  id: level.id)
         return levelData
     }
 

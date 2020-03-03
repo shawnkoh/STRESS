@@ -36,7 +36,7 @@ class CirclePegData: Object {
     ///     - centerY: The y position of the peg's center.
     ///     - radius: The radius of the peg.
     ///     - type: An integer representing the peg's `PegType`.
-    convenience init(id: String, centerX: Double, centerY: Double, radius: Double, type: Int) {
+    convenience init(centerX: Double, centerY: Double, radius: Double, type: Int, id: String = UUID().uuidString) {
         self.init()
         self.id = id
         self.centerX = centerX
@@ -56,10 +56,10 @@ class CirclePegData: Object {
             fatalError("The Peg does not have the required components")
         }
 
-        self.init(id: peg.id,
-                  centerX: Double(transformComponent.position.x),
+        self.init(centerX: Double(transformComponent.position.x),
                   centerY: Double(transformComponent.position.y),
                   radius: Double(view.bounds.size.width / 2),
-                  type: pegComponent.type.rawValue)
+                  type: pegComponent.type.rawValue,
+                  id: peg.id)
     }
 }

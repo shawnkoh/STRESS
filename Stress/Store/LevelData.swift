@@ -34,12 +34,12 @@ class LevelData: Object {
         super.init()
     }
 
-    init(id: String,
-         name: String,
+    init(name: String,
          width: Double,
          height: Double,
          circlePegs: List<CirclePegData>,
-         trianglePegs: List<TrianglePegData>) {
+         trianglePegs: List<TrianglePegData>,
+         id: String = UUID().uuidString) {
         self.id = id
         self.name = name
         self.width = width
@@ -60,11 +60,11 @@ class LevelData: Object {
         let trianglePegs = List<TrianglePegData>()
         circlePegs.append(objectsIn: circlePegDatas)
         trianglePegs.append(objectsIn: trianglePegDatas)
-        self.init(id: level.id,
-                  name: level.name,
+        self.init(name: level.name,
                   width: Double(level.size.width),
                   height: Double(level.size.height),
                   circlePegs: circlePegs,
-                  trianglePegs: trianglePegs)
+                  trianglePegs: trianglePegs,
+                  id: level.id)
     }
 }

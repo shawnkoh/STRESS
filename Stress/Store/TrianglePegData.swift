@@ -40,14 +40,14 @@ class TrianglePegData: Object {
     ///     - vertexC: The y position of the peg's center.
     ///     - radius: The radius of the peg.
     ///     - type: An integer representing the peg's `PegShape`.
-    convenience init(id: String,
-                     vertexAX: Double,
+    convenience init(vertexAX: Double,
                      vertexAY: Double,
                      vertexBX: Double,
                      vertexBY: Double,
                      vertexCX: Double,
                      vertexCY: Double,
-                     type: Int) {
+                     type: Int,
+                     id: String = UUID().uuidString) {
         self.init()
         self.id = id
         self.vertexAX = vertexAX
@@ -76,13 +76,13 @@ class TrianglePegData: Object {
         let vertexB = centroid + CGVector(dx: -radius, dy: radius)
         let vertexC = centroid + CGVector(dx: radius, dy: radius)
 
-        self.init(id: peg.id,
-                  vertexAX: Double(vertexA.x),
+        self.init(vertexAX: Double(vertexA.x),
                   vertexAY: Double(vertexA.y),
                   vertexBX: Double(vertexB.x),
                   vertexBY: Double(vertexB.y),
                   vertexCX: Double(vertexC.x),
                   vertexCY: Double(vertexC.y),
-                  type: pegComponent.type.rawValue)
+                  type: pegComponent.type.rawValue,
+                  id: peg.id)
     }
 }
