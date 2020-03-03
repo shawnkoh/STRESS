@@ -52,7 +52,6 @@
 		86757F21240996CF00B868B9 /* ExitHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F20240996CF00B868B9 /* ExitHitSystem.swift */; };
 		86757F232409A17100B868B9 /* DrawSpaceBlastSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F222409A17100B868B9 /* DrawSpaceBlastSystem.swift */; };
 		86757F252409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F242409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift */; };
-		8676A16E2402395B005EAA1E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16D2402395B005EAA1E /* Cell.swift */; };
 		8676A17224029589005EAA1E /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A17124029589005EAA1E /* LevelScene.swift */; };
 		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
 		869CF6F12406EA20000804FD /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF6F02406EA20000804FD /* Button.swift */; };
@@ -203,7 +202,6 @@
 		86757F20240996CF00B868B9 /* ExitHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitHitSystem.swift; sourceTree = "<group>"; };
 		86757F222409A17100B868B9 /* DrawSpaceBlastSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawSpaceBlastSystem.swift; sourceTree = "<group>"; };
 		86757F242409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidDrawSpookyBallComponent.swift; sourceTree = "<group>"; };
-		8676A16D2402395B005EAA1E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		8676A17124029589005EAA1E /* LevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		869CF6F02406EA20000804FD /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				8657C85523FDE6C90018E7D2 /* Palette.swift */,
 				860BCE7923FF16530007AE58 /* Tool.swift */,
 				860BCE7B23FFB56C0007AE58 /* Control.swift */,
-				8676A16D2402395B005EAA1E /* Cell.swift */,
 			);
 			path = DesigningScene;
 			sourceTree = "<group>";
@@ -966,7 +963,6 @@
 				865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */,
 				8670F7C7240B21D7007EC376 /* IsEmittingParticlesComponent.swift in Sources */,
 				86F257CF23FCDE3B00C25BBE /* DesigningScene.swift in Sources */,
-				8676A16E2402395B005EAA1E /* Cell.swift in Sources */,
 				864DA1D523FDA794005805FF /* GameStateMachine.swift in Sources */,
 				86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */,
 				86BA4549240AB96900D08227 /* MenuButton.swift in Sources */,
