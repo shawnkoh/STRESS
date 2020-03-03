@@ -19,33 +19,21 @@ class SelectingLevelState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let backAction = {
-            self.gameStateMachine.enter(TitleScreenState.self)
-            return
-        }
-        let playLevel: (LevelData) -> Void = { levelData in
-            self.selectedLevelData = levelData
-            self.gameStateMachine.enter(PlayingState.self)
-        }
-        let editLevel: (LevelData) -> Void = { levelData in
-            self.selectedLevelData = levelData
-            self.gameStateMachine.enter(DesigningState.self)
-        }
-
-        let selectingScene = SelectingScene(store: gameStateMachine.stress.store,
-                                            backAction: backAction,
-                                            playAction: playLevel,
-                                            editAction: editLevel)
-        gameStateMachine.presenter.presentScene(selectingScene)
+        let gallery = GalleryViewController(store: gameStateMachine.stress.store, stateMachine: gameStateMachine)
+        gameStateMachine.navigationController.pushViewController(gallery, animated: true)
     }
 
     func update(deltaTime seconds: TimeInterval) {}
 
     func willExit(to nextState: GKState) {
-        if let playingState = nextState as? PlayingState {
+        switch nextState {
+        case let playingState as PlayingState:
             playingState.levelData = selectedLevelData
-        } else if let designingState = nextState as? DesigningState {
+        case let designingState as DesigningState:
             designingState.levelData = selectedLevelData
+        default:
+            ()
         }
+        gameStateMachine.navigationController.popViewController(animated: false)
     }
 }

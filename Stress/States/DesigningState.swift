@@ -20,17 +20,15 @@ class DesigningState: GKState, GameState {
         if levelData == nil {
             levelData = LevelData()
         }
-        let backAction = {
-            self.gameStateMachine.enter(TitleScreenState.self)
-            return
-        }
-        let designingScene = DesigningScene(store: gameStateMachine.stress.store,
-                                            levelData: levelData!,
-                                            backAction: backAction)
-        gameStateMachine.presenter.presentScene(designingScene)
+        let designer = DesignerViewController(store: gameStateMachine.stress.store,
+                                              stateMachine: gameStateMachine,
+                                              levelData: levelData!)
+        gameStateMachine.navigationController.pushViewController(designer, animated: true)
     }
 
     func update(deltaTime seconds: TimeInterval) {}
 
-    func willExit(to nextState: GKState) {}
+    func willExit(to nextState: GKState) {
+        gameStateMachine.navigationController.popViewController(animated: false)
+    }
 }

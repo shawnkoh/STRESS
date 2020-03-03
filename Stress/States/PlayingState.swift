@@ -25,24 +25,12 @@ class PlayingState: GKState, GameState {
             fatalError("Could not access required dependencies.")
         }
         if previousState is SelectingLevelState {
-            let playingScene = PlayingScene(stateMachine: gameStateMachine, levelData: levelData)
-            gameStateMachine.presenter.presentScene(playingScene)
-            playingScene.stage.presentScene(playingScene.levelScene)
-            playingScene.level.pegs.forEach { playingScene.levelScene.addEntity($0) }
-            playingScene.ammoLabel.text = "Shots left: \(Settings.Cannon.ammo)"
-            self.playingScene = playingScene
+            let viewController = PlayingViewController(stateMachine: gameStateMachine, levelData: levelData)
+            gameStateMachine.navigationController.pushViewController(viewController, animated: true)
         }
     }
 
     func update(deltaTime seconds: TimeInterval) {}
 
-    func willExit(to nextState: GKState) {
-        if let winState = nextState as? WinState {
-            winState.playingScene = playingScene
-        } else if let loseState = nextState as? LoseState {
-            loseState.playingScene = playingScene
-        } else if let pausedState = nextState as? PausedState {
-            pausedState.playingScene = playingScene
-        }
-    }
+    func willExit(to nextState: GKState) {}
 }

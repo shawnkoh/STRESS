@@ -8,20 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    lazy var stress: Stress = {
-        guard let presenter = self.view as? GKView else {
-            fatalError("No presenter")
-        }
-        return Stress(presenter: presenter)
-    }()
+class ViewController: UINavigationController {
+    lazy var stress = Stress(navigationController: self)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        isNavigationBarHidden = true
+        super.viewDidAppear(animated)
         stress.stateMachine.enter(TitleScreenState.self)
     }
 
     override var prefersStatusBarHidden: Bool {
         true
+    }
+
+    @objc func click() {
+
     }
 }

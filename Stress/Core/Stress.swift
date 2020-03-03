@@ -6,16 +6,16 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-import CoreGraphics
+import UIKit
 
 /// An object representing the entire state of the game `Stress`.
 class Stress {
     private(set) var stateMachine: GameStateMachine!
     let store = Store()
 
-    init(presenter: GKView) {
+    init(navigationController: UINavigationController) {
         stateMachine = GameStateMachine(stress: self,
-                                        presenter: presenter,
+                                        navigationController: navigationController,
                                         states: [TitleScreenState(),
                                                  DesigningState(),
                                                  PlayingState(),

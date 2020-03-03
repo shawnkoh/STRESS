@@ -16,17 +16,12 @@ class TitleScreenState: GKState, GameState {
     }
 
     func didEnter(from previousState: GKState?) {
-        let selectLevel = {
-            self.gameStateMachine.enter(SelectingLevelState.self)
-            return
+        let titleScreen = TitleScreenController(stateMachine: gameStateMachine)
+        if gameStateMachine.navigationController.viewControllers.isEmpty {
+            gameStateMachine.navigationController.pushViewController(titleScreen, animated: false)
+        } else {
+            gameStateMachine.navigationController.popToRootViewController(animated: false)
         }
-        let createLevel = {
-            self.gameStateMachine.enter(DesigningState.self)
-            return
-        }
-        let titleScreen = TitleScreen(playAction: selectLevel, designAction: createLevel)
-
-        gameStateMachine.presenter.presentScene(titleScreen)
     }
 
     func update(deltaTime: TimeInterval) {

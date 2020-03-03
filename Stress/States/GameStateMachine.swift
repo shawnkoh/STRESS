@@ -6,15 +6,15 @@
 //  Copyright © 2020 Shawn Koh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GameStateMachine: GKStateMachine {
     unowned let stress: Stress
-    unowned var presenter: GKView
+    unowned let navigationController: UINavigationController
 
-    init(stress: Stress, presenter: GKView, states: [GKState]) {
+    init(stress: Stress, navigationController: UINavigationController, states: [GKState]) {
         self.stress = stress
-        self.presenter = presenter
+        self.navigationController = navigationController
         super.init(states: states)
         states.forEach { $0.stateMachine = self }
     }
