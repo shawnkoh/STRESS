@@ -80,6 +80,15 @@ class DesigningScene: GKScene {
         }
         do {
             let pegs = levelScene.entities(ofType: Peg.self)
+            guard pegs.contains(where: { $0.component(ofType: ObjectiveComponent.self) != nil }) else {
+                guard let viewController = view?.window?.rootViewController else {
+                    return
+                }
+                Dialogs.showAlert(in: viewController,
+                                  title: "No objectives",
+                                  message: "Unable to save the level. No objective", dismissActionLabel: "OK")
+                return
+            }
             let level = Level(name: levelName, size: stage.size, pegs: Set(pegs), id: levelData.id)
             try store.saveLevel(level)
         } catch let error as NSError {

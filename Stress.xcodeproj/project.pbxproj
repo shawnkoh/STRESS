@@ -82,6 +82,7 @@
 		86E136A6240BA310003EFA64 /* BKPhysicsTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E136A5240BA310003EFA64 /* BKPhysicsTriangle.swift */; };
 		86E15C76240D52D700118A35 /* PlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E15C75240D52D700118A35 /* PlayingViewController.swift */; };
 		86E15C78240D62C200118A35 /* DesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E15C77240D62C200118A35 /* DesignerViewController.swift */; };
+		86E15C7A240E7DDD00118A35 /* PreloadedLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E15C79240E7DDD00118A35 /* PreloadedLevels.swift */; };
 		86E5207523FD368900D588A6 /* TransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5207423FD368900D588A6 /* TransformComponent.swift */; };
 		86E8456E240C326D009331A3 /* CirclePeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8456D240C326D009331A3 /* CirclePeg.swift */; };
 		86E84570240C3272009331A3 /* TrianglePeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8456F240C3272009331A3 /* TrianglePeg.swift */; };
@@ -234,6 +235,7 @@
 		86E136A5240BA310003EFA64 /* BKPhysicsTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKPhysicsTriangle.swift; sourceTree = "<group>"; };
 		86E15C75240D52D700118A35 /* PlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingViewController.swift; sourceTree = "<group>"; };
 		86E15C77240D62C200118A35 /* DesignerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerViewController.swift; sourceTree = "<group>"; };
+		86E15C79240E7DDD00118A35 /* PreloadedLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadedLevels.swift; sourceTree = "<group>"; };
 		86E5207423FD368900D588A6 /* TransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformComponent.swift; sourceTree = "<group>"; };
 		86E8456D240C326D009331A3 /* CirclePeg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePeg.swift; sourceTree = "<group>"; };
 		86E8456F240C3272009331A3 /* TrianglePeg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrianglePeg.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				86F257D123FCDEAE00C25BBE /* LevelData.swift */,
 				86E84571240C37F8009331A3 /* CirclePegData.swift */,
 				86E84573240C3807009331A3 /* TrianglePegData.swift */,
+				86E15C79240E7DDD00118A35 /* PreloadedLevels.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				869CF6F9240793AB000804FD /* CleanupVisualSystem.swift in Sources */,
 				86FCB9C82408617B0006C26F /* BucketComponent.swift in Sources */,
 				86757F21240996CF00B868B9 /* ExitHitSystem.swift in Sources */,
+				86E15C7A240E7DDD00118A35 /* PreloadedLevels.swift in Sources */,
 				869CF6F32406EDFD000804FD /* GamePausedView.swift in Sources */,
 				86757F1F2409938A00B868B9 /* PegHitSystem.swift in Sources */,
 				86FAF5AE2405954900EDD629 /* DestroySystem.swift in Sources */,

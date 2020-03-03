@@ -16,6 +16,10 @@ class Store {
     init() {
         do {
             realm = try Realm()
+
+            if levelDatas.isEmpty {
+                preloadLevels()
+            }
         } catch let error as NSError {
             fatalError(error.localizedDescription)
         }
@@ -60,7 +64,7 @@ class Store {
     /// Constructs a `Peg` from a `PegData`.
     /// - Parameter pegData: The `PegData` to construct from.
     /// - Returns: The constructed `Peg`.
-    static func constructCirclePeg(from data: CirclePegData) -> CirclePeg {
+    private static func constructCirclePeg(from data: CirclePegData) -> CirclePeg {
         guard let type = PegType(rawValue: data.type) else {
             // TODO: DONT USE FATAL ERROR
             fatalError("An invalid data was provided.")
@@ -71,7 +75,7 @@ class Store {
                          radius: CGFloat(data.radius))
     }
 
-    static func constructTrianglePeg(from data: TrianglePegData) -> TrianglePeg {
+    private static func constructTrianglePeg(from data: TrianglePegData) -> TrianglePeg {
         guard let type = PegType(rawValue: data.type) else {
             // TODO: DONT USE FATAL ERROR
             fatalError("An invalid PegType was provided.")
@@ -84,7 +88,7 @@ class Store {
         return TrianglePeg(vertexA: vertexA, vertexB: vertexB, vertexC: vertexC, type: type)
     }
 
-    static func constructLevelData(from level: Level) -> LevelData {
+    private static func constructLevelData(from level: Level) -> LevelData {
         let circlePegDatas = level.pegs
             .compactMap { ($0 as? CirclePeg)?.save() as? CirclePegData }
         let trianglePegDatas = level.pegs
@@ -101,5 +105,11 @@ class Store {
                                   circlePegs: circlePegs,
                                   trianglePegs: trianglePegs)
         return levelData
+    }
+
+    private func preloadLevels() {
+        guard levelDatas.isEmpty else {
+            return
+        }
     }
 }
