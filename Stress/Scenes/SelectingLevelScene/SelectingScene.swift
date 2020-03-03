@@ -109,7 +109,7 @@ class SelectingScene: GKScene {
         do {
             try store.removeLevelData(sender.levelData)
         } catch let error {
-            // TODO: Add dialog
+            fatalError("An error occured while saving data")
         }
         sender.hStack.removeFromSuperview()
     }

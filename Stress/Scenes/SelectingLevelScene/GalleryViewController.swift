@@ -47,9 +47,8 @@ class GalleryViewController: UICollectionViewController {
         do {
             try store.removeLevelData(sender.levelData)
         } catch let error {
-            // TODO: Add dialog
+            fatalError("An error occured when deleting data")
         }
-//        sender.hStack.removeFromSuperview()
     }
 }
 

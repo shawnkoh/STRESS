@@ -52,9 +52,6 @@
 		86757F21240996CF00B868B9 /* ExitHitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F20240996CF00B868B9 /* ExitHitSystem.swift */; };
 		86757F232409A17100B868B9 /* DrawSpaceBlastSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F222409A17100B868B9 /* DrawSpaceBlastSystem.swift */; };
 		86757F252409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86757F242409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift */; };
-		8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16724023264005EAA1E /* ScalingCarouselCell.swift */; };
-		8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */; };
-		8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */; };
 		8676A16E2402395B005EAA1E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A16D2402395B005EAA1E /* Cell.swift */; };
 		8676A17224029589005EAA1E /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676A17124029589005EAA1E /* LevelScene.swift */; };
 		869702FD23FF01B700375308 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869702FC23FF01B700375308 /* Background.swift */; };
@@ -206,9 +203,6 @@
 		86757F20240996CF00B868B9 /* ExitHitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitHitSystem.swift; sourceTree = "<group>"; };
 		86757F222409A17100B868B9 /* DrawSpaceBlastSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawSpaceBlastSystem.swift; sourceTree = "<group>"; };
 		86757F242409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidDrawSpookyBallComponent.swift; sourceTree = "<group>"; };
-		8676A16724023264005EAA1E /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselCell.swift; sourceTree = "<group>"; };
-		8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselLayout.swift; sourceTree = "<group>"; };
-		8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingCarouselView.swift; sourceTree = "<group>"; };
 		8676A16D2402395B005EAA1E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		8676A17124029589005EAA1E /* LevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		869702FC23FF01B700375308 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
@@ -444,9 +438,6 @@
 				8657C85523FDE6C90018E7D2 /* Palette.swift */,
 				860BCE7923FF16530007AE58 /* Tool.swift */,
 				860BCE7B23FFB56C0007AE58 /* Control.swift */,
-				8676A16724023264005EAA1E /* ScalingCarouselCell.swift */,
-				8676A169240232A3005EAA1E /* ScalingCarouselLayout.swift */,
-				8676A16B240232B1005EAA1E /* ScalingCarouselView.swift */,
 				8676A16D2402395B005EAA1E /* Cell.swift */,
 			);
 			path = DesigningScene;
@@ -945,7 +936,6 @@
 				86E136A6240BA310003EFA64 /* BKPhysicsTriangle.swift in Sources */,
 				86BA4551240AD0A000D08227 /* DidDrawSpaceBlastComponent.swift in Sources */,
 				86BA4545240AB6CC00D08227 /* AmmoLabel.swift in Sources */,
-				8676A16A240232A3005EAA1E /* ScalingCarouselLayout.swift in Sources */,
 				8676A17224029589005EAA1E /* LevelScene.swift in Sources */,
 				864DA1D723FDCFA7005805FF /* TitleScreenController.swift in Sources */,
 				86F257C823FC6AFF00C25BBE /* BKPhysicsBodyWithVolume.swift in Sources */,
@@ -972,7 +962,6 @@
 				86F257AF23FC6ADF00C25BBE /* GKScene.swift in Sources */,
 				86F257C723FC6AFF00C25BBE /* BKPhysicsBody.swift in Sources */,
 				8670F7BF240AD675007EC376 /* DidRespawnSpookyBallComponent.swift in Sources */,
-				8676A16C240232B1005EAA1E /* ScalingCarouselView.swift in Sources */,
 				86F2578A23FC665000C25BBE /* FiringComponent.swift in Sources */,
 				865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */,
 				8670F7C7240B21D7007EC376 /* IsEmittingParticlesComponent.swift in Sources */,
@@ -982,7 +971,6 @@
 				86F2575023FC609A00C25BBE /* AppDelegate.swift in Sources */,
 				86BA4549240AB96900D08227 /* MenuButton.swift in Sources */,
 				86F2579123FC6A1200C25BBE /* CGVector+Extensions.swift in Sources */,
-				8676A16824023264005EAA1E /* ScalingCarouselCell.swift in Sources */,
 				86F257C623FC6AFF00C25BBE /* BKPhysicsBodyDelegate.swift in Sources */,
 				863C0C8B240D3F770095ADC0 /* GalleryViewController.swift in Sources */,
 				86F763C62406ACD100F49B44 /* GameLoseView.swift in Sources */,
