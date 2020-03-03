@@ -32,7 +32,6 @@
 		8650447C23FD783C003F105D /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447B23FD783C003F105D /* PlayingState.swift */; };
 		8650447E23FD7849003F105D /* DesigningState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650447D23FD7849003F105D /* DesigningState.swift */; };
 		8653E0C22400F0AD00DAEF2D /* SelectingLevelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */; };
-		8653E0C52400F0FA00DAEF2D /* SelectingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653E0C42400F0FA00DAEF2D /* SelectingScene.swift */; };
 		8657C85623FDE6C90018E7D2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657C85523FDE6C90018E7D2 /* Palette.swift */; };
 		865B2D822405959C00512296 /* WillDestroyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D812405959C00512296 /* WillDestroyComponent.swift */; };
 		865B2D84240597EC00512296 /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B2D83240597EC00512296 /* ScoreComponent.swift */; };
@@ -182,7 +181,6 @@
 		8650447B23FD783C003F105D /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		8650447D23FD7849003F105D /* DesigningState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigningState.swift; sourceTree = "<group>"; };
 		8653E0C12400F0AD00DAEF2D /* SelectingLevelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingLevelState.swift; sourceTree = "<group>"; };
-		8653E0C42400F0FA00DAEF2D /* SelectingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingScene.swift; sourceTree = "<group>"; };
 		8657C85523FDE6C90018E7D2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		865B2D812405959C00512296 /* WillDestroyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillDestroyComponent.swift; sourceTree = "<group>"; };
 		865B2D83240597EC00512296 /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 			children = (
 				863C0C8A240D3F770095ADC0 /* GalleryViewController.swift */,
 				865C3376240E9A8200A9675B /* GalleryViewCell.swift */,
-				8653E0C42400F0FA00DAEF2D /* SelectingScene.swift */,
 				863C0C80240C75280095ADC0 /* LevelCollectionView.swift */,
 			);
 			path = SelectingLevelScene;
@@ -896,7 +893,6 @@
 				869DEAC22403C0B300D79C46 /* CannonControlSystem.swift in Sources */,
 				8650447723FD728E003F105D /* GKState.swift in Sources */,
 				869CF6FB24079546000804FD /* AttachPhysicsSystem.swift in Sources */,
-				8653E0C52400F0FA00DAEF2D /* SelectingScene.swift in Sources */,
 				8650447323FD70E7003F105D /* Stress.swift in Sources */,
 				8670F7CB240B9B68007EC376 /* AttachParticleSystem.swift in Sources */,
 				86757F252409A1CA00B868B9 /* DidDrawSpookyBallComponent.swift in Sources */,
