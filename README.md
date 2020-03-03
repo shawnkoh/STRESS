@@ -70,15 +70,15 @@ In GlueKit, A `GKView` is a `UIView` subclass that controls which `GKScene` is c
 A `GKScene` is a managed scene of `GKEntity` entities.   
 When a `GKScene` is presented by a `GKView`, the `GKView` is updated every time the device's screen refreshes through [CADisplayLink](https://developer.apple.com/documentation/quartzcore/cadisplaylink)
 It also manages a `BKPhysicsWorld`, and advances its simulation multiple times (configurable setting) per screen refresh.
-The `GKScene` also contains `GKComponentSystem` that can be used to drive updates to the respective `GKComponent`s.
+The `GKScene` also contains `GKSystem` that can be used to drive updates to the respective `GKComponent`s.
 
-### Peggle
+### Stress
 
-Peggle is built on top of GlueKit.
+Stress is built on top of GlueKit.
 
-![Peggle Components](peggle-components.png)
+![Stress Components](stress-components.png)
 
-Each entity in Peggle comprises of components such as:
+Each entity in Stress comprises of components such as:
 * `VisualComponent`: Renders the entity.
 * `PhysicsComponent`: Registers the entity in the physics simulation.
 * `CannonControlComponent`: Allows the entity to fire projectiles.
@@ -280,13 +280,13 @@ I went with GameplayKit's design because its designed to integrate well with Spr
 
 This was a ***monstrous mistake***.
 
-I built GlueKit entirely based off GameplayKit's API specs, then built Peggle around it.
+I built GlueKit entirely based off GameplayKit's API specs, then built Stress around it.
 
 It was a constant exercise in frustration as it was really hard to tell where exactly the updates were coming from - in GameplayKit, a component can be updated via its entity, the component itself or a ComponentSystem.
 
 Turns out, GameplayKit is actually a half-assed ECS framework. Heck, its not even ECS. It's more like EC with their "S" being ComponentSystems which are almost nothing like Systems!
 
-I ended up having to scrap all my work with GameplayKit and Peggle, and restarted with a design based off Unity's ECS.
+I ended up having to scrap all my work with GameplayKit and Stress, and restarted with a design based off Unity's ECS.
 
 #### Technical Debt: Unity ECS Archetype
 
@@ -298,7 +298,7 @@ Their Archetype architecture enables O(1) access to retrieving the System's enti
 
 Instead, I took the technical debt of having all my Systems iterate every entity - O(N) - to filter out those that had components required by the System.
 
-I did this to save time, and that there are very little entities in the context of Peggle.
+I did this to save time, and that there are very little entities in the context of Stress.
 
 Had I have the time to implement the Archetype, I would have done it based on the following design (which excludes their Chunks)
 
