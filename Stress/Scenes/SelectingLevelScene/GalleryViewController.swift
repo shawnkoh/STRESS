@@ -46,7 +46,7 @@ class GalleryViewController: UICollectionViewController {
     @objc private func deleteLevel(_ sender: LevelButton) {
         do {
             try store.removeLevelData(sender.levelData)
-        } catch let error {
+        } catch {
             fatalError("An error occured when deleting data")
         }
     }

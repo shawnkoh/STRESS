@@ -10,7 +10,7 @@ import CoreGraphics
 
 protocol BKTriangleProtocol: AnyObject {
     var vertexA: CGPoint { get set }
-    var vertexB: CGPoint { get set}
+    var vertexB: CGPoint { get set }
     var vertexC: CGPoint { get set }
 
     var edges: [BKLine] { get }

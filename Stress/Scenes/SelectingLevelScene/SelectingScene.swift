@@ -108,7 +108,7 @@ class SelectingScene: GKScene {
     @objc private func tapDelete(_ sender: LevelTapGestureRecognizer) {
         do {
             try store.removeLevelData(sender.levelData)
-        } catch let error {
+        } catch {
             fatalError("An error occured while saving data")
         }
         sender.hStack.removeFromSuperview()
